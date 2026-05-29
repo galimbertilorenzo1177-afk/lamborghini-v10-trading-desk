@@ -1,0 +1,38 @@
+const state={
+  capital:Number(localStorage.getItem('lv10_capital')||2600),
+  page:location.hash.replace('#','')||'home',
+  watch:[
+    {t:'LITE',sector:'Optical/AI',price:897.9,move:-0.49,vol:1.2,event:'post-volatility',owned:true},
+    {t:'SNOW',sector:'Software',price:233.2,move:33.05,vol:7.0,event:'earnings gap',owned:false},
+    {t:'CRWD',sector:'Cybersecurity',price:646.2,move:0.13,vol:.17,event:'quality watch',owned:false},
+    {t:'DLTR',sector:'Retail defensive',price:112.5,move:17.38,vol:3.4,event:'earnings catalyst',owned:false},
+    {t:'TER',sector:'Semicap equipment',price:144.0,move:2.4,vol:1.1,event:'relative strength',owned:false},
+    {t:'CIEN',sector:'Networking',price:568.0,move:-2.42,vol:.25,event:'weak relative',owned:false}
+  ],
+  portfolio:[{t:'LITE',qty:8,pmc:1044.5,strategy:'Hold/reduce. Non mediare se cambia poco il PMC.'}],
+  history:JSON.parse(localStorage.getItem('lv10_history')||'[]'),
+  graveyard:JSON.parse(localStorage.getItem('lv10_graveyard')||'[]')
+};
+const pages=[['home','Home'],['portfolio','Portfolio'],['radar','Radar'],['quick','Analyze'],['macro','Macro'],['sectors','Settori'],['leaders','Leader'],['events','Eventi'],['graveyard','Graveyard'],['history','Storico'],['settings','Settings']];
+const $=s=>document.querySelector(s);const euro=n=>`${Math.round(n)}€`;const cls=x=>x>=7?'good':x>=5.8?'warn':'bad';
+function save(){localStorage.setItem('lv10_capital',state.capital);localStorage.setItem('lv10_history',JSON.stringify(state.history));localStorage.setItem('lv10_graveyard',JSON.stringify(state.graveyard));}
+function score(x){let r=5;if(x.move>12)r=4.8;else if(x.move>5)r=6.2;else if(x.move>2)r=7.6;else if(x.move>.8)r=6.8;else if(x.move<-2)r=4.2;if(x.owned)r-=1.2;if(x.event.includes('earnings'))r-=.4;return Math.max(1,Math.round(r*10)/10)}
+function verdict(x){const s=score(x);if(x.move>12)return'FOMO alto';if(s>=7.2)return'Opportunità';if(s>=6)return'Watch';if(x.move<-2)return'Debole';return'Aspetta'}
+function tradeType(x){if(x.move>12)return'Gap estremo';if(x.move>5)return'Momentum esteso';if(x.move>2)return'Intraday momentum';if(x.move>.8)return'Swing breve';if(x.move<-2)return'Recovery fragile';return'Watch'}
+function size(x){const s=score(x);let mult=tradeType(x).includes('Recovery')?.03:tradeType(x).includes('Intraday')?.06:tradeType(x).includes('Gap')?.02:.08;if(x.owned)mult*=.55;return euro(Math.max(100,Math.min(state.capital*.18,state.capital*mult*s/10)))}
+function card(x){return `<div class="card"><div class="row"><b>${x.t}</b><span class="pill ${cls(score(x))}">${score(x)}/10</span></div><p>${x.sector} · ${tradeType(x)} · ${x.event}</p><div class="grid"><span>Move <b>${x.move}%</b></span><span>Verdict <b>${verdict(x)}</b></span><span>Size max <b>${size(x)}</b></span><span>Durata <b>${score(x)>=7?'1-5h / 2-5gg':'attesa'}</b></span></div><small>${reason(x)}</small></div>`}
+function reason(x){if(x.owned)return'Portfolio-aware: titolo già in portafoglio, rating ridotto per concentrazione.';if(x.move>12)return'Anti-FOMO: movimento enorme, meglio non inseguire verticale.';if(x.move>2)return'Momentum positivo non ancora eccessivo: serve conferma e persistenza.';if(x.move<-2)return'Debolezza relativa: evitare coltelli che cadono salvo reversal chiaro.';return'Setup non abbastanza forte per forzare ingresso.'}
+function shell(title,body){$('#app').innerHTML=`<header><small>Lamborghini V10 Trading Desk</small><h1>${title}</h1><p>${synth()}</p></header><main>${body}</main><nav>${pages.map(p=>`<a class="${state.page===p[0]?'active':''}" href="#${p[0]}">${p[1]}</a>`).join('')}</nav>`}
+function synth(){const top=[...state.watch].sort((a,b)=>score(b)-score(a))[0];return `Sintesi: ${top.t} ${score(top)}/10 · ${verdict(top)} · capitale ${euro(state.capital)}`}
+function home(){const top=[...state.watch].sort((a,b)=>score(b)-score(a)).slice(0,3);shell('Home Command Center',`<section class="hero"><h2>${top[0].t}</h2><b>${score(top[0])}/10</b><p>${verdict(top[0])} · ${reason(top[0])}</p></section><h3>Top radar</h3>${top.map(card).join('')}`)}
+function portfolio(){shell('Portfolio',`<label>Capitale libero<input id="cap" type="number" value="${state.capital}"></label>${state.portfolio.map(p=>{let q=state.watch.find(x=>x.t===p.t),pl=q?(q.price-p.pmc)*p.qty:0;return `<div class="card"><div class="row"><b>${p.t}</b><span class="pill ${pl>=0?'good':'bad'}">${pl.toFixed(0)}$</span></div><p>${p.strategy}</p><small>PMC ${p.pmc} · Qty ${p.qty} · prezzo ${q?.price||'-'}</small></div>`}).join('')}`);$('#cap').oninput=e=>{state.capital=Number(e.target.value||0);save();portfolio()}}
+function radar(){const list=[...state.watch].sort((a,b)=>score(b)-score(a));shell('Opportunity Radar',`<div class="notice">Scansione demo/API-ready: appena colleghiamo feed reali questa lista si aggiornerà da dati live.</div>${list.map(card).join('')}`)}
+function quick(){shell('Quick Analyze',`<div class="card"><input id="qt" placeholder="Ticker es. TER"><input id="qm" placeholder="Move % es. 2.4"><button id="qa">Analizza</button><div id="qr"></div></div>`);$('#qa').onclick=()=>{let t=$('#qt').value.toUpperCase(),m=Number(($('#qm').value||'0').replace(',','.'));let x={t,sector:'Manual input',price:0,move:m,vol:0,event:'quick analyze',owned:state.portfolio.some(p=>p.t===t)};$('#qr').innerHTML=card(x);state.history.unshift(`${new Date().toLocaleString('it-IT')} · ${t} · ${verdict(x)} · ${score(x)}/10`);save()}}
+function macro(){shell('Macro & Market Regime',`<div class="card"><h2>Choppy selettivo</h2><p>Risk-on non uniforme. Favorire leader con persistenza, evitare FOMO e weak relative.</p></div><div class="gridCards"><div class="card">QQQ: neutro</div><div class="card">SOXX: misto</div><div class="card">IWM: controllare breadth</div></div>`)}
+function sectors(){let secs=[...new Set(state.watch.map(x=>x.sector))];shell('Sector Rotation',secs.map(s=>`<div class="card"><b>${s}</b><p>${state.watch.filter(x=>x.sector===s).map(x=>x.t+' '+x.move+'%').join(' · ')}</p></div>`).join(''))}
+function leaders(){let l=state.watch.filter(x=>x.move>2),w=state.watch.filter(x=>x.move<-2);shell('Relative Strength Leaders',`<h3>Leader</h3>${l.map(card).join('')}<h3>Weak / evitare</h3>${w.map(card).join('')}`)}
+function events(){shell('Event Risk Engine',state.watch.filter(x=>x.event).map(x=>`<div class="card"><b>${x.t}</b><p>${x.event}</p><small>${x.event.includes('earnings')?'Rischio gap già avvenuto: non inseguire.':'Monitorare news e calendario.'}</small></div>`).join(''))}
+function graveyard(){shell('Trade Graveyard',`<div class="card"><input id="gt" placeholder="Lezione trade"><button id="gb">Salva lezione</button></div>${state.graveyard.map(x=>`<div class="card">${x}</div>`).join('')}`);$('#gb').onclick=()=>{state.graveyard.unshift($('#gt').value);save();graveyard()}}
+function history(){shell('Decision History',state.history.map(x=>`<div class="card">${x}</div>`).join('')||'<div class="card">Nessuna decisione ancora.</div>')}
+function settings(){shell('Settings',`<div class="card"><h3>API future</h3><p>Pronta per Finnhub/Yahoo/Polygon/Alpha Vantage via endpoint.</p></div><div class="card"><h3>Playbook Lorenzo</h3><p>No FOMO. Penalizzare titoli già in portafoglio. Preferire leader veri e setup con persistenza.</p></div>`)}
+const routes={home,portfolio,radar,quick,macro,sectors,leaders,events,graveyard,history,settings};function render(){state.page=location.hash.replace('#','')||'home';(routes[state.page]||home)()}window.addEventListener('hashchange',render);render();
