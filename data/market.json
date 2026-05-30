@@ -1,0 +1,12 @@
+{
+  "updatedAt": "manual bootstrap",
+  "source": "manual/bootstrap",
+  "quotes": [
+    {"ticker":"LITE","price":831.62,"move":-3.37},
+    {"ticker":"MRVL","price":202.41,"move":-1.18},
+    {"ticker":"TER","price":144,"move":2.4},
+    {"ticker":"SNOW","price":233.2,"move":33.05},
+    {"ticker":"CRWD","price":646.2,"move":0.13}
+  ],
+  "news": []
+}
