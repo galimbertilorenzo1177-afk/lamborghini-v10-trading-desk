@@ -1,27 +1,1993 @@
 {
-  "updatedAt": "2026-05-30T19:25:00Z",
-  "source": "manual/bootstrap-v2",
-  "universeSize": 12,
+  "updatedAt": "2026-05-30T23:42:24.053Z",
+  "source": "github-actions/stooq+yahoo-rss",
+  "universeSize": 142,
+  "groups": {
+    "ai_semis": [
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "MRVL",
+      "MU",
+      "ARM",
+      "TSM",
+      "ASML",
+      "AMAT",
+      "LRCX",
+      "KLAC",
+      "TER",
+      "ONTO",
+      "COHR",
+      "LITE",
+      "CIEN",
+      "ANET",
+      "QCOM",
+      "TXN",
+      "ADI",
+      "INTC",
+      "MPWR",
+      "NXPI",
+      "MCHP",
+      "ON",
+      "LSCC"
+    ],
+    "software_cloud": [
+      "MSFT",
+      "GOOGL",
+      "AMZN",
+      "META",
+      "SNOW",
+      "DDOG",
+      "NET",
+      "MDB",
+      "NOW",
+      "CRM",
+      "ORCL",
+      "ADBE",
+      "TEAM",
+      "SHOP",
+      "UBER",
+      "MELI",
+      "PLTR",
+      "APP",
+      "HUBS"
+    ],
+    "cybersecurity": [
+      "CRWD",
+      "PANW",
+      "ZS",
+      "FTNT",
+      "OKTA",
+      "CYBR",
+      "S",
+      "TENB",
+      "VRNS"
+    ],
+    "industrials_defense": [
+      "GE",
+      "ETN",
+      "PH",
+      "EMR",
+      "ROK",
+      "CAT",
+      "DE",
+      "HON",
+      "RTX",
+      "LMT",
+      "NOC",
+      "GD",
+      "BA",
+      "URI",
+      "HUBB"
+    ],
+    "energy": [
+      "XOM",
+      "CVX",
+      "COP",
+      "SLB",
+      "HAL",
+      "OXY",
+      "EOG",
+      "LNG",
+      "FSLR",
+      "ENPH"
+    ],
+    "healthcare": [
+      "LLY",
+      "NVO",
+      "MRK",
+      "PFE",
+      "ABBV",
+      "AMGN",
+      "REGN",
+      "VRTX",
+      "ISRG",
+      "UNH",
+      "TMO",
+      "DHR",
+      "SYK",
+      "MDT",
+      "BSX"
+    ],
+    "financials": [
+      "JPM",
+      "BAC",
+      "GS",
+      "MS",
+      "V",
+      "MA",
+      "AXP",
+      "BLK",
+      "SCHW",
+      "COIN",
+      "HOOD"
+    ],
+    "consumer": [
+      "WMT",
+      "COST",
+      "HD",
+      "LOW",
+      "TGT",
+      "DLTR",
+      "DG",
+      "MCD",
+      "SBUX",
+      "CMG",
+      "NKE",
+      "LULU",
+      "TJX",
+      "ROST"
+    ],
+    "autos_ev": [
+      "TSLA",
+      "GM",
+      "F",
+      "RIVN",
+      "NIO",
+      "LI",
+      "XPEV"
+    ],
+    "etfs": [
+      "SOXX",
+      "SMH",
+      "QQQ",
+      "SPY",
+      "IWM",
+      "DIA",
+      "XLK",
+      "XLY",
+      "XLF",
+      "XLE",
+      "XLV",
+      "XLI",
+      "XLP",
+      "XLU",
+      "XLC",
+      "ARKK"
+    ]
+  },
   "quotes": [
-    {"ticker":"LITE","name":"Lumentum","sector":"Optical/AI","price":831.62,"move":-3.37,"event":"portfolio exposure","note":"weak relative"},
-    {"ticker":"MRVL","name":"Marvell","sector":"Semiconductors/AI","price":202.41,"move":-1.18,"event":"portfolio position","note":"hold above PMC"},
-    {"ticker":"TER","name":"Teradyne","sector":"Semicap equipment","price":144,"move":2.4,"event":"relative strength","note":"clean momentum"},
-    {"ticker":"SNOW","name":"Snowflake","sector":"Software","price":233.2,"move":33.05,"event":"earnings gap","note":"too extended"},
-    {"ticker":"CRWD","name":"CrowdStrike","sector":"Cybersecurity","price":646.2,"move":0.13,"event":"quality watch","note":"neutral"},
-    {"ticker":"NVDA","name":"Nvidia","sector":"AI chips","price":178,"move":0.8,"event":"AI leader benchmark","note":"sector reference"},
-    {"ticker":"SOXX","name":"iShares Semiconductor ETF","sector":"Semiconductors ETF","price":280,"move":0.6,"event":"sector benchmark","note":"relative strength reference"}
+    {
+      "ticker": "NVDA",
+      "name": "Nvidia",
+      "sector": "AI chips",
+      "price": 211.14,
+      "move": -1.6,
+      "volume": 289410624,
+      "source": "stooq"
+    },
+    {
+      "ticker": "AMD",
+      "name": "AMD",
+      "sector": "ai_semis",
+      "price": 516.1,
+      "move": -0.9,
+      "volume": 30803236,
+      "source": "stooq"
+    },
+    {
+      "ticker": "AVGO",
+      "name": "AVGO",
+      "sector": "ai_semis",
+      "price": 446.77,
+      "move": 3.19,
+      "volume": 41798353,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell",
+      "sector": "Semiconductors/AI",
+      "price": 205,
+      "move": 0.27,
+      "volume": 34024746,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MU",
+      "name": "MU",
+      "sector": "ai_semis",
+      "price": 971,
+      "move": 1.46,
+      "volume": 60498561,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ARM",
+      "name": "ARM",
+      "sector": "ai_semis",
+      "price": 353.29,
+      "move": 4.14,
+      "volume": 10448329,
+      "source": "stooq"
+    },
+    {
+      "ticker": "TSM",
+      "name": "TSM",
+      "sector": "ai_semis",
+      "price": 418.45,
+      "move": -2.02,
+      "volume": 11232272,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ASML",
+      "name": "ASML",
+      "sector": "ai_semis",
+      "price": 1612.76,
+      "move": -1.27,
+      "volume": 1070357,
+      "source": "stooq"
+    },
+    {
+      "ticker": "AMAT",
+      "name": "AMAT",
+      "sector": "ai_semis",
+      "price": 450.06,
+      "move": -0.6,
+      "volume": 8549508,
+      "source": "stooq"
+    },
+    {
+      "ticker": "LRCX",
+      "name": "LRCX",
+      "sector": "ai_semis",
+      "price": 318.18,
+      "move": -1.19,
+      "volume": 10872171,
+      "source": "stooq"
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLAC",
+      "sector": "ai_semis",
+      "price": 1921.71,
+      "move": -0.42,
+      "volume": 1145940,
+      "source": "stooq"
+    },
+    {
+      "ticker": "TER",
+      "name": "Teradyne",
+      "sector": "Semicap equipment",
+      "price": 374.31,
+      "move": -2.82,
+      "volume": 4130952,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ONTO",
+      "name": "ONTO",
+      "sector": "ai_semis",
+      "price": 258.24,
+      "move": -0.98,
+      "volume": 1121331,
+      "source": "stooq"
+    },
+    {
+      "ticker": "COHR",
+      "name": "COHR",
+      "sector": "ai_semis",
+      "price": 361.47,
+      "move": -3.77,
+      "volume": 11082553,
+      "source": "stooq"
+    },
+    {
+      "ticker": "LITE",
+      "name": "Lumentum",
+      "sector": "Optical/AI",
+      "price": 854.96,
+      "move": -0.66,
+      "volume": 6363965,
+      "source": "stooq"
+    },
+    {
+      "ticker": "CIEN",
+      "name": "CIEN",
+      "sector": "ai_semis",
+      "price": 580.23,
+      "move": 2.51,
+      "volume": 3865952,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ANET",
+      "name": "ANET",
+      "sector": "ai_semis",
+      "price": 159.47,
+      "move": 1.95,
+      "volume": 15393768,
+      "source": "stooq"
+    },
+    {
+      "ticker": "QCOM",
+      "name": "QCOM",
+      "sector": "ai_semis",
+      "price": 251.02,
+      "move": 0.33,
+      "volume": 28781844,
+      "source": "stooq"
+    },
+    {
+      "ticker": "TXN",
+      "name": "TXN",
+      "sector": "ai_semis",
+      "price": 305.68,
+      "move": -3.41,
+      "volume": 16786667,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ADI",
+      "name": "ADI",
+      "sector": "ai_semis",
+      "price": 413.85,
+      "move": -2.27,
+      "volume": 5508118,
+      "source": "stooq"
+    },
+    {
+      "ticker": "INTC",
+      "name": "INTC",
+      "sector": "ai_semis",
+      "price": 114.68,
+      "move": -7.4,
+      "volume": 191676126,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MPWR",
+      "name": "MPWR",
+      "sector": "ai_semis",
+      "price": 1566.21,
+      "move": -4.79,
+      "volume": 1164331,
+      "source": "stooq"
+    },
+    {
+      "ticker": "NXPI",
+      "name": "NXPI",
+      "sector": "ai_semis",
+      "price": 321.35,
+      "move": -3.67,
+      "volume": 3773450,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MCHP",
+      "name": "MCHP",
+      "sector": "ai_semis",
+      "price": 94.65,
+      "move": -2.09,
+      "volume": 11367652,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ON",
+      "name": "ON",
+      "sector": "ai_semis",
+      "price": 120.62,
+      "move": -2.99,
+      "volume": 11273804,
+      "source": "stooq"
+    },
+    {
+      "ticker": "LSCC",
+      "name": "LSCC",
+      "sector": "ai_semis",
+      "price": 147.08,
+      "move": -1.22,
+      "volume": 2204267,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MSFT",
+      "name": "MSFT",
+      "sector": "software_cloud",
+      "price": 450.24,
+      "move": 4.09,
+      "volume": 79654376,
+      "source": "stooq"
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "GOOGL",
+      "sector": "software_cloud",
+      "price": 380.34,
+      "move": -1.27,
+      "volume": 44415846,
+      "source": "stooq"
+    },
+    {
+      "ticker": "AMZN",
+      "name": "AMZN",
+      "sector": "software_cloud",
+      "price": 270.64,
+      "move": -0.24,
+      "volume": 54749561,
+      "source": "stooq"
+    },
+    {
+      "ticker": "META",
+      "name": "META",
+      "sector": "software_cloud",
+      "price": 632.51,
+      "move": -0.16,
+      "volume": 19806536,
+      "source": "stooq"
+    },
+    {
+      "ticker": "SNOW",
+      "name": "Snowflake",
+      "sector": "Software",
+      "price": 255.55,
+      "move": 6.17,
+      "volume": 19892241,
+      "source": "stooq"
+    },
+    {
+      "ticker": "DDOG",
+      "name": "DDOG",
+      "sector": "software_cloud",
+      "price": 247.35,
+      "move": 5.71,
+      "volume": 9422411,
+      "source": "stooq"
+    },
+    {
+      "ticker": "NET",
+      "name": "NET",
+      "sector": "software_cloud",
+      "price": 241.82,
+      "move": 3.61,
+      "volume": 5737026,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MDB",
+      "name": "MDB",
+      "sector": "software_cloud",
+      "price": 335.55,
+      "move": -4.27,
+      "volume": 10612619,
+      "source": "stooq"
+    },
+    {
+      "ticker": "NOW",
+      "name": "NOW",
+      "sector": "software_cloud",
+      "price": 124.37,
+      "move": 4.97,
+      "volume": 68243445,
+      "source": "stooq"
+    },
+    {
+      "ticker": "CRM",
+      "name": "CRM",
+      "sector": "software_cloud",
+      "price": 191.1,
+      "move": 6.03,
+      "volume": 33998871,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ORCL",
+      "name": "ORCL",
+      "sector": "software_cloud",
+      "price": 225.78,
+      "move": 8.03,
+      "volume": 41082199,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ADBE",
+      "name": "ADBE",
+      "sector": "software_cloud",
+      "price": 259.21,
+      "move": 5.7,
+      "volume": 10808921,
+      "source": "stooq"
+    },
+    {
+      "ticker": "TEAM",
+      "name": "TEAM",
+      "sector": "software_cloud",
+      "price": 107.61,
+      "move": 9.95,
+      "volume": 13857687,
+      "source": "stooq"
+    },
+    {
+      "ticker": "SHOP",
+      "name": "SHOP",
+      "sector": "software_cloud",
+      "price": 118.71,
+      "move": 2,
+      "volume": 12091770,
+      "source": "stooq"
+    },
+    {
+      "ticker": "UBER",
+      "name": "UBER",
+      "sector": "software_cloud",
+      "price": 70.4,
+      "move": -0.35,
+      "volume": 50294668,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MELI",
+      "name": "MELI",
+      "sector": "software_cloud",
+      "price": 1695.65,
+      "move": 0.76,
+      "volume": 760043,
+      "source": "stooq"
+    },
+    {
+      "ticker": "PLTR",
+      "name": "PLTR",
+      "sector": "software_cloud",
+      "price": 156.54,
+      "move": 5.9,
+      "volume": 92196609,
+      "source": "stooq"
+    },
+    {
+      "ticker": "APP",
+      "name": "APP",
+      "sector": "software_cloud",
+      "price": 613.09,
+      "move": 1.93,
+      "volume": 6252209,
+      "source": "stooq"
+    },
+    {
+      "ticker": "HUBS",
+      "name": "HUBS",
+      "sector": "software_cloud",
+      "price": 220.63,
+      "move": 8.79,
+      "volume": 6815930,
+      "source": "stooq"
+    },
+    {
+      "ticker": "CRWD",
+      "name": "CrowdStrike",
+      "sector": "Cybersecurity",
+      "price": 731,
+      "move": 7.91,
+      "volume": 4820454,
+      "source": "stooq"
+    },
+    {
+      "ticker": "PANW",
+      "name": "PANW",
+      "sector": "cybersecurity",
+      "price": 281.69,
+      "move": 9.9,
+      "volume": 14998907,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ZS",
+      "name": "ZS",
+      "sector": "cybersecurity",
+      "price": 139.73,
+      "move": 6.1,
+      "volume": 11010088,
+      "source": "stooq"
+    },
+    {
+      "ticker": "FTNT",
+      "name": "FTNT",
+      "sector": "cybersecurity",
+      "price": 137.97,
+      "move": 6.47,
+      "volume": 9631544,
+      "source": "stooq"
+    },
+    {
+      "ticker": "OKTA",
+      "name": "OKTA",
+      "sector": "cybersecurity",
+      "price": 123.27,
+      "move": 14.63,
+      "volume": 17583948,
+      "source": "stooq"
+    },
+    {
+      "ticker": "CYBR",
+      "name": "CYBR",
+      "sector": "cybersecurity",
+      "price": 0,
+      "move": 0,
+      "error": "No quote",
+      "source": "stooq"
+    },
+    {
+      "ticker": "S",
+      "name": "S",
+      "sector": "cybersecurity",
+      "price": 16.55,
+      "move": 7.19,
+      "volume": 30820494,
+      "source": "stooq"
+    },
+    {
+      "ticker": "TENB",
+      "name": "TENB",
+      "sector": "cybersecurity",
+      "price": 28.23,
+      "move": 7.42,
+      "volume": 4449276,
+      "source": "stooq"
+    },
+    {
+      "ticker": "VRNS",
+      "name": "VRNS",
+      "sector": "cybersecurity",
+      "price": 34.15,
+      "move": 6.22,
+      "volume": 2595909,
+      "source": "stooq"
+    },
+    {
+      "ticker": "GE",
+      "name": "GE",
+      "sector": "industrials_defense",
+      "price": 323.76,
+      "move": 1.39,
+      "volume": 9347285,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ETN",
+      "name": "ETN",
+      "sector": "industrials_defense",
+      "price": 400.6,
+      "move": -0.44,
+      "volume": 3322002,
+      "source": "stooq"
+    },
+    {
+      "ticker": "PH",
+      "name": "PH",
+      "sector": "industrials_defense",
+      "price": 844.63,
+      "move": -0.42,
+      "volume": 1021271,
+      "source": "stooq"
+    },
+    {
+      "ticker": "EMR",
+      "name": "EMR",
+      "sector": "industrials_defense",
+      "price": 143.82,
+      "move": 1.1,
+      "volume": 3868328,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ROK",
+      "name": "ROK",
+      "sector": "industrials_defense",
+      "price": 451.06,
+      "move": -0.94,
+      "volume": 1110324,
+      "source": "stooq"
+    },
+    {
+      "ticker": "CAT",
+      "name": "CAT",
+      "sector": "industrials_defense",
+      "price": 875.87,
+      "move": -1.22,
+      "volume": 5196777,
+      "source": "stooq"
+    },
+    {
+      "ticker": "DE",
+      "name": "DE",
+      "sector": "industrials_defense",
+      "price": 542.18,
+      "move": 1.1,
+      "volume": 2271416,
+      "source": "stooq"
+    },
+    {
+      "ticker": "HON",
+      "name": "HON",
+      "sector": "industrials_defense",
+      "price": 237.86,
+      "move": 2.09,
+      "volume": 5491099,
+      "source": "stooq"
+    },
+    {
+      "ticker": "RTX",
+      "name": "RTX",
+      "sector": "industrials_defense",
+      "price": 179.66,
+      "move": 0.42,
+      "volume": 8757169,
+      "source": "stooq"
+    },
+    {
+      "ticker": "LMT",
+      "name": "LMT",
+      "sector": "industrials_defense",
+      "price": 530.45,
+      "move": -1.08,
+      "volume": 2248598,
+      "source": "stooq"
+    },
+    {
+      "ticker": "NOC",
+      "name": "NOC",
+      "sector": "industrials_defense",
+      "price": 563.68,
+      "move": 0.42,
+      "volume": 1975853,
+      "source": "stooq"
+    },
+    {
+      "ticker": "GD",
+      "name": "GD",
+      "sector": "industrials_defense",
+      "price": 346.82,
+      "move": -0.5,
+      "volume": 1245735,
+      "source": "stooq"
+    },
+    {
+      "ticker": "BA",
+      "name": "BA",
+      "sector": "industrials_defense",
+      "price": 231.15,
+      "move": 1.19,
+      "volume": 6941936,
+      "source": "stooq"
+    },
+    {
+      "ticker": "URI",
+      "name": "URI",
+      "sector": "industrials_defense",
+      "price": 995.67,
+      "move": 1.34,
+      "volume": 573522,
+      "source": "stooq"
+    },
+    {
+      "ticker": "HUBB",
+      "name": "HUBB",
+      "sector": "industrials_defense",
+      "price": 473.61,
+      "move": -0.04,
+      "volume": 781150,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XOM",
+      "name": "XOM",
+      "sector": "energy",
+      "price": 145.26,
+      "move": -0.63,
+      "volume": 27959898,
+      "source": "stooq"
+    },
+    {
+      "ticker": "CVX",
+      "name": "CVX",
+      "sector": "energy",
+      "price": 182.46,
+      "move": -0.14,
+      "volume": 13894029,
+      "source": "stooq"
+    },
+    {
+      "ticker": "COP",
+      "name": "COP",
+      "sector": "energy",
+      "price": 113.98,
+      "move": -0.12,
+      "volume": 12402915,
+      "source": "stooq"
+    },
+    {
+      "ticker": "SLB",
+      "name": "SLB",
+      "sector": "energy",
+      "price": 54.55,
+      "move": -0.47,
+      "volume": 31218464,
+      "source": "stooq"
+    },
+    {
+      "ticker": "HAL",
+      "name": "HAL",
+      "sector": "energy",
+      "price": 38.85,
+      "move": -1.04,
+      "volume": 20832537,
+      "source": "stooq"
+    },
+    {
+      "ticker": "OXY",
+      "name": "OXY",
+      "sector": "energy",
+      "price": 56.63,
+      "move": -0.74,
+      "volume": 14401174,
+      "source": "stooq"
+    },
+    {
+      "ticker": "EOG",
+      "name": "EOG",
+      "sector": "energy",
+      "price": 133.38,
+      "move": 0.48,
+      "volume": 7668497,
+      "source": "stooq"
+    },
+    {
+      "ticker": "LNG",
+      "name": "LNG",
+      "sector": "energy",
+      "price": 224.86,
+      "move": -1.56,
+      "volume": 3503500,
+      "source": "stooq"
+    },
+    {
+      "ticker": "FSLR",
+      "name": "FSLR",
+      "sector": "energy",
+      "price": 306.79,
+      "move": 1.37,
+      "volume": 5997168,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ENPH",
+      "name": "ENPH",
+      "sector": "energy",
+      "price": 68.36,
+      "move": -5.71,
+      "volume": 9035339,
+      "source": "stooq"
+    },
+    {
+      "ticker": "LLY",
+      "name": "LLY",
+      "sector": "healthcare",
+      "price": 1105,
+      "move": -1.95,
+      "volume": 4603028,
+      "source": "stooq"
+    },
+    {
+      "ticker": "NVO",
+      "name": "NVO",
+      "sector": "healthcare",
+      "price": 45.58,
+      "move": 0.22,
+      "volume": 10986402,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MRK",
+      "name": "MRK",
+      "sector": "healthcare",
+      "price": 118.72,
+      "move": -0.78,
+      "volume": 16599390,
+      "source": "stooq"
+    },
+    {
+      "ticker": "PFE",
+      "name": "PFE",
+      "sector": "healthcare",
+      "price": 26.18,
+      "move": -0.04,
+      "volume": 48284181,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ABBV",
+      "name": "ABBV",
+      "sector": "healthcare",
+      "price": 217.72,
+      "move": -0.83,
+      "volume": 7620822,
+      "source": "stooq"
+    },
+    {
+      "ticker": "AMGN",
+      "name": "AMGN",
+      "sector": "healthcare",
+      "price": 336.79,
+      "move": 0.17,
+      "volume": 2954439,
+      "source": "stooq"
+    },
+    {
+      "ticker": "REGN",
+      "name": "REGN",
+      "sector": "healthcare",
+      "price": 614.78,
+      "move": -0.86,
+      "volume": 2187707,
+      "source": "stooq"
+    },
+    {
+      "ticker": "VRTX",
+      "name": "VRTX",
+      "sector": "healthcare",
+      "price": 447.54,
+      "move": -0.1,
+      "volume": 1893380,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ISRG",
+      "name": "ISRG",
+      "sector": "healthcare",
+      "price": 424.64,
+      "move": 0.2,
+      "volume": 3441380,
+      "source": "stooq"
+    },
+    {
+      "ticker": "UNH",
+      "name": "UNH",
+      "sector": "healthcare",
+      "price": 380.31,
+      "move": -0.9,
+      "volume": 10262268,
+      "source": "stooq"
+    },
+    {
+      "ticker": "TMO",
+      "name": "TMO",
+      "sector": "healthcare",
+      "price": 492.51,
+      "move": 2.14,
+      "volume": 4184392,
+      "source": "stooq"
+    },
+    {
+      "ticker": "DHR",
+      "name": "DHR",
+      "sector": "healthcare",
+      "price": 182.67,
+      "move": 0.89,
+      "volume": 6993156,
+      "source": "stooq"
+    },
+    {
+      "ticker": "SYK",
+      "name": "SYK",
+      "sector": "healthcare",
+      "price": 305.09,
+      "move": -0.78,
+      "volume": 6065779,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MDT",
+      "name": "MDT",
+      "sector": "healthcare",
+      "price": 73.81,
+      "move": -2.69,
+      "volume": 22243503,
+      "source": "stooq"
+    },
+    {
+      "ticker": "BSX",
+      "name": "BSX",
+      "sector": "healthcare",
+      "price": 48.31,
+      "move": -0.85,
+      "volume": 37280148,
+      "source": "stooq"
+    },
+    {
+      "ticker": "JPM",
+      "name": "JPM",
+      "sector": "financials",
+      "price": 299.31,
+      "move": 0.98,
+      "volume": 13973665,
+      "source": "stooq"
+    },
+    {
+      "ticker": "BAC",
+      "name": "BAC",
+      "sector": "financials",
+      "price": 51.6,
+      "move": 1.24,
+      "volume": 57930560,
+      "source": "stooq"
+    },
+    {
+      "ticker": "GS",
+      "name": "GS",
+      "sector": "financials",
+      "price": 1025.56,
+      "move": 1.61,
+      "volume": 2158796,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MS",
+      "name": "MS",
+      "sector": "financials",
+      "price": 208,
+      "move": 1.96,
+      "volume": 8256932,
+      "source": "stooq"
+    },
+    {
+      "ticker": "V",
+      "name": "V",
+      "sector": "financials",
+      "price": 326.36,
+      "move": 0.26,
+      "volume": 14106836,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MA",
+      "name": "MA",
+      "sector": "financials",
+      "price": 493.98,
+      "move": -0.11,
+      "volume": 5693541,
+      "source": "stooq"
+    },
+    {
+      "ticker": "AXP",
+      "name": "AXP",
+      "sector": "financials",
+      "price": 316.47,
+      "move": 0.29,
+      "volume": 4531023,
+      "source": "stooq"
+    },
+    {
+      "ticker": "BLK",
+      "name": "BLK",
+      "sector": "financials",
+      "price": 1046.88,
+      "move": 0.48,
+      "volume": 1078103,
+      "source": "stooq"
+    },
+    {
+      "ticker": "SCHW",
+      "name": "SCHW",
+      "sector": "financials",
+      "price": 87.35,
+      "move": 1.57,
+      "volume": 20461629,
+      "source": "stooq"
+    },
+    {
+      "ticker": "COIN",
+      "name": "COIN",
+      "sector": "financials",
+      "price": 189.03,
+      "move": 4.88,
+      "volume": 10249775,
+      "source": "stooq"
+    },
+    {
+      "ticker": "HOOD",
+      "name": "HOOD",
+      "sector": "financials",
+      "price": 94.3,
+      "move": 10.09,
+      "volume": 64410960,
+      "source": "stooq"
+    },
+    {
+      "ticker": "WMT",
+      "name": "WMT",
+      "sector": "consumer",
+      "price": 115.75,
+      "move": -2,
+      "volume": 42190998,
+      "source": "stooq"
+    },
+    {
+      "ticker": "COST",
+      "name": "COST",
+      "sector": "consumer",
+      "price": 956.32,
+      "move": -3.07,
+      "volume": 7034527,
+      "source": "stooq"
+    },
+    {
+      "ticker": "HD",
+      "name": "HD",
+      "sector": "consumer",
+      "price": 317.14,
+      "move": -1.04,
+      "volume": 6965695,
+      "source": "stooq"
+    },
+    {
+      "ticker": "LOW",
+      "name": "LOW",
+      "sector": "consumer",
+      "price": 214.36,
+      "move": -1.23,
+      "volume": 3624017,
+      "source": "stooq"
+    },
+    {
+      "ticker": "TGT",
+      "name": "TGT",
+      "sector": "consumer",
+      "price": 127.07,
+      "move": -0.27,
+      "volume": 6455972,
+      "source": "stooq"
+    },
+    {
+      "ticker": "DLTR",
+      "name": "DLTR",
+      "sector": "consumer",
+      "price": 116.44,
+      "move": 4.89,
+      "volume": 7395957,
+      "source": "stooq"
+    },
+    {
+      "ticker": "DG",
+      "name": "DG",
+      "sector": "consumer",
+      "price": 110.61,
+      "move": 1.67,
+      "volume": 5525004,
+      "source": "stooq"
+    },
+    {
+      "ticker": "MCD",
+      "name": "MCD",
+      "sector": "consumer",
+      "price": 279.2,
+      "move": 0.51,
+      "volume": 4906052,
+      "source": "stooq"
+    },
+    {
+      "ticker": "SBUX",
+      "name": "SBUX",
+      "sector": "consumer",
+      "price": 99.16,
+      "move": -1.33,
+      "volume": 8207914,
+      "source": "stooq"
+    },
+    {
+      "ticker": "CMG",
+      "name": "CMG",
+      "sector": "consumer",
+      "price": 31.86,
+      "move": -1.58,
+      "volume": 29861439,
+      "source": "stooq"
+    },
+    {
+      "ticker": "NKE",
+      "name": "NKE",
+      "sector": "consumer",
+      "price": 46.23,
+      "move": -1.87,
+      "volume": 38949132,
+      "source": "stooq"
+    },
+    {
+      "ticker": "LULU",
+      "name": "LULU",
+      "sector": "consumer",
+      "price": 131.18,
+      "move": 0.04,
+      "volume": 3429447,
+      "source": "stooq"
+    },
+    {
+      "ticker": "TJX",
+      "name": "TJX",
+      "sector": "consumer",
+      "price": 154.75,
+      "move": -0.26,
+      "volume": 12110108,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ROST",
+      "name": "ROST",
+      "sector": "consumer",
+      "price": 231.73,
+      "move": 2.24,
+      "volume": 11295835,
+      "source": "stooq"
+    },
+    {
+      "ticker": "TSLA",
+      "name": "TSLA",
+      "sector": "autos_ev",
+      "price": 435.79,
+      "move": -0.92,
+      "volume": 45176821,
+      "source": "stooq"
+    },
+    {
+      "ticker": "GM",
+      "name": "GM",
+      "sector": "autos_ev",
+      "price": 83.24,
+      "move": -1.84,
+      "volume": 15553448,
+      "source": "stooq"
+    },
+    {
+      "ticker": "F",
+      "name": "F",
+      "sector": "autos_ev",
+      "price": 17.44,
+      "move": 3.32,
+      "volume": 154228168,
+      "source": "stooq"
+    },
+    {
+      "ticker": "RIVN",
+      "name": "RIVN",
+      "sector": "autos_ev",
+      "price": 16.3,
+      "move": 7.03,
+      "volume": 59451465,
+      "source": "stooq"
+    },
+    {
+      "ticker": "NIO",
+      "name": "NIO",
+      "sector": "autos_ev",
+      "price": 5.6,
+      "move": 3.7,
+      "volume": 43584826,
+      "source": "stooq"
+    },
+    {
+      "ticker": "LI",
+      "name": "LI",
+      "sector": "autos_ev",
+      "price": 15.01,
+      "move": -0.3,
+      "volume": 7243431,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XPEV",
+      "name": "XPEV",
+      "sector": "autos_ev",
+      "price": 16.45,
+      "move": 0.3,
+      "volume": 7287571,
+      "source": "stooq"
+    },
+    {
+      "ticker": "SOXX",
+      "name": "Semiconductor ETF",
+      "sector": "Semiconductors ETF",
+      "price": 569.08,
+      "move": -1.28,
+      "volume": 7323862,
+      "source": "stooq"
+    },
+    {
+      "ticker": "SMH",
+      "name": "Semiconductor ETF",
+      "sector": "Semiconductors ETF",
+      "price": 598.93,
+      "move": -1.17,
+      "volume": 7603183,
+      "source": "stooq"
+    },
+    {
+      "ticker": "QQQ",
+      "name": "Nasdaq 100 ETF",
+      "sector": "Index",
+      "price": 738.31,
+      "move": 0.06,
+      "volume": 37541668,
+      "source": "stooq"
+    },
+    {
+      "ticker": "SPY",
+      "name": "S&P 500 ETF",
+      "sector": "Index",
+      "price": 756.48,
+      "move": 0.08,
+      "volume": 55075739,
+      "source": "stooq"
+    },
+    {
+      "ticker": "IWM",
+      "name": "IWM",
+      "sector": "etfs",
+      "price": 290.43,
+      "move": -0.33,
+      "volume": 26961014,
+      "source": "stooq"
+    },
+    {
+      "ticker": "DIA",
+      "name": "DIA",
+      "sector": "etfs",
+      "price": 510.78,
+      "move": 0.57,
+      "volume": 5346659,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XLK",
+      "name": "XLK",
+      "sector": "etfs",
+      "price": 191.02,
+      "move": 0.89,
+      "volume": 15040309,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XLY",
+      "name": "XLY",
+      "sector": "etfs",
+      "price": 120.87,
+      "move": -0.6,
+      "volume": 7257984,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XLF",
+      "name": "XLF",
+      "sector": "etfs",
+      "price": 51.58,
+      "move": 0.59,
+      "volume": 34240301,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XLE",
+      "name": "XLE",
+      "sector": "etfs",
+      "price": 56.29,
+      "move": -0.69,
+      "volume": 32389634,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XLV",
+      "name": "XLV",
+      "sector": "etfs",
+      "price": 149.47,
+      "move": -0.91,
+      "volume": 13199620,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XLI",
+      "name": "XLI",
+      "sector": "etfs",
+      "price": 173.13,
+      "move": -0.25,
+      "volume": 7054759,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XLP",
+      "name": "XLP",
+      "sector": "etfs",
+      "price": 82.91,
+      "move": -1.26,
+      "volume": 13011260,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XLU",
+      "name": "XLU",
+      "sector": "etfs",
+      "price": 44.42,
+      "move": -0.56,
+      "volume": 23049825,
+      "source": "stooq"
+    },
+    {
+      "ticker": "XLC",
+      "name": "XLC",
+      "sector": "etfs",
+      "price": 115.69,
+      "move": -0.21,
+      "volume": 5493815,
+      "source": "stooq"
+    },
+    {
+      "ticker": "ARKK",
+      "name": "ARKK",
+      "sector": "etfs",
+      "price": 81.95,
+      "move": 0.8,
+      "volume": 9357002,
+      "source": "stooq"
+    }
   ],
   "radar": [
-    {"ticker":"TER","name":"Teradyne","sector":"Semicap equipment","price":144,"move":2.4,"score":8.1,"event":"relative strength","note":"clean momentum"},
-    {"ticker":"MRVL","name":"Marvell","sector":"Semiconductors/AI","price":202.41,"move":-1.18,"score":6.8,"event":"portfolio position","note":"hold above PMC"},
-    {"ticker":"CRWD","name":"CrowdStrike","sector":"Cybersecurity","price":646.2,"move":0.13,"score":5.4,"event":"quality watch","note":"neutral"},
-    {"ticker":"LITE","name":"Lumentum","sector":"Optical/AI","price":831.62,"move":-3.37,"score":3.4,"event":"portfolio exposure","note":"weak relative"},
-    {"ticker":"SNOW","name":"Snowflake","sector":"Software","price":233.2,"move":33.05,"score":3.2,"event":"earnings gap","note":"FOMO high"}
+    {
+      "ticker": "AVGO",
+      "name": "AVGO",
+      "sector": "ai_semis",
+      "price": 446.77,
+      "move": 3.19,
+      "volume": 41798353,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "ARM",
+      "name": "ARM",
+      "sector": "ai_semis",
+      "price": 353.29,
+      "move": 4.14,
+      "volume": 10448329,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "CIEN",
+      "name": "CIEN",
+      "sector": "ai_semis",
+      "price": 580.23,
+      "move": 2.51,
+      "volume": 3865952,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "MSFT",
+      "name": "MSFT",
+      "sector": "software_cloud",
+      "price": 450.24,
+      "move": 4.09,
+      "volume": 79654376,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "DDOG",
+      "name": "DDOG",
+      "sector": "software_cloud",
+      "price": 247.35,
+      "move": 5.71,
+      "volume": 9422411,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "NET",
+      "name": "NET",
+      "sector": "software_cloud",
+      "price": 241.82,
+      "move": 3.61,
+      "volume": 5737026,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "NOW",
+      "name": "NOW",
+      "sector": "software_cloud",
+      "price": 124.37,
+      "move": 4.97,
+      "volume": 68243445,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "ADBE",
+      "name": "ADBE",
+      "sector": "software_cloud",
+      "price": 259.21,
+      "move": 5.7,
+      "volume": 10808921,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "PLTR",
+      "name": "PLTR",
+      "sector": "software_cloud",
+      "price": 156.54,
+      "move": 5.9,
+      "volume": 92196609,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "HON",
+      "name": "HON",
+      "sector": "industrials_defense",
+      "price": 237.86,
+      "move": 2.09,
+      "volume": 5491099,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "TMO",
+      "name": "TMO",
+      "sector": "healthcare",
+      "price": 492.51,
+      "move": 2.14,
+      "volume": 4184392,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "COIN",
+      "name": "COIN",
+      "sector": "financials",
+      "price": 189.03,
+      "move": 4.88,
+      "volume": 10249775,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "DLTR",
+      "name": "DLTR",
+      "sector": "consumer",
+      "price": 116.44,
+      "move": 4.89,
+      "volume": 7395957,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "ROST",
+      "name": "ROST",
+      "sector": "consumer",
+      "price": 231.73,
+      "move": 2.24,
+      "volume": 11295835,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "F",
+      "name": "F",
+      "sector": "autos_ev",
+      "price": 17.44,
+      "move": 3.32,
+      "volume": 154228168,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "NIO",
+      "name": "NIO",
+      "sector": "autos_ev",
+      "price": 5.6,
+      "move": 3.7,
+      "volume": 43584826,
+      "source": "stooq",
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "MU",
+      "name": "MU",
+      "sector": "ai_semis",
+      "price": 971,
+      "move": 1.46,
+      "volume": 60498561,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "ANET",
+      "name": "ANET",
+      "sector": "ai_semis",
+      "price": 159.47,
+      "move": 1.95,
+      "volume": 15393768,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "SHOP",
+      "name": "SHOP",
+      "sector": "software_cloud",
+      "price": 118.71,
+      "move": 2,
+      "volume": 12091770,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "APP",
+      "name": "APP",
+      "sector": "software_cloud",
+      "price": 613.09,
+      "move": 1.93,
+      "volume": 6252209,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "GE",
+      "name": "GE",
+      "sector": "industrials_defense",
+      "price": 323.76,
+      "move": 1.39,
+      "volume": 9347285,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "EMR",
+      "name": "EMR",
+      "sector": "industrials_defense",
+      "price": 143.82,
+      "move": 1.1,
+      "volume": 3868328,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "DE",
+      "name": "DE",
+      "sector": "industrials_defense",
+      "price": 542.18,
+      "move": 1.1,
+      "volume": 2271416,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "BA",
+      "name": "BA",
+      "sector": "industrials_defense",
+      "price": 231.15,
+      "move": 1.19,
+      "volume": 6941936,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "FSLR",
+      "name": "FSLR",
+      "sector": "energy",
+      "price": 306.79,
+      "move": 1.37,
+      "volume": 5997168,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "DHR",
+      "name": "DHR",
+      "sector": "healthcare",
+      "price": 182.67,
+      "move": 0.89,
+      "volume": 6993156,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "JPM",
+      "name": "JPM",
+      "sector": "financials",
+      "price": 299.31,
+      "move": 0.98,
+      "volume": 13973665,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "BAC",
+      "name": "BAC",
+      "sector": "financials",
+      "price": 51.6,
+      "move": 1.24,
+      "volume": 57930560,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "GS",
+      "name": "GS",
+      "sector": "financials",
+      "price": 1025.56,
+      "move": 1.61,
+      "volume": 2158796,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "MS",
+      "name": "MS",
+      "sector": "financials",
+      "price": 208,
+      "move": 1.96,
+      "volume": 8256932,
+      "source": "stooq",
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    }
   ],
   "news": [
-    {"ticker":"LITE","title":"LITE under review: optical AI demand strong but relative strength remains weak","source":"V10 manual note"},
-    {"ticker":"MRVL","title":"MRVL remains portfolio hold while above PMC and AI/networking thesis is intact","source":"V10 manual note"},
-    {"ticker":"TER","title":"TER leads current radar with clean momentum and controlled extension","source":"V10 manual note"},
-    {"ticker":"SOXX","title":"Semiconductor ETF used as sector benchmark for leader-versus-weak comparison","source":"V10 manual note"}
+    {
+      "ticker": "LITE",
+      "title": "Lumentum Holdings Inc. (LITE): Leopold Aschenbrenner Registers Bearish Activity",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/lumentum-holdings-inc-lite-leopold-194045577.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "LITE",
+      "title": "These Artificial Intelligence (AI) Stocks Have Crushed Nvidia in 2026 With Gains of 67% and 121%. They Can Still Soar Higher",
+      "link": "https://www.fool.com/investing/2026/05/30/these-artificial-intelligence-ai-stocks-have-crush/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "LITE",
+      "title": "Dow Jones Futures: Iran Deal Or No, Market Hits Highs; Nvidia, Tesla Lead 5 Titans Near Buy Points",
+      "link": "https://finance.yahoo.com/m/fd63b97c-c320-3202-b483-76d551ec4785/dow-jones-futures%3A-iran-deal.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "MRVL",
+      "title": "Bank of America resets Marvell stock price target after earnings",
+      "link": "https://www.thestreet.com/investing/stocks/bank-of-america-raises-marvell-stock-price-target-after-earnings?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "MRVL",
+      "title": "Jim Cramer Admits He “Whiffed” on Marvell Technology",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-admits-whiffed-marvell-150821831.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "MRVL",
+      "title": "Why POET Technologies Stock Keeps Falling",
+      "link": "https://www.fool.com/investing/2026/05/29/why-poet-technologies-stock-keeps-falling/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "TER",
+      "title": "Cathie Wood sells $12 million in surging stock",
+      "link": "https://www.thestreet.com/crypto/markets/cathie-wood-sells-12-million-in-surging-stock?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "TER",
+      "title": "Cathie Wood’s ARK Takes More Profits In Robinhood, Buys KTOS And FUTU Instead",
+      "link": "https://stocktwits.com/news-articles/markets/equity/cathie-woods-ark-sells-robinhood-as-stock-soars/cZgmDNQReuE?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "TER",
+      "title": "KLA (KLAC) Up 10.1% Since Last Earnings Report: Can It Continue?",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/kla-klac-10-1-since-153016598.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "NVDA",
+      "title": "Every Big Tech Company Is Solving AI the Same Way. This Stock Is Solving It Differently.",
+      "link": "https://www.fool.com/investing/2026/05/30/every-big-tech-company-is-solving-ai-the-same-way/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "NVDA",
+      "title": "XLU Investors: Watch PJM’s March 2027 Data Center Framework Decision",
+      "link": "https://247wallst.com/investing/2026/05/30/xlu-investors-watch-pjms-march-2027-data-center-framework-decision/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "NVDA",
+      "title": "Will XRP (Ripple) Make You a Millionaire?",
+      "link": "https://247wallst.com/investing/2026/05/30/will-xrp-ripple-make-you-a-millionaire/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "SOXX",
+      "title": "Shares Fall, Targets Rise—Markets and Analysts Diverge on Synopsys",
+      "link": "https://www.marketbeat.com/originals/shares-fall-targets-risemarkets-and-analysts-diverge-on-synopsys/?utm_source=yahoofinance&amp;utm_medium=yahoofinance&amp;.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "SOXX",
+      "title": "After Three Years of Tracking the AI Capex Cycle These 3 Semiconductor ETFs Sit on Top of the Trade",
+      "link": "https://247wallst.com/investing/2026/05/29/after-three-years-of-tracking-the-ai-capex-cycle-these-3-semiconductor-etfs-sit-on-top-of-the-trade/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "SOXX",
+      "title": "Exchange-Traded Funds, Equity Futures Rise Pre-Bell Friday Amid US-Iran Deal Hopes",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-equity-futures-131630396.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "SMH",
+      "title": "After Three Years of Tracking the AI Capex Cycle These 3 Semiconductor ETFs Sit on Top of the Trade",
+      "link": "https://247wallst.com/investing/2026/05/29/after-three-years-of-tracking-the-ai-capex-cycle-these-3-semiconductor-etfs-sit-on-top-of-the-trade/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "SMH",
+      "title": "The Most-Compared ETFs Right Now — And What They Reveal",
+      "link": "http://www.etf.com/sections/news/most-compared-etfs-right-now-and-what-they-reveal?utm_source=yahoo-finance&amp;utm_medium=rss&amp;utm_campaign=yahoo-finance-rss&amp;.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "SMH",
+      "title": "The AI Memory Shortage Is Just Getting Started and These 3 ETFs Own Every Layer of the Supply Chain",
+      "link": "https://247wallst.com/investing/2026/05/28/the-ai-memory-shortage-is-just-getting-started-and-these-3-etfs-own-every-layer-of-the-supply-chain/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "QQQ",
+      "title": "QQQ’s Hidden Risk: Why the Fund’s Top 5 Holdings Move Together",
+      "link": "https://247wallst.com/investing/2026/05/30/qqqs-hidden-risk-why-the-funds-top-5-holdings-move-together/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "QQQ",
+      "title": "NWI Management Dumps 42,700 MercadoLibre Shares Worth $82.4 Million",
+      "link": "https://www.fool.com/coverage/filings/2026/05/30/nwi-management-dumps-42-700-mercadolibre-shares-worth-usd82-4-million/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "QQQ",
+      "title": "QQQI’s 13.8% Monthly Yield Comes With a Hidden Cost Investors Miss",
+      "link": "https://247wallst.com/investing/2026/05/30/qqqis-13-8-monthly-yield-comes-with-a-hidden-cost-investors-miss/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "AMD",
+      "title": "Bank of America resets Marvell stock price target after earnings",
+      "link": "https://www.thestreet.com/investing/stocks/bank-of-america-raises-marvell-stock-price-target-after-earnings?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "AMD",
+      "title": "Jim Cramer Explains How He Ignored the Past Price to Score a Huge Win in Arm Holdings",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-explains-ignored-past-150818616.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "AMD",
+      "title": "History Says the S&amp;P 500’s 9-Week Rally Is Rare. It May Be Even Rarer Than You Think",
+      "link": "https://247wallst.com/investing/2026/05/30/history-says-the-sp-500s-9-week-rally-is-rare-it-may-be-even-rarer-than-you-think/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "AVGO",
+      "title": "Dow Jones Futures: Iran Deal Or No, Market Hits Highs; Nvidia, Tesla Lead 5 Titans Near Buy Points",
+      "link": "https://finance.yahoo.com/m/fd63b97c-c320-3202-b483-76d551ec4785/dow-jones-futures%3A-iran-deal.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "AVGO",
+      "title": "Prediction: This Artificial Intelligence (AI) Inference Specialist Is Going to Soar After June 3",
+      "link": "https://www.fool.com/investing/2026/05/30/prediction-this-artificial-intelligence-ai-inferen/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "AVGO",
+      "title": "Broadcom Deepens AI Infrastructure Role With US$36b Deal And FuriosaAI Pact",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/broadcom-deepens-ai-infrastructure-role-140246797.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "CRWD",
+      "title": "Dow Jones Futures: Iran Deal Or No, Market Hits Highs; Nvidia, Tesla Lead 5 Titans Near Buy Points",
+      "link": "https://finance.yahoo.com/m/fd63b97c-c320-3202-b483-76d551ec4785/dow-jones-futures%3A-iran-deal.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "CRWD",
+      "title": "Fortinet vs. CrowdStrike: What Comparing Revenue Trends Tells Investors",
+      "link": "https://www.fool.com/coverage/charts/2026/05/30/fortinet-vs-crowdstrike-what-comparing-revenue-trends-tells-investors/?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "CRWD",
+      "title": "CrowdStrike and Palo Alto Networks Shares Are Soaring, What You Need To Know",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/crowdstrike-palo-alto-networks-shares-002438960.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    }
   ]
 }
