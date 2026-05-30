@@ -1,12 +1,27 @@
 {
-  "updatedAt": "manual bootstrap",
-  "source": "manual/bootstrap",
+  "updatedAt": "2026-05-30T19:25:00Z",
+  "source": "manual/bootstrap-v2",
+  "universeSize": 12,
   "quotes": [
-    {"ticker":"LITE","price":831.62,"move":-3.37},
-    {"ticker":"MRVL","price":202.41,"move":-1.18},
-    {"ticker":"TER","price":144,"move":2.4},
-    {"ticker":"SNOW","price":233.2,"move":33.05},
-    {"ticker":"CRWD","price":646.2,"move":0.13}
+    {"ticker":"LITE","name":"Lumentum","sector":"Optical/AI","price":831.62,"move":-3.37,"event":"portfolio exposure","note":"weak relative"},
+    {"ticker":"MRVL","name":"Marvell","sector":"Semiconductors/AI","price":202.41,"move":-1.18,"event":"portfolio position","note":"hold above PMC"},
+    {"ticker":"TER","name":"Teradyne","sector":"Semicap equipment","price":144,"move":2.4,"event":"relative strength","note":"clean momentum"},
+    {"ticker":"SNOW","name":"Snowflake","sector":"Software","price":233.2,"move":33.05,"event":"earnings gap","note":"too extended"},
+    {"ticker":"CRWD","name":"CrowdStrike","sector":"Cybersecurity","price":646.2,"move":0.13,"event":"quality watch","note":"neutral"},
+    {"ticker":"NVDA","name":"Nvidia","sector":"AI chips","price":178,"move":0.8,"event":"AI leader benchmark","note":"sector reference"},
+    {"ticker":"SOXX","name":"iShares Semiconductor ETF","sector":"Semiconductors ETF","price":280,"move":0.6,"event":"sector benchmark","note":"relative strength reference"}
   ],
-  "news": []
+  "radar": [
+    {"ticker":"TER","name":"Teradyne","sector":"Semicap equipment","price":144,"move":2.4,"score":8.1,"event":"relative strength","note":"clean momentum"},
+    {"ticker":"MRVL","name":"Marvell","sector":"Semiconductors/AI","price":202.41,"move":-1.18,"score":6.8,"event":"portfolio position","note":"hold above PMC"},
+    {"ticker":"CRWD","name":"CrowdStrike","sector":"Cybersecurity","price":646.2,"move":0.13,"score":5.4,"event":"quality watch","note":"neutral"},
+    {"ticker":"LITE","name":"Lumentum","sector":"Optical/AI","price":831.62,"move":-3.37,"score":3.4,"event":"portfolio exposure","note":"weak relative"},
+    {"ticker":"SNOW","name":"Snowflake","sector":"Software","price":233.2,"move":33.05,"score":3.2,"event":"earnings gap","note":"FOMO high"}
+  ],
+  "news": [
+    {"ticker":"LITE","title":"LITE under review: optical AI demand strong but relative strength remains weak","source":"V10 manual note"},
+    {"ticker":"MRVL","title":"MRVL remains portfolio hold while above PMC and AI/networking thesis is intact","source":"V10 manual note"},
+    {"ticker":"TER","title":"TER leads current radar with clean momentum and controlled extension","source":"V10 manual note"},
+    {"ticker":"SOXX","title":"Semiconductor ETF used as sector benchmark for leader-versus-weak comparison","source":"V10 manual note"}
+  ]
 }
