@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-30T23:42:24.053Z",
+  "updatedAt": "2026-05-31T10:00:06.714Z",
   "source": "github-actions/stooq+yahoo-rss",
   "universeSize": 142,
   "groups": {
@@ -1811,6 +1811,12 @@
   "news": [
     {
       "ticker": "LITE",
+      "title": "Dow Jones Futures: Trump Makes This Iran Move; Nvidia, Tesla Lead 5 Titans Near Buy Points",
+      "link": "https://finance.yahoo.com/m/fd63b97c-c320-3202-b483-76d551ec4785/dow-jones-futures%3A-trump.html?.tsrc=rss",
+      "source": "Yahoo RSS"
+    },
+    {
+      "ticker": "LITE",
       "title": "Lumentum Holdings Inc. (LITE): Leopold Aschenbrenner Registers Bearish Activity",
       "link": "https://finance.yahoo.com/markets/stocks/articles/lumentum-holdings-inc-lite-leopold-194045577.html?.tsrc=rss",
       "source": "Yahoo RSS"
@@ -1822,9 +1828,9 @@
       "source": "Yahoo RSS"
     },
     {
-      "ticker": "LITE",
-      "title": "Dow Jones Futures: Iran Deal Or No, Market Hits Highs; Nvidia, Tesla Lead 5 Titans Near Buy Points",
-      "link": "https://finance.yahoo.com/m/fd63b97c-c320-3202-b483-76d551ec4785/dow-jones-futures%3A-iran-deal.html?.tsrc=rss",
+      "ticker": "MRVL",
+      "title": "Nvidia’s latest product is a game-changer",
+      "link": "https://www.thestreet.com/investing/stocks/nvidias-latest-product-is-a-game-changer?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
@@ -1840,14 +1846,8 @@
       "source": "Yahoo RSS"
     },
     {
-      "ticker": "MRVL",
-      "title": "Why POET Technologies Stock Keeps Falling",
-      "link": "https://www.fool.com/investing/2026/05/29/why-poet-technologies-stock-keeps-falling/?.tsrc=rss",
-      "source": "Yahoo RSS"
-    },
-    {
       "ticker": "TER",
-      "title": "Cathie Wood sells $12 million in surging stock",
+      "title": "Cathie Wood dumps $12 million in surging tech stock",
       "link": "https://www.thestreet.com/crypto/markets/cathie-wood-sells-12-million-in-surging-stock?.tsrc=rss",
       "source": "Yahoo RSS"
     },
@@ -1865,20 +1865,20 @@
     },
     {
       "ticker": "NVDA",
-      "title": "Every Big Tech Company Is Solving AI the Same Way. This Stock Is Solving It Differently.",
-      "link": "https://www.fool.com/investing/2026/05/30/every-big-tech-company-is-solving-ai-the-same-way/?.tsrc=rss",
+      "title": "American Express vs. Visa: 2 Different Ways to Bet on Premium Consumer Spending",
+      "link": "https://www.fool.com/investing/2026/05/31/american-express-visa-bet-premium-consumer-spend/?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
       "ticker": "NVDA",
-      "title": "XLU Investors: Watch PJM’s March 2027 Data Center Framework Decision",
-      "link": "https://247wallst.com/investing/2026/05/30/xlu-investors-watch-pjms-march-2027-data-center-framework-decision/?.tsrc=rss",
+      "title": "Wall Street Says the Stock Market's Return Will Crush the Long-Term Average in the Next Year",
+      "link": "https://www.fool.com/investing/2026/05/31/stock-market-return-will-crush-long-term-average/?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
       "ticker": "NVDA",
-      "title": "Will XRP (Ripple) Make You a Millionaire?",
-      "link": "https://247wallst.com/investing/2026/05/30/will-xrp-ripple-make-you-a-millionaire/?.tsrc=rss",
+      "title": "An Economic Red Flag Is Flashing -- and It Points to a Higher 2027 Social Security COLA",
+      "link": "https://www.fool.com/retirement/2026/05/31/an-economic-red-flag-is-flashing-and-it-points-to/?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
@@ -1937,44 +1937,44 @@
     },
     {
       "ticker": "AMD",
-      "title": "Bank of America resets Marvell stock price target after earnings",
-      "link": "https://www.thestreet.com/investing/stocks/bank-of-america-raises-marvell-stock-price-target-after-earnings?.tsrc=rss",
+      "title": "Can Arm Holdings Triple Your Money by the End of the Year?",
+      "link": "https://www.fool.com/investing/2026/05/31/can-arm-holdings-triple-your-money-by-the-end-of-t/?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
       "ticker": "AMD",
-      "title": "Jim Cramer Explains How He Ignored the Past Price to Score a Huge Win in Arm Holdings",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-explains-ignored-past-150818616.html?.tsrc=rss",
+      "title": "AMD Taiwan AI Bet Tests Long Term Data Center Ambitions",
+      "link": "https://finance.yahoo.com/markets/stocks/articles/amd-taiwan-ai-bet-tests-010353883.html?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
       "ticker": "AMD",
-      "title": "History Says the S&amp;P 500’s 9-Week Rally Is Rare. It May Be Even Rarer Than You Think",
-      "link": "https://247wallst.com/investing/2026/05/30/history-says-the-sp-500s-9-week-rally-is-rare-it-may-be-even-rarer-than-you-think/?.tsrc=rss",
+      "title": "Nvidia’s latest product is a game-changer",
+      "link": "https://www.thestreet.com/investing/stocks/nvidias-latest-product-is-a-game-changer?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
       "ticker": "AVGO",
-      "title": "Dow Jones Futures: Iran Deal Or No, Market Hits Highs; Nvidia, Tesla Lead 5 Titans Near Buy Points",
-      "link": "https://finance.yahoo.com/m/fd63b97c-c320-3202-b483-76d551ec4785/dow-jones-futures%3A-iran-deal.html?.tsrc=rss",
+      "title": "Dow Jones Futures: Trump Makes This Iran Move; Nvidia, Tesla Lead 5 Titans Near Buy Points",
+      "link": "https://finance.yahoo.com/m/fd63b97c-c320-3202-b483-76d551ec4785/dow-jones-futures%3A-trump.html?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
       "ticker": "AVGO",
-      "title": "Prediction: This Artificial Intelligence (AI) Inference Specialist Is Going to Soar After June 3",
-      "link": "https://www.fool.com/investing/2026/05/30/prediction-this-artificial-intelligence-ai-inferen/?.tsrc=rss",
+      "title": "This AI Chip Giant Quietly Became Worth More Than Tesla, and Many Investors Still Overlook It",
+      "link": "https://www.fool.com/investing/2026/05/30/this-ai-chip-giant-quietly-became-worth-more-than/?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
       "ticker": "AVGO",
-      "title": "Broadcom Deepens AI Infrastructure Role With US$36b Deal And FuriosaAI Pact",
-      "link": "https://finance.yahoo.com/markets/stocks/articles/broadcom-deepens-ai-infrastructure-role-140246797.html?.tsrc=rss",
+      "title": "Nvidia’s latest product is a game-changer",
+      "link": "https://www.thestreet.com/investing/stocks/nvidias-latest-product-is-a-game-changer?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
       "ticker": "CRWD",
-      "title": "Dow Jones Futures: Iran Deal Or No, Market Hits Highs; Nvidia, Tesla Lead 5 Titans Near Buy Points",
-      "link": "https://finance.yahoo.com/m/fd63b97c-c320-3202-b483-76d551ec4785/dow-jones-futures%3A-iran-deal.html?.tsrc=rss",
+      "title": "Dow Jones Futures: Trump Makes This Iran Move; Nvidia, Tesla Lead 5 Titans Near Buy Points",
+      "link": "https://finance.yahoo.com/m/fd63b97c-c320-3202-b483-76d551ec4785/dow-jones-futures%3A-trump.html?.tsrc=rss",
       "source": "Yahoo RSS"
     },
     {
