@@ -56,7 +56,7 @@ const radar=validQuotes.map(q=>({...q,score:radarScore(q),event:'market scan',no
 const sectorStrength=sectorRanking(quotes);
 const regime=regimeFrom(quotes, sectorStrength);
 const news=[];
-const payload={updatedAt:new Date().toISOString(),source:'stooq',universeSize:validQuotes.length,groups,sectorStrength,regime,bestSector:sectorStrength[0]||null,worstSector:sectorStrength.at(-1)||null,quotes,radar,news:news.slice(0,30)};
+const payload={updatedAt:new Date().toISOString(),source:'stooq',quoteDownloadSuccess:validQuotes.length>0,quoteDownloadStatus:validQuotes.length>0?'success':'fail',validQuotesCount:validQuotes.length,invalidQuotesCount:quotes.length-validQuotes.length,firstSuccessfulTickers:validQuotes.slice(0,10).map(q=>q.ticker),universeSize:validQuotes.length,groups,sectorStrength,regime,bestSector:sectorStrength[0]||null,worstSector:sectorStrength.at(-1)||null,quotes,radar,news:news.slice(0,30)};
 await fs.mkdir('data',{recursive:true});
 await fs.writeFile('data/market.json',JSON.stringify(payload,null,2));
 console.log(JSON.stringify({updatedAt:payload.updatedAt,source:payload.source,universeSize:payload.universeSize,invalid:quotes.length-validQuotes.length,regime:payload.regime,bestSector:payload.bestSector,worstSector:payload.worstSector,topRadar:payload.radar.slice(0,5)},null,2));

@@ -2320,5 +2320,21 @@
       "note": "weak relative"
     }
   ],
-  "news": []
+  "news": [],
+  "quoteDownloadSuccess": true,
+  "quoteDownloadStatus": "success",
+  "validQuotesCount": 20,
+  "invalidQuotesCount": 122,
+  "firstSuccessfulTickers": [
+    "NVDA",
+    "AMD",
+    "AVGO",
+    "MRVL",
+    "MU",
+    "ARM",
+    "TSM",
+    "ASML",
+    "AMAT",
+    "LRCX"
+  ]
 }
