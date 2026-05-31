@@ -1,0 +1,14 @@
+{
+  "name": "lamborghini-v10-trading-desk",
+  "version": "1.0.0",
+  "description": "Mobile-first Lamborghini V10 Trading Desk web app.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 5173",
+    "check": "node --check src/main.js",
+    "build": "node scripts/build.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
