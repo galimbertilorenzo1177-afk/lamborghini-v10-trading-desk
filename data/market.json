@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-05-31T12:52:33.055Z",
-  "source": "stooq",
+  "updatedAt": "2026-05-31T13:10:13.015Z",
+  "source": "none",
   "universeSize": 0,
   "groups": {
     "ai_semis": [
@@ -185,10 +185,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "getaddrinfo EAI_AGAIN stooq.com"
+      "error": "Stooq failed: getaddrinfo EAI_AGAIN stooq.com; yahoo-chart failed: timeout"
     },
     {
       "ticker": "AMD",
@@ -197,10 +197,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "AVGO",
@@ -209,10 +209,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MRVL",
@@ -221,10 +221,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MU",
@@ -233,10 +233,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ARM",
@@ -245,10 +245,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "TSM",
@@ -257,10 +257,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ASML",
@@ -269,10 +269,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "AMAT",
@@ -281,10 +281,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "LRCX",
@@ -293,10 +293,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "KLAC",
@@ -305,10 +305,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "TER",
@@ -317,10 +317,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ONTO",
@@ -329,10 +329,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "COHR",
@@ -341,10 +341,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "LITE",
@@ -353,10 +353,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "CIEN",
@@ -365,10 +365,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ANET",
@@ -377,10 +377,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "QCOM",
@@ -389,10 +389,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "TXN",
@@ -401,10 +401,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ADI",
@@ -413,10 +413,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "INTC",
@@ -425,10 +425,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MPWR",
@@ -437,10 +437,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "NXPI",
@@ -449,10 +449,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MCHP",
@@ -461,10 +461,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ON",
@@ -473,10 +473,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "LSCC",
@@ -485,10 +485,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MSFT",
@@ -497,10 +497,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "GOOGL",
@@ -509,10 +509,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "AMZN",
@@ -521,10 +521,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "META",
@@ -533,10 +533,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "SNOW",
@@ -545,10 +545,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "DDOG",
@@ -557,10 +557,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "NET",
@@ -569,10 +569,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MDB",
@@ -581,10 +581,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "NOW",
@@ -593,10 +593,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "CRM",
@@ -605,10 +605,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ORCL",
@@ -617,10 +617,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ADBE",
@@ -629,10 +629,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "TEAM",
@@ -641,10 +641,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "SHOP",
@@ -653,10 +653,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "UBER",
@@ -665,10 +665,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MELI",
@@ -677,10 +677,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "PLTR",
@@ -689,10 +689,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "APP",
@@ -701,10 +701,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "HUBS",
@@ -713,10 +713,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "CRWD",
@@ -725,10 +725,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "PANW",
@@ -737,10 +737,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ZS",
@@ -749,10 +749,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "FTNT",
@@ -761,10 +761,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "OKTA",
@@ -773,10 +773,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "CYBR",
@@ -785,10 +785,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "S",
@@ -797,10 +797,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "TENB",
@@ -809,10 +809,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "VRNS",
@@ -821,10 +821,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "GE",
@@ -833,10 +833,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ETN",
@@ -845,10 +845,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "PH",
@@ -857,10 +857,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "EMR",
@@ -869,10 +869,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ROK",
@@ -881,10 +881,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "CAT",
@@ -893,10 +893,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "DE",
@@ -905,10 +905,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "HON",
@@ -917,10 +917,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "RTX",
@@ -929,10 +929,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "LMT",
@@ -941,10 +941,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "NOC",
@@ -953,10 +953,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "GD",
@@ -965,10 +965,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "BA",
@@ -977,10 +977,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "URI",
@@ -989,10 +989,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "HUBB",
@@ -1001,10 +1001,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XOM",
@@ -1013,10 +1013,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "CVX",
@@ -1025,10 +1025,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "COP",
@@ -1037,10 +1037,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "SLB",
@@ -1049,10 +1049,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "HAL",
@@ -1061,10 +1061,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "OXY",
@@ -1073,10 +1073,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "EOG",
@@ -1085,10 +1085,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "LNG",
@@ -1097,10 +1097,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "FSLR",
@@ -1109,10 +1109,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ENPH",
@@ -1121,10 +1121,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "LLY",
@@ -1133,10 +1133,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "NVO",
@@ -1145,10 +1145,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MRK",
@@ -1157,10 +1157,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "PFE",
@@ -1169,10 +1169,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ABBV",
@@ -1181,10 +1181,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "AMGN",
@@ -1193,10 +1193,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "REGN",
@@ -1205,10 +1205,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "VRTX",
@@ -1217,10 +1217,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ISRG",
@@ -1229,10 +1229,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "UNH",
@@ -1241,10 +1241,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "TMO",
@@ -1253,10 +1253,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "DHR",
@@ -1265,10 +1265,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "SYK",
@@ -1277,10 +1277,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MDT",
@@ -1289,10 +1289,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "BSX",
@@ -1301,10 +1301,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "JPM",
@@ -1313,10 +1313,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "BAC",
@@ -1325,10 +1325,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "GS",
@@ -1337,10 +1337,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MS",
@@ -1349,10 +1349,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "V",
@@ -1361,10 +1361,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MA",
@@ -1373,10 +1373,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "AXP",
@@ -1385,10 +1385,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "BLK",
@@ -1397,10 +1397,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "SCHW",
@@ -1409,10 +1409,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "COIN",
@@ -1421,10 +1421,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "HOOD",
@@ -1433,10 +1433,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "WMT",
@@ -1445,10 +1445,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "COST",
@@ -1457,10 +1457,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "HD",
@@ -1469,10 +1469,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "LOW",
@@ -1481,10 +1481,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "TGT",
@@ -1493,10 +1493,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "DLTR",
@@ -1505,10 +1505,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "DG",
@@ -1517,10 +1517,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "MCD",
@@ -1529,10 +1529,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "SBUX",
@@ -1541,10 +1541,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "CMG",
@@ -1553,10 +1553,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "NKE",
@@ -1565,10 +1565,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "LULU",
@@ -1577,10 +1577,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "TJX",
@@ -1589,10 +1589,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ROST",
@@ -1601,10 +1601,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "TSLA",
@@ -1613,10 +1613,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "GM",
@@ -1625,10 +1625,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "F",
@@ -1637,10 +1637,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "RIVN",
@@ -1649,10 +1649,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "NIO",
@@ -1661,10 +1661,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "LI",
@@ -1673,10 +1673,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XPEV",
@@ -1685,10 +1685,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "SOXX",
@@ -1697,10 +1697,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "SMH",
@@ -1709,10 +1709,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "QQQ",
@@ -1721,10 +1721,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "SPY",
@@ -1733,10 +1733,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "IWM",
@@ -1745,10 +1745,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "DIA",
@@ -1757,10 +1757,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XLK",
@@ -1769,10 +1769,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XLY",
@@ -1781,10 +1781,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XLF",
@@ -1793,10 +1793,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XLE",
@@ -1805,10 +1805,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XLV",
@@ -1817,10 +1817,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XLI",
@@ -1829,10 +1829,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XLP",
@@ -1841,10 +1841,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XLU",
@@ -1853,10 +1853,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "XLC",
@@ -1865,10 +1865,10 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     },
     {
       "ticker": "ARKK",
@@ -1877,12 +1877,38 @@
       "price": 0,
       "move": 0,
       "volume": 0,
-      "source": "stooq",
+      "source": "stooq,yahoo-chart",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "Stooq failed: timeout; yahoo-chart failed: timeout"
     }
   ],
   "radar": [],
-  "news": []
+  "news": [],
+  "diagnostics": {
+    "stooqExpectedTickerFormat": "US equities must be requested as lowercase ticker plus .us, for example nvda.us. Stooq CSV echoes the symbol as NVDA.US.",
+    "stooqRawResponses": {
+      "NVDA": {
+        "url": "https://stooq.com/q/l/?s=nvda.us&f=sd2t2ohlcv&h&e=csv",
+        "error": "getaddrinfo EAI_AGAIN stooq.com"
+      },
+      "AMD": {
+        "url": "https://stooq.com/q/l/?s=amd.us&f=sd2t2ohlcv&h&e=csv",
+        "error": "timeout"
+      },
+      "AVGO": {
+        "url": "https://stooq.com/q/l/?s=avgo.us&f=sd2t2ohlcv&h&e=csv",
+        "error": "timeout"
+      },
+      "MRVL": {
+        "url": "https://stooq.com/q/l/?s=mrvl.us&f=sd2t2ohlcv&h&e=csv",
+        "error": "timeout"
+      },
+      "LITE": {
+        "url": "https://stooq.com/q/l/?s=lite.us&f=sd2t2ohlcv&h&e=csv",
+        "error": "timeout"
+      }
+    },
+    "secondarySource": "yahoo-chart"
+  }
 }
