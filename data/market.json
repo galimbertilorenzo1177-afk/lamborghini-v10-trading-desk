@@ -1197,7 +1197,7 @@
       "avgMove": 0.88,
       "leaders": 26,
       "weak": 6,
-      "score": 97.0
+      "score": 97
     },
     {
       "sector": "semiconductor_equipment",
@@ -1230,7 +1230,7 @@
       "avgMove": 0.75,
       "leaders": 13,
       "weak": 4,
-      "score": 74.0
+      "score": 74
     },
     {
       "sector": "software",
@@ -1274,7 +1274,7 @@
       "avgMove": 0.13,
       "leaders": 19,
       "weak": 11,
-      "score": 67.0
+      "score": 67
     },
     {
       "sector": "real_estate",
@@ -1293,10 +1293,10 @@
       "valid": 43,
       "failed": 0,
       "count": 43,
-      "avgMove": 0.0,
+      "avgMove": 0,
       "leaders": 15,
       "weak": 13,
-      "score": 54.0
+      "score": 54
     },
     {
       "sector": "cybersecurity",
@@ -1387,7 +1387,7 @@
       "ticker": "MRVL",
       "name": "Marvell Technology Inc",
       "sector": "semiconductors",
-      "price": 205.0,
+      "price": 205,
       "move": 0.1,
       "volume": 34024746,
       "source": "finance-api",
@@ -11290,15 +11290,15 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-05-31T20:50:20.694Z",
+    "fetchStarted": "2026-05-31T23:45:35.754Z",
     "source": "stooq",
-    "sourceReached": false,
+    "sourceReached": true,
     "quotesDownloaded": 0,
     "marketJsonRewritten": true,
     "newTimestampDetected": false,
     "reason": "below minimum 0/300; preserving existing snapshot with 516"
   },
-  "lastRefreshAttemptAt": "2026-05-31T20:53:42.959Z",
+  "lastRefreshAttemptAt": "2026-05-31T23:45:36.957Z",
   "lastRefreshAttemptStatus": "below minimum 0/300",
   "lastRefreshAttemptSuccess": false,
   "staleSnapshot": true
