@@ -89,6 +89,42 @@ if (leaderCount !== expected.leaders) failures.push(`leader count ${leaderCount}
 if (weakCount !== expected.weak) failures.push(`weak count ${weakCount} !== ${expected.weak}`);
 if (articleCount !== 40) failures.push(`leader/weak dashboard rendered ${articleCount} cards instead of 40`);
 
+
+const capitalProfile73 = JSON.stringify({
+  totalCapital: 5000,
+  tradingCapital: 2000,
+  freeCash: 73,
+  etfCapital: 1500,
+  riskPct: 0.8,
+  targetProfitPct: 6,
+  leverageAllowed: false,
+});
+const { html: capitalHomeHtml } = await renderApp('', market, { lv10_capital_profile: capitalProfile73 });
+if (!capitalHomeHtml.includes('<small>Free cash</small>€73')) failures.push('home did not render persisted freeCash 73');
+const { html: capitalPortfolioHtml } = await renderApp('#portfolio', market, { lv10_capital_profile: capitalProfile73 });
+if (!capitalPortfolioHtml.includes('Capitale libero<input data-capital-profile="freeCash" type="number" step="0.01" value="73"')) failures.push('portfolio free cash input did not render persisted value 73');
+const { html: capitalRadarHtml } = await renderApp('#radar', market, { lv10_capital_profile: capitalProfile73 });
+for (const ticker of ['AMD', 'MU', 'LSCC']) {
+  const start = capitalRadarHtml.indexOf(`<b class="ticker">${ticker}</b>`);
+  if (start < 0) {
+    failures.push(`${ticker} missing from capital-constrained radar`);
+    continue;
+  }
+  const end = capitalRadarHtml.indexOf('</article>', start);
+  const article = capitalRadarHtml.slice(start, end);
+  const sizeMatch = article.match(/<small>Size suggerita<\/small>€([0-9.,]+)/);
+  const sharesMatch = article.match(/<small>Max shares<\/small>(\d+) az\./);
+  if (!sizeMatch || !sharesMatch) {
+    failures.push(`${ticker} missing capital sizing metrics`);
+    continue;
+  }
+  const size = Number(sizeMatch[1].replace(/\./g, '').replace(',', '.'));
+  const shares = Number(sharesMatch[1]);
+  const quote = market.quotes.find((q) => q.ticker === ticker);
+  if (size > 73) failures.push(`${ticker} suggested size ${size} exceeds freeCash 73`);
+  if (quote?.price > 73 && shares !== 0) failures.push(`${ticker} suggested shares ${shares} despite price above freeCash 73`);
+}
+
 const nestedPayload = { ...market, quotes: undefined, data: { quotes: market.quotes, radar: market.radar, sectorStrength: market.sectorStrength, regime: market.regime, validQuotesCount: market.validQuotesCount, bestSector: market.bestSector, worstSector: market.worstSector } };
 const { html: nestedHtml } = await renderApp('#leaders', nestedPayload);
 if (Number(metric(nestedHtml, 'Universe ranked')) !== expected.validQuotesCount) failures.push('nested data.quotes path was not ranked correctly');
