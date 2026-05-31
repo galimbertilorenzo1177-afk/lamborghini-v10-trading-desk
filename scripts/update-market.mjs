@@ -44,7 +44,7 @@ function mapQuote(mapped, expectedTicker){
   return {ticker:expectedTicker,name:quoteName(expectedTicker),sector:sectorByTicker[expectedTicker]||'Market scan',price:close,move:Number(move.toFixed(2)),volume:Number.isFinite(volume)?volume:0,source:'stooq',sourceSymbol:mapped.symbol,quoteDate:mapped.date,quoteTime:mapped.time,status:'ok',valid:true};
 }
 async function quoteBatch(batch){
-  if (MOCK_QUOTES) return batch.map((ticker, i) => ({ticker,name:quoteName(ticker),sector:sectorByTicker[ticker]||'Market scan',price:Number((50+(i%25)*3+(ticker.charCodeAt(0)%17)).toFixed(2)),move:Number((((ticker.charCodeAt(0)+ticker.length)%9)-4).toFixed(2)),volume:1000000+i,source:'stooq-test-fixture',sourceSymbol:`${ticker}.US`,quoteDate:'2026-05-31',quoteTime:'00:00:00',status:'ok',valid:true}));
+  if (MOCK_QUOTES) return batch.map((ticker, i) => ({ticker,name:quoteName(ticker),sector:sectorByTicker[ticker]||'Market scan',price:Number((50+(i%25)*3+(ticker.charCodeAt(0)%17)).toFixed(2)),move:Number((((ticker.charCodeAt(0)+ticker.length)%9)-4).toFixed(2)),volume:1000000+i,source:'stooq-mock',sourceSymbol:`${ticker}.US`,quoteDate:'2026-05-31',quoteTime:'00:00:00',status:'ok',valid:true}));
   const query=batch.map(t=>`${t.toLowerCase()}.us`).join(',');
   const url=`https://stooq.com/q/l/?s=${encodeURIComponent(query)}&f=sd2t2ohlcv&h&e=csv`;
   const csv=await get(url);
