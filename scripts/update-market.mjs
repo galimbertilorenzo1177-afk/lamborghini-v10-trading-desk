@@ -113,18 +113,19 @@ const payload={updatedAt:new Date().toISOString(),source:'stooq',refreshDiagnost
 await fs.mkdir('data',{recursive:true});
 let existingUpdatedAt='';
 if (validQuotes.length < MIN_VALID_QUOTES && !MOCK_QUOTES) {
-  try {
-    const existing=JSON.parse(await fs.readFile('data/market.json','utf8'));
-    existingUpdatedAt=existing.updatedAt||existing.lastUpdated||existing.timestamp||existing.generatedAt||'';
-    if (Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES) {
-      refreshDiagnostics.newTimestampDetected=!!existingUpdatedAt&&payload.updatedAt!==existingUpdatedAt;
-      refreshDiagnostics.reason=`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}; existing snapshot has ${existing.validQuotesCount||existing.universeSize}`;
-      payload.refreshDiagnostics=refreshDiagnostics;
-      console.error(`Refusing to overwrite data/market.json: refresh returned ${validQuotes.length}/${MIN_VALID_QUOTES} valid quotes; existing snapshot has ${existing.validQuotesCount||existing.universeSize}.`);
-      console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
-      process.exit(1);
-    }
-  } catch {}
+  let existing=null;
+  try { existing=JSON.parse(await fs.readFile('data/market.json','utf8')); } catch {}
+  existingUpdatedAt=existing&&(existing.updatedAt||existing.lastUpdated||existing.timestamp||existing.generatedAt||'')||'';
+  if (existing&&Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES) {
+    refreshDiagnostics.marketJsonRewritten=true;
+    refreshDiagnostics.newTimestampDetected=false;
+    refreshDiagnostics.reason=`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}; preserving existing snapshot with ${existing.validQuotesCount||existing.universeSize}`;
+    const preserved={...existing,refreshDiagnostics,lastRefreshAttemptAt:payload.updatedAt,lastRefreshAttemptStatus:payload.quoteDownloadStatus,lastRefreshAttemptSuccess:false,staleSnapshot:true};
+    await fs.writeFile('data/market.json',JSON.stringify(preserved,null,2));
+    console.error(`Preserving existing data/market.json: refresh returned ${validQuotes.length}/${MIN_VALID_QUOTES} valid quotes; existing snapshot has ${existing.validQuotesCount||existing.universeSize}.`);
+    console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:preserved.updatedAt,lastRefreshAttemptAt:preserved.lastRefreshAttemptAt,source:preserved.source,configured:payload.configuredTickersCount,universeSize:preserved.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,preservedSnapshot:true},null,2));
+    process.exit(0);
+  }
 } else {
   try { const existing=JSON.parse(await fs.readFile('data/market.json','utf8')); existingUpdatedAt=existing.updatedAt||existing.lastUpdated||existing.timestamp||existing.generatedAt||''; } catch {}
 }
