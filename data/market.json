@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-31T12:52:33.055Z",
+  "updatedAt": "2026-05-31T15:05:36.693Z",
   "source": "stooq",
-  "universeSize": 0,
+  "universeSize": 20,
   "groups": {
     "ai_semis": [
       "NVDA",
@@ -166,257 +166,352 @@
       "ARKK"
     ]
   },
-  "sectorStrength": [],
+  "sectorStrength": [
+    {
+      "sector": "Semiconductors/AI",
+      "count": 1,
+      "avgMove": 0.27,
+      "leaders": 0,
+      "weak": 0,
+      "score": 52.2
+    },
+    {
+      "sector": "Optical/AI",
+      "count": 1,
+      "avgMove": -0.66,
+      "leaders": 0,
+      "weak": 0,
+      "score": 44.7
+    },
+    {
+      "sector": "AI chips",
+      "count": 1,
+      "avgMove": -1.6,
+      "leaders": 0,
+      "weak": 1,
+      "score": 35.2
+    },
+    {
+      "sector": "Semicap equipment",
+      "count": 1,
+      "avgMove": -2.82,
+      "leaders": 0,
+      "weak": 1,
+      "score": 25.4
+    },
+    {
+      "sector": "ai_semis",
+      "count": 16,
+      "avgMove": -0.2,
+      "leaders": 5,
+      "weak": 6,
+      "score": 22
+    }
+  ],
   "regime": {
-    "label": "selettivo",
-    "score": 0,
-    "breadth": 0,
+    "label": "risk-off",
+    "score": 35,
+    "breadth": 35,
+    "leaders": 5,
+    "weak": 8,
+    "priced": 20
+  },
+  "bestSector": {
+    "sector": "Semiconductors/AI",
+    "count": 1,
+    "avgMove": 0.27,
     "leaders": 0,
     "weak": 0,
-    "priced": 0
+    "score": 52.2
   },
-  "bestSector": null,
-  "worstSector": null,
+  "worstSector": {
+    "sector": "ai_semis",
+    "count": 16,
+    "avgMove": -0.2,
+    "leaders": 5,
+    "weak": 6,
+    "score": 22
+  },
   "quotes": [
     {
       "ticker": "NVDA",
       "name": "Nvidia",
       "sector": "AI chips",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 211.14,
+      "move": -1.6,
+      "volume": 289410624,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "getaddrinfo EAI_AGAIN stooq.com"
+      "sourceSymbol": "NVDA.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "AMD",
       "name": "AMD",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 516.1,
+      "move": -0.9,
+      "volume": 30803236,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "AMD.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "AVGO",
       "name": "AVGO",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 446.77,
+      "move": 3.19,
+      "volume": 41798353,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "AVGO.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "MRVL",
       "name": "Marvell Technology Inc",
       "sector": "Semiconductors/AI",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 205,
+      "move": 0.27,
+      "volume": 34024746,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "MRVL.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "MU",
       "name": "MU",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 971,
+      "move": 1.46,
+      "volume": 60498561,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "MU.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "ARM",
       "name": "ARM",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 353.29,
+      "move": 4.14,
+      "volume": 10448329,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "ARM.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "TSM",
       "name": "TSM",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 418.45,
+      "move": -2.02,
+      "volume": 11232272,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "TSM.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "ASML",
       "name": "ASML",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 1612.76,
+      "move": -1.27,
+      "volume": 1070357,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "ASML.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "AMAT",
       "name": "AMAT",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 450.06,
+      "move": -0.6,
+      "volume": 8549508,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "AMAT.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "LRCX",
       "name": "LRCX",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 318.18,
+      "move": -1.19,
+      "volume": 10872171,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "LRCX.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "KLAC",
       "name": "KLAC",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 1921.71,
+      "move": -0.42,
+      "volume": 1145940,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "KLAC.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "TER",
       "name": "Teradyne",
       "sector": "Semicap equipment",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 374.31,
+      "move": -2.82,
+      "volume": 4130952,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "TER.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "ONTO",
       "name": "ONTO",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 258.24,
+      "move": -0.98,
+      "volume": 1121331,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "ONTO.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "COHR",
       "name": "COHR",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 361.47,
+      "move": -3.77,
+      "volume": 11082553,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "COHR.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "LITE",
       "name": "Lumentum Holdings Inc",
       "sector": "Optical/AI",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 854.96,
+      "move": -0.66,
+      "volume": 6363965,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "LITE.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "CIEN",
       "name": "CIEN",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 580.23,
+      "move": 2.51,
+      "volume": 3865952,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "CIEN.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "ANET",
       "name": "ANET",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 159.47,
+      "move": 1.95,
+      "volume": 15393768,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "ANET.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "QCOM",
       "name": "QCOM",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 251.02,
+      "move": 0.33,
+      "volume": 28781844,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "QCOM.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "TXN",
       "name": "TXN",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 305.68,
+      "move": -3.41,
+      "volume": 16786667,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "TXN.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "ADI",
       "name": "ADI",
       "sector": "ai_semis",
-      "price": 0,
-      "move": 0,
-      "volume": 0,
+      "price": 413.85,
+      "move": -2.27,
+      "volume": 5508118,
       "source": "stooq",
-      "status": "invalid",
-      "valid": false,
-      "error": "timeout"
+      "sourceSymbol": "ADI.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:18",
+      "status": "ok",
+      "valid": true
     },
     {
       "ticker": "INTC",
@@ -428,7 +523,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MPWR",
@@ -440,7 +535,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "NXPI",
@@ -452,7 +547,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MCHP",
@@ -464,7 +559,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ON",
@@ -476,7 +571,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "LSCC",
@@ -488,7 +583,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MSFT",
@@ -500,7 +595,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "GOOGL",
@@ -512,7 +607,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "AMZN",
@@ -524,7 +619,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "META",
@@ -536,7 +631,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "SNOW",
@@ -548,7 +643,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "DDOG",
@@ -560,7 +655,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "NET",
@@ -572,7 +667,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MDB",
@@ -584,7 +679,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "NOW",
@@ -596,7 +691,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "CRM",
@@ -608,7 +703,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ORCL",
@@ -620,7 +715,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ADBE",
@@ -632,7 +727,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "TEAM",
@@ -644,7 +739,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "SHOP",
@@ -656,7 +751,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "UBER",
@@ -668,7 +763,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MELI",
@@ -680,7 +775,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "PLTR",
@@ -692,7 +787,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "APP",
@@ -704,7 +799,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "HUBS",
@@ -716,7 +811,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "CRWD",
@@ -728,7 +823,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "PANW",
@@ -740,7 +835,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ZS",
@@ -752,7 +847,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "FTNT",
@@ -764,7 +859,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "OKTA",
@@ -776,7 +871,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "CYBR",
@@ -788,7 +883,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "S",
@@ -800,7 +895,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "TENB",
@@ -812,7 +907,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "VRNS",
@@ -824,7 +919,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "GE",
@@ -836,7 +931,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ETN",
@@ -848,7 +943,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "PH",
@@ -860,7 +955,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "EMR",
@@ -872,7 +967,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ROK",
@@ -884,7 +979,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "CAT",
@@ -896,7 +991,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "DE",
@@ -908,7 +1003,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "HON",
@@ -920,7 +1015,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "RTX",
@@ -932,7 +1027,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "LMT",
@@ -944,7 +1039,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "NOC",
@@ -956,7 +1051,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "GD",
@@ -968,7 +1063,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "BA",
@@ -980,7 +1075,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "URI",
@@ -992,7 +1087,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "HUBB",
@@ -1004,7 +1099,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "XOM",
@@ -1016,7 +1111,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "CVX",
@@ -1028,7 +1123,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "COP",
@@ -1040,7 +1135,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "SLB",
@@ -1052,7 +1147,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "HAL",
@@ -1064,7 +1159,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "OXY",
@@ -1076,7 +1171,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "EOG",
@@ -1088,7 +1183,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "LNG",
@@ -1100,7 +1195,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "FSLR",
@@ -1112,7 +1207,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ENPH",
@@ -1124,7 +1219,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "LLY",
@@ -1136,7 +1231,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "NVO",
@@ -1148,7 +1243,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MRK",
@@ -1160,7 +1255,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "PFE",
@@ -1172,7 +1267,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ABBV",
@@ -1184,7 +1279,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "AMGN",
@@ -1196,7 +1291,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "REGN",
@@ -1208,7 +1303,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "VRTX",
@@ -1220,7 +1315,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ISRG",
@@ -1232,7 +1327,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "UNH",
@@ -1244,7 +1339,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "TMO",
@@ -1256,7 +1351,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "DHR",
@@ -1268,7 +1363,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "SYK",
@@ -1280,7 +1375,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MDT",
@@ -1292,7 +1387,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "BSX",
@@ -1304,7 +1399,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "JPM",
@@ -1316,7 +1411,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "BAC",
@@ -1328,7 +1423,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "GS",
@@ -1340,7 +1435,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MS",
@@ -1352,7 +1447,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "V",
@@ -1364,7 +1459,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MA",
@@ -1376,7 +1471,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "AXP",
@@ -1388,7 +1483,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "BLK",
@@ -1400,7 +1495,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "SCHW",
@@ -1412,7 +1507,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "COIN",
@@ -1424,7 +1519,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "HOOD",
@@ -1436,7 +1531,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "WMT",
@@ -1448,7 +1543,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "COST",
@@ -1460,7 +1555,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "HD",
@@ -1472,7 +1567,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "LOW",
@@ -1484,7 +1579,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "TGT",
@@ -1496,7 +1591,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "DLTR",
@@ -1508,7 +1603,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "DG",
@@ -1520,7 +1615,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "MCD",
@@ -1532,7 +1627,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "SBUX",
@@ -1544,7 +1639,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "CMG",
@@ -1556,7 +1651,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "NKE",
@@ -1568,7 +1663,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "LULU",
@@ -1580,7 +1675,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "TJX",
@@ -1592,7 +1687,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "ROST",
@@ -1604,7 +1699,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "TSLA",
@@ -1616,7 +1711,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "GM",
@@ -1628,7 +1723,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "F",
@@ -1640,7 +1735,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "RIVN",
@@ -1652,7 +1747,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "NIO",
@@ -1664,7 +1759,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "LI",
@@ -1676,7 +1771,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "XPEV",
@@ -1688,7 +1783,7 @@
       "source": "stooq",
       "status": "invalid",
       "valid": false,
-      "error": "timeout"
+      "error": "AggregateError"
     },
     {
       "ticker": "SOXX",
@@ -1883,6 +1978,347 @@
       "error": "timeout"
     }
   ],
-  "radar": [],
+  "radar": [
+    {
+      "ticker": "AVGO",
+      "name": "AVGO",
+      "sector": "ai_semis",
+      "price": 446.77,
+      "move": 3.19,
+      "volume": 41798353,
+      "source": "stooq",
+      "sourceSymbol": "AVGO.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true,
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "ARM",
+      "name": "ARM",
+      "sector": "ai_semis",
+      "price": 353.29,
+      "move": 4.14,
+      "volume": 10448329,
+      "source": "stooq",
+      "sourceSymbol": "ARM.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true,
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "CIEN",
+      "name": "CIEN",
+      "sector": "ai_semis",
+      "price": 580.23,
+      "move": 2.51,
+      "volume": 3865952,
+      "source": "stooq",
+      "sourceSymbol": "CIEN.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true,
+      "score": 8.3,
+      "event": "market scan",
+      "note": "momentum candidate"
+    },
+    {
+      "ticker": "MU",
+      "name": "MU",
+      "sector": "ai_semis",
+      "price": 971,
+      "move": 1.46,
+      "volume": 60498561,
+      "source": "stooq",
+      "sourceSymbol": "MU.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true,
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "ANET",
+      "name": "ANET",
+      "sector": "ai_semis",
+      "price": 159.47,
+      "move": 1.95,
+      "volume": 15393768,
+      "source": "stooq",
+      "sourceSymbol": "ANET.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true,
+      "score": 7.1,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "NVDA",
+      "name": "Nvidia",
+      "sector": "AI chips",
+      "price": 211.14,
+      "move": -1.6,
+      "volume": 289410624,
+      "source": "stooq",
+      "sourceSymbol": "NVDA.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "AMD",
+      "name": "AMD",
+      "sector": "ai_semis",
+      "price": 516.1,
+      "move": -0.9,
+      "volume": 30803236,
+      "source": "stooq",
+      "sourceSymbol": "AMD.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "MRVL",
+      "name": "Marvell Technology Inc",
+      "sector": "Semiconductors/AI",
+      "price": 205,
+      "move": 0.27,
+      "volume": 34024746,
+      "source": "stooq",
+      "sourceSymbol": "MRVL.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "ASML",
+      "name": "ASML",
+      "sector": "ai_semis",
+      "price": 1612.76,
+      "move": -1.27,
+      "volume": 1070357,
+      "source": "stooq",
+      "sourceSymbol": "ASML.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "AMAT",
+      "name": "AMAT",
+      "sector": "ai_semis",
+      "price": 450.06,
+      "move": -0.6,
+      "volume": 8549508,
+      "source": "stooq",
+      "sourceSymbol": "AMAT.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "LRCX",
+      "name": "LRCX",
+      "sector": "ai_semis",
+      "price": 318.18,
+      "move": -1.19,
+      "volume": 10872171,
+      "source": "stooq",
+      "sourceSymbol": "LRCX.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "KLAC",
+      "name": "KLAC",
+      "sector": "ai_semis",
+      "price": 1921.71,
+      "move": -0.42,
+      "volume": 1145940,
+      "source": "stooq",
+      "sourceSymbol": "KLAC.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "ONTO",
+      "name": "ONTO",
+      "sector": "ai_semis",
+      "price": 258.24,
+      "move": -0.98,
+      "volume": 1121331,
+      "source": "stooq",
+      "sourceSymbol": "ONTO.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "LITE",
+      "name": "Lumentum Holdings Inc",
+      "sector": "Optical/AI",
+      "price": 854.96,
+      "move": -0.66,
+      "volume": 6363965,
+      "source": "stooq",
+      "sourceSymbol": "LITE.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "QCOM",
+      "name": "QCOM",
+      "sector": "ai_semis",
+      "price": 251.02,
+      "move": 0.33,
+      "volume": 28781844,
+      "source": "stooq",
+      "sourceSymbol": "QCOM.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true,
+      "score": 5.2,
+      "event": "market scan",
+      "note": "neutral"
+    },
+    {
+      "ticker": "TSM",
+      "name": "TSM",
+      "sector": "ai_semis",
+      "price": 418.45,
+      "move": -2.02,
+      "volume": 11232272,
+      "source": "stooq",
+      "sourceSymbol": "TSM.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true,
+      "score": 4.6,
+      "event": "market scan",
+      "note": "weak relative"
+    },
+    {
+      "ticker": "TER",
+      "name": "Teradyne",
+      "sector": "Semicap equipment",
+      "price": 374.31,
+      "move": -2.82,
+      "volume": 4130952,
+      "source": "stooq",
+      "sourceSymbol": "TER.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:19",
+      "status": "ok",
+      "valid": true,
+      "score": 4.6,
+      "event": "market scan",
+      "note": "weak relative"
+    },
+    {
+      "ticker": "COHR",
+      "name": "COHR",
+      "sector": "ai_semis",
+      "price": 361.47,
+      "move": -3.77,
+      "volume": 11082553,
+      "source": "stooq",
+      "sourceSymbol": "COHR.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:24",
+      "status": "ok",
+      "valid": true,
+      "score": 4.6,
+      "event": "market scan",
+      "note": "weak relative"
+    },
+    {
+      "ticker": "TXN",
+      "name": "TXN",
+      "sector": "ai_semis",
+      "price": 305.68,
+      "move": -3.41,
+      "volume": 16786667,
+      "source": "stooq",
+      "sourceSymbol": "TXN.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:20",
+      "status": "ok",
+      "valid": true,
+      "score": 4.6,
+      "event": "market scan",
+      "note": "weak relative"
+    },
+    {
+      "ticker": "ADI",
+      "name": "ADI",
+      "sector": "ai_semis",
+      "price": 413.85,
+      "move": -2.27,
+      "volume": 5508118,
+      "source": "stooq",
+      "sourceSymbol": "ADI.US",
+      "quoteDate": "2026-05-29",
+      "quoteTime": "22:00:18",
+      "status": "ok",
+      "valid": true,
+      "score": 4.6,
+      "event": "market scan",
+      "note": "weak relative"
+    }
+  ],
   "news": []
 }
