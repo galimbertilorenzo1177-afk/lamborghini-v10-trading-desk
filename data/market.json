@@ -11288,5 +11288,18 @@
       "note": "neutral"
     }
   ],
-  "news": []
+  "news": [],
+  "refreshDiagnostics": {
+    "fetchStarted": "2026-05-31T20:50:20.694Z",
+    "source": "stooq",
+    "sourceReached": false,
+    "quotesDownloaded": 0,
+    "marketJsonRewritten": true,
+    "newTimestampDetected": false,
+    "reason": "below minimum 0/300; preserving existing snapshot with 516"
+  },
+  "lastRefreshAttemptAt": "2026-05-31T20:53:42.959Z",
+  "lastRefreshAttemptStatus": "below minimum 0/300",
+  "lastRefreshAttemptSuccess": false,
+  "staleSnapshot": true
 }
