@@ -2,3 +2,4 @@
 .data-error{border-color:var(--red);box-shadow:0 0 0 1px rgba(255,107,136,.25),0 12px 35px rgba(0,0,0,.18)}
 .data-error .ticker{color:var(--red)}
 table{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}th,td{border-top:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.04em}td:nth-child(n+2),th:nth-child(n+2){text-align:right}td:last-child,th:last-child{text-align:left}
+.decision{margin-top:14px;border-top:1px solid var(--line);padding-top:14px}.decision h3,.today h3{margin-bottom:8px}.decision p,.today p{line-height:1.45}.today .grid,.decision .grid{grid-template-columns:1fr 1fr}.ticker{letter-spacing:.04em}@media(max-width:520px){.grid,.today .grid,.decision .grid{grid-template-columns:1fr}.hero{align-items:flex-start}.rating{padding:9px 11px}.metric{text-align:left}table{font-size:12px}th,td{padding:7px 5px}}
