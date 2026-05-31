@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 
 const MIN_VALID_QUOTES = 300;
 const MOCK_QUOTES = process.env.MOCK_QUOTES === '1';
+const refreshDiagnostics = {fetchStarted:new Date().toISOString(),source:'stooq',sourceReached:false,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:''};
 
 const groups = {
   semiconductors: ['NVDA','AMD','AVGO','MRVL','MU','ARM','TSM','QCOM','TXN','ADI','INTC','MPWR','NXPI','MCHP','ON','LSCC','SWKS','QRVO','GFS','WOLF','ALAB','SMTC','RMBS','CRUS','DIOD','POWI','SLAB','FORM','PI','SYNA','SIMO','CAMT','VECO','COHR','LITE'],
@@ -29,7 +30,7 @@ const names = {
 };
 
 function isRealTicker(t){return /^[A-Z][A-Z0-9.]{0,5}$/.test(String(t||'').toUpperCase())&&!/^V\d+$/i.test(String(t||''));}
-function get(url, timeout=12000){return new Promise((resolve,reject)=>{const req=https.get(url,{headers:{'user-agent':'Mozilla/5.0 LamborghiniV11'},timeout},res=>{let data='';res.on('data',d=>data+=d);res.on('end',()=>resolve(data));});req.on('error',reject);req.on('timeout',()=>req.destroy(new Error('timeout')));});}
+function get(url, timeout=12000){return new Promise((resolve,reject)=>{const req=https.get(url,{headers:{'user-agent':'Mozilla/5.0 LamborghiniV11'},timeout},res=>{refreshDiagnostics.sourceReached=true;let data='';res.on('data',d=>data+=d);res.on('end',()=>resolve(data));});req.on('error',reject);req.on('timeout',()=>req.destroy(new Error('network timeout')));});}
 function parseCsvLine(line){const out=[];let cur='',quoted=false;for(const ch of line){if(ch==='"'){quoted=!quoted;continue;}if(ch===','&&!quoted){out.push(cur);cur='';continue;}cur+=ch;}out.push(cur);return out;}
 function quoteName(ticker){return names[ticker]||ticker;}
 function invalidQuote(ticker, error){return {ticker,name:quoteName(ticker),sector:sectorByTicker[ticker]||'Market scan',price:0,move:0,volume:0,source:'stooq',status:'invalid',valid:false,error:String(error&&error.message||error||'No valid quote')};}
@@ -44,7 +45,7 @@ function mapQuote(mapped, expectedTicker){
   return {ticker:expectedTicker,name:quoteName(expectedTicker),sector:sectorByTicker[expectedTicker]||'Market scan',price:close,move:Number(move.toFixed(2)),volume:Number.isFinite(volume)?volume:0,source:'stooq',sourceSymbol:mapped.symbol,quoteDate:mapped.date,quoteTime:mapped.time,status:'ok',valid:true};
 }
 async function quoteBatch(batch){
-  if (MOCK_QUOTES) return batch.map((ticker, i) => ({ticker,name:quoteName(ticker),sector:sectorByTicker[ticker]||'Market scan',price:Number((50+(i%25)*3+(ticker.charCodeAt(0)%17)).toFixed(2)),move:Number((((ticker.charCodeAt(0)+ticker.length)%9)-4).toFixed(2)),volume:1000000+i,source:'stooq-mock',sourceSymbol:`${ticker}.US`,quoteDate:'2026-05-31',quoteTime:'00:00:00',status:'ok',valid:true}));
+  if (MOCK_QUOTES) { refreshDiagnostics.sourceReached=true; return batch.map((ticker, i) => ({ticker,name:quoteName(ticker),sector:sectorByTicker[ticker]||'Market scan',price:Number((50+(i%25)*3+(ticker.charCodeAt(0)%17)).toFixed(2)),move:Number((((ticker.charCodeAt(0)+ticker.length)%9)-4).toFixed(2)),volume:1000000+i,source:'stooq-mock',sourceSymbol:`${ticker}.US`,quoteDate:'2026-05-31',quoteTime:'00:00:00',status:'ok',valid:true})); }
   const query=batch.map(t=>`${t.toLowerCase()}.us`).join(',');
   const url=`https://stooq.com/q/l/?s=${encodeURIComponent(query)}&f=sd2t2ohlcv&h&e=csv`;
   const csv=await get(url);
@@ -107,18 +108,39 @@ const radar=validQuotes.map(q=>({...q,score:radarScore(q),event:'market scan',no
 const sectorCounts=sectorCountsFor(quotes);
 const sectorStrength=sectorRanking(quotes);
 const regime=regimeFrom(quotes, sectorStrength);
-const payload={updatedAt:new Date().toISOString(),source:'stooq',minimumValidQuotes:MIN_VALID_QUOTES,quoteDownloadSuccess:validQuotes.length>=MIN_VALID_QUOTES,quoteDownloadStatus:validQuotes.length>=MIN_VALID_QUOTES?'success':`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}`,validQuotesCount:validQuotes.length,invalidQuotesCount:quotes.length-validQuotes.length,configuredTickers:symbols,configuredTickersCount:symbols.length,failedQuotes,firstSuccessfulTickers:validQuotes.slice(0,10).map(q=>q.ticker),universeSize:validQuotes.length,groups,sectorCounts,sectorStrength,regime,bestSector:sectorStrength[0]||null,worstSector:sectorStrength.at(-1)||null,quotes,radar,news:[]};
+refreshDiagnostics.quotesDownloaded=validQuotes.length;
+const payload={updatedAt:new Date().toISOString(),source:'stooq',refreshDiagnostics,minimumValidQuotes:MIN_VALID_QUOTES,quoteDownloadSuccess:validQuotes.length>=MIN_VALID_QUOTES,quoteDownloadStatus:validQuotes.length>=MIN_VALID_QUOTES?'success':`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}`,validQuotesCount:validQuotes.length,invalidQuotesCount:quotes.length-validQuotes.length,configuredTickers:symbols,configuredTickersCount:symbols.length,failedQuotes,firstSuccessfulTickers:validQuotes.slice(0,10).map(q=>q.ticker),universeSize:validQuotes.length,groups,sectorCounts,sectorStrength,regime,bestSector:sectorStrength[0]||null,worstSector:sectorStrength.at(-1)||null,quotes,radar,news:[]};
 await fs.mkdir('data',{recursive:true});
+let existingUpdatedAt='';
 if (validQuotes.length < MIN_VALID_QUOTES && !MOCK_QUOTES) {
   try {
     const existing=JSON.parse(await fs.readFile('data/market.json','utf8'));
+    existingUpdatedAt=existing.updatedAt||existing.lastUpdated||existing.timestamp||existing.generatedAt||'';
     if (Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES) {
+      refreshDiagnostics.newTimestampDetected=!!existingUpdatedAt&&payload.updatedAt!==existingUpdatedAt;
+      refreshDiagnostics.reason=`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}; existing snapshot has ${existing.validQuotesCount||existing.universeSize}`;
+      payload.refreshDiagnostics=refreshDiagnostics;
       console.error(`Refusing to overwrite data/market.json: refresh returned ${validQuotes.length}/${MIN_VALID_QUOTES} valid quotes; existing snapshot has ${existing.validQuotesCount||existing.universeSize}.`);
-      console.log(JSON.stringify({updatedAt:payload.updatedAt,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
+      console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
       process.exit(1);
     }
   } catch {}
+} else {
+  try { const existing=JSON.parse(await fs.readFile('data/market.json','utf8')); existingUpdatedAt=existing.updatedAt||existing.lastUpdated||existing.timestamp||existing.generatedAt||''; } catch {}
 }
-await fs.writeFile('data/market.json',JSON.stringify(payload,null,2));
-console.log(JSON.stringify({updatedAt:payload.updatedAt,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,regime:payload.regime,bestSector:payload.bestSector,worstSector:payload.worstSector,topRadar:payload.radar.slice(0,5)},null,2));
+refreshDiagnostics.newTimestampDetected=!existingUpdatedAt||payload.updatedAt!==existingUpdatedAt;
+payload.refreshDiagnostics=refreshDiagnostics;
+try {
+  refreshDiagnostics.marketJsonRewritten=true;
+  refreshDiagnostics.reason=validQuotes.length>=MIN_VALID_QUOTES?'':'below minimum valid quotes';
+  payload.refreshDiagnostics=refreshDiagnostics;
+  await fs.writeFile('data/market.json',JSON.stringify(payload,null,2));
+} catch(e) {
+  refreshDiagnostics.marketJsonRewritten=false;
+  refreshDiagnostics.reason=e&&e.code==='EACCES'?'write permission denied':String(e&&e.message||e||'market.json write failed');
+  console.error(`market.json rewrite failed: ${refreshDiagnostics.reason}`);
+  console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
+  process.exit(1);
+}
+console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,regime:payload.regime,bestSector:payload.bestSector,worstSector:payload.worstSector,topRadar:payload.radar.slice(0,5)},null,2));
 process.exit(validQuotes.length >= MIN_VALID_QUOTES ? 0 : 1);

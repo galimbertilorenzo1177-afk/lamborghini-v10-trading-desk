@@ -125,6 +125,24 @@ for (const ticker of ['AMD', 'MU', 'LSCC']) {
   if (quote?.price > 73 && shares !== 0) failures.push(`${ticker} suggested shares ${shares} despite price above freeCash 73`);
 }
 
+
+const diagnosticPayload = {
+  ...market,
+  refreshDiagnostics: {
+    fetchStarted: '2026-05-31T10:00:00.000Z',
+    source: 'stooq',
+    sourceReached: true,
+    quotesDownloaded: market.validQuotesCount,
+    marketJsonRewritten: true,
+    newTimestampDetected: true,
+    reason: '',
+  },
+};
+const { html: diagnosticsHtml } = await renderApp('#diagnostics', diagnosticPayload);
+for (const snippet of ['Refresh status', 'Source: stooq', '<small>Fetch started</small>', '<small>Source reached</small><span class="good">YES</span>', `<small>Quotes downloaded</small>${market.validQuotesCount}`, '<small>market.json rewritten</small><span class="good">YES</span>', '<small>New timestamp detected</small>YES']) {
+  if (!diagnosticsHtml.includes(snippet)) failures.push(`diagnostics missing ${snippet}`);
+}
+
 const nestedPayload = { ...market, quotes: undefined, data: { quotes: market.quotes, radar: market.radar, sectorStrength: market.sectorStrength, regime: market.regime, validQuotesCount: market.validQuotesCount, bestSector: market.bestSector, worstSector: market.worstSector } };
 const { html: nestedHtml } = await renderApp('#leaders', nestedPayload);
 if (Number(metric(nestedHtml, 'Universe ranked')) !== expected.validQuotesCount) failures.push('nested data.quotes path was not ranked correctly');
