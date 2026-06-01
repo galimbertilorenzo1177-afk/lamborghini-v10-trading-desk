@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 const MIN_VALID_QUOTES = 300;
 const MOCK_QUOTES = process.env.MOCK_QUOTES === '1';
 const refreshStartedAt = new Date().toISOString();
-const refreshDiagnostics = {fetchStarted:refreshStartedAt,source:'stooq',sourceReached:false,downloadedQuotes:0,validQuotes:0,invalidQuotes:0,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:'',sourceErrors:[],firstInvalidQuoteReasons:[],snapshotGeneratedAt:'',lastSuccessfulMarketFetchAt:'',lastPriceChangeAt:'',lastMarketQuoteTime:''};
+const refreshDiagnostics = {fetchStarted:refreshStartedAt,source:'stooq',sourceReached:false,downloadedQuotes:0,validQuotes:0,invalidQuotes:0,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:'',sourceErrors:[],validationRejectionCounts:{},firstInvalidQuoteReasons:[],snapshotGeneratedAt:'',lastSuccessfulMarketFetchAt:'',lastPriceChangeAt:'',lastMarketQuoteTime:''};
 
 const groups = {
   semiconductors: ['NVDA','AMD','AVGO','MRVL','MU','ARM','TSM','QCOM','TXN','ADI','INTC','MPWR','NXPI','MCHP','ON','LSCC','SWKS','QRVO','GFS','WOLF','ALAB','SMTC','RMBS','CRUS','DIOD','POWI','SLAB','FORM','PI','SYNA','SIMO','CAMT','VECO','COHR','LITE'],
@@ -45,7 +45,9 @@ function latestQuoteTimestamp(quotes){return quotes.map(quoteTimestamp).filter(B
 function get(url, timeout=12000){return new Promise((resolve,reject)=>{let done=false;const fail=e=>{if(done)return;done=true;clearTimeout(timer);reject(e);};const ok=v=>{if(done)return;done=true;clearTimeout(timer);resolve(v);};const timer=setTimeout(()=>{const e=new Error('network timeout');e.code='ETIMEDOUT';req.destroy(e);fail(e);},timeout);const req=https.get(url,{headers:{'user-agent':'Mozilla/5.0 LamborghiniV11'}},res=>{refreshDiagnostics.sourceReached=true;if(res.statusCode<200||res.statusCode>=300){res.resume();const e=new Error(`HTTP ${res.statusCode}`);e.code='HTTP_STATUS';fail(e);return;}let data='';res.on('data',d=>data+=d);res.on('end',()=>ok(data));});req.on('error',fail);});}
 function parseCsvLine(line){const out=[];let cur='',quoted=false;for(const ch of line){if(ch==='"'){quoted=!quoted;continue;}if(ch===','&&!quoted){out.push(cur);cur='';continue;}cur+=ch;}out.push(cur);return out;}
 function quoteName(ticker){return names[ticker]||ticker;}
-function invalidQuote(ticker, error, options={}){return {ticker,name:quoteName(ticker),sector:sectorByTicker[ticker]||'Market scan',price:0,move:0,volume:0,source:'stooq',status:options.status||'invalid',valid:false,downloaded:Boolean(options.downloaded),sourceSymbol:options.sourceSymbol,error:String(error&&error.message||error||'No valid quote')};}
+function rejectionError(rule, message){const e=new Error(message);e.validationRule=rule;return e;}
+function rawQuoteFields(mapped){return {symbol:mapped.symbol,open:mapped.open,close:mapped.close,volume:mapped.volume,date:mapped.date,time:mapped.time};}
+function invalidQuote(ticker, error, options={}){const validationRule=options.validationRule||error&&error.validationRule||options.status||'invalid';return {ticker,name:quoteName(ticker),sector:sectorByTicker[ticker]||'Market scan',price:0,move:0,volume:0,source:'stooq',status:options.status||'invalid',valid:false,downloaded:Boolean(options.downloaded),sourceSymbol:options.sourceSymbol,validationRule,error:String(error&&error.message||error||'No valid quote'),rawFields:options.rawFields};}
 function normalizeHeaderName(header){
   const normalized=String(header||'').trim().toLowerCase().replace(/[^a-z0-9]/g,'');
   return ({ticker:'symbol',sym:'symbol',security:'symbol',last:'close',lastprice:'close',closeprice:'close',vol:'volume'})[normalized]||normalized;
@@ -60,8 +62,8 @@ function mapQuote(mapped, expectedTicker){
   const open=normalizePrice(mapped.open);
   const close=normalizePrice(mapped.close);
   const volume=normalizePrice(mapped.volume);
-  if(symbol!==expectedTicker) throw new Error(`Ticker mismatch: expected ${expectedTicker}, got ${symbol||'empty'} (raw ${mapped.symbol||'empty'})`);
-  if(!Number.isFinite(close)||close<=0) throw new Error(`Invalid close price: ${mapped.close??'empty'}`);
+  if(symbol!==expectedTicker) throw rejectionError('ticker_mismatch', `Ticker mismatch: expected ${expectedTicker}, got ${symbol||'empty'} (raw ${mapped.symbol||'empty'})`);
+  if(!Number.isFinite(close)||close<=0) throw rejectionError('invalid_close_price', `Invalid close price: ${mapped.close??'empty'}`);
   const move=Number.isFinite(open)&&open>0?((close-open)/open*100):0;
   return {ticker:expectedTicker,name:quoteName(expectedTicker),sector:sectorByTicker[expectedTicker]||'Market scan',price:close,move:Number(move.toFixed(2)),volume:Number.isFinite(volume)?volume:0,source:'stooq',sourceSymbol:mapped.symbol,quoteDate:mapped.date,quoteTime:mapped.time,status:'ok',valid:true,downloaded:true};
 }
@@ -79,9 +81,9 @@ async function quoteBatch(batch){
     const mapped=Object.fromEntries(header.map((h,i)=>[h,row[i]]));
     const symbol=String(mapped.symbol||'').replace(/\.US$/i,'').toUpperCase();
     if(!batch.includes(symbol)) continue;
-    try { out.set(symbol, mapQuote(mapped, symbol)); } catch(e) { out.set(symbol, invalidQuote(symbol, e, {downloaded:true,sourceSymbol:mapped.symbol})); }
+    try { out.set(symbol, mapQuote(mapped, symbol)); } catch(e) { out.set(symbol, invalidQuote(symbol, e, {downloaded:true,sourceSymbol:mapped.symbol,rawFields:rawQuoteFields(mapped)})); }
   }
-  return batch.map(t=>out.get(t)||invalidQuote(t,'No CSV row returned', {status:'missing'}));
+  return batch.map(t=>out.get(t)||invalidQuote(t,'No CSV row returned', {status:'missing',validationRule:'missing_csv_row'}));
 }
 async function quoteSingle(ticker){return (await quoteBatch([ticker]))[0];}
 function sourceErrorMessage(e){return String(e&&e.code?`${e.code}: ${e.message||e}`:e&&e.message||e||'source error');}
@@ -94,7 +96,7 @@ async function quoteBatchSafe(batch){
   if (lastError&&isSourceUnavailable(lastError)) {
     const message=sourceErrorMessage(lastError);
     refreshDiagnostics.sourceErrors.push({batch:batch.slice(0,5),count:batch.length,error:message});
-    return batch.map(t=>invalidQuote(t,message));
+    return batch.map(t=>invalidQuote(t,message, {validationRule:'source_unavailable'}));
   }
   return Promise.all(batch.map(t=>quoteSingle(t).catch(e=>invalidQuote(t,e))));
 }
@@ -132,18 +134,20 @@ function regimeFrom(quotes, sectorStrength){const priced=quotes.filter(q=>q.vali
 
 const quotes = await quotesFor(symbols);
 const validQuotes=quotes.filter(q=>q.valid&&q.price>0);
-const failedQuotes=quotes.filter(q=>!q.valid||!q.price).map(q=>({ticker:q.ticker,sector:q.sector,status:q.status||'invalid',downloaded:Boolean(q.downloaded),sourceSymbol:q.sourceSymbol,error:q.error||'invalid quote'}));
+const failedQuotes=quotes.filter(q=>!q.valid||!q.price).map(q=>({ticker:q.ticker,sector:q.sector,status:q.status||'invalid',downloaded:Boolean(q.downloaded),sourceSymbol:q.sourceSymbol,validationRule:q.validationRule||q.status||'invalid',error:q.error||'invalid quote',rawFields:q.rawFields}));
 const radar=validQuotes.map(q=>({...q,score:radarScore(q),event:'market scan',note:q.move>12?'FOMO high':q.move>2?'momentum candidate':q.move<-2?'weak relative':'neutral'})).sort((a,b)=>b.score-a.score).slice(0,160);
 const sectorCounts=sectorCountsFor(quotes);
 const sectorStrength=sectorRanking(quotes);
 const regime=regimeFrom(quotes, sectorStrength);
 const downloadedQuotes=quotes.filter(q=>q.downloaded).length;
 const invalidQuotes=quotes.length-validQuotes.length;
-const firstInvalidQuoteReasons=failedQuotes.slice(0,10).map(q=>({ticker:q.ticker,sector:q.sector,status:q.status,downloaded:q.downloaded,sourceSymbol:q.sourceSymbol,error:q.error}));
+const validationRejectionCounts=failedQuotes.reduce((counts,q)=>{const key=q.validationRule||q.error||'invalid';counts[key]=(counts[key]||0)+1;return counts;},{});
+const firstInvalidQuoteReasons=failedQuotes.slice(0,10).map(q=>({ticker:q.ticker,sector:q.sector,status:q.status,downloaded:q.downloaded,sourceSymbol:q.sourceSymbol,validationRule:q.validationRule,error:q.error,rawFields:q.rawFields}));
 refreshDiagnostics.downloadedQuotes=downloadedQuotes;
 refreshDiagnostics.validQuotes=validQuotes.length;
 refreshDiagnostics.invalidQuotes=invalidQuotes;
 refreshDiagnostics.quotesDownloaded=downloadedQuotes;
+refreshDiagnostics.validationRejectionCounts=validationRejectionCounts;
 refreshDiagnostics.firstInvalidQuoteReasons=firstInvalidQuoteReasons;
 await fs.mkdir('data',{recursive:true});
 let existing=null;
@@ -168,7 +172,7 @@ if (validQuotes.length < MIN_VALID_QUOTES && !MOCK_QUOTES) {
     const preserved={...existing,refreshDiagnostics,lastRefreshAttemptAt:generatedAt,lastRefreshAttemptStatus:payload.quoteDownloadStatus,lastRefreshAttemptSuccess:false,staleSnapshot:true};
     await fs.writeFile('data/market.json',JSON.stringify(preserved,null,2));
     console.error(`Preserving existing data/market.json: refresh returned ${validQuotes.length}/${MIN_VALID_QUOTES} valid quotes; existing snapshot has ${existing.validQuotesCount||existing.universeSize}.`);
-    console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:preserved.updatedAt,snapshotGeneratedAt:preserved.snapshotGeneratedAt,lastRefreshAttemptAt:preserved.lastRefreshAttemptAt,lastSuccessfulMarketFetchAt:preserved.lastSuccessfulMarketFetchAt,lastPriceChangeAt:preserved.lastPriceChangeAt,lastMarketQuoteTime:preserved.lastMarketQuoteTime,source:preserved.source,configured:payload.configuredTickersCount,universeSize:preserved.universeSize,downloadedQuotes,validQuotes:validQuotes.length,invalidQuotes:payload.invalidQuotesCount,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,preservedSnapshot:true},null,2));
+    console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:preserved.updatedAt,snapshotGeneratedAt:preserved.snapshotGeneratedAt,lastRefreshAttemptAt:preserved.lastRefreshAttemptAt,lastSuccessfulMarketFetchAt:preserved.lastSuccessfulMarketFetchAt,lastPriceChangeAt:preserved.lastPriceChangeAt,lastMarketQuoteTime:preserved.lastMarketQuoteTime,source:preserved.source,configured:payload.configuredTickersCount,universeSize:preserved.universeSize,downloadedQuotes,validQuotes:validQuotes.length,invalidQuotes:payload.invalidQuotesCount,validationRejectionCounts,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,preservedSnapshot:true},null,2));
     process.exit(0);
   }
 }
@@ -183,8 +187,8 @@ try {
   refreshDiagnostics.marketJsonRewritten=false;
   refreshDiagnostics.reason=e&&e.code==='EACCES'?'write permission denied':String(e&&e.message||e||'market.json write failed');
   console.error(`market.json rewrite failed: ${refreshDiagnostics.reason}`);
-  console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,downloadedQuotes,validQuotes:validQuotes.length,invalidQuotes:payload.invalidQuotesCount,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
+  console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,downloadedQuotes,validQuotes:validQuotes.length,invalidQuotes:payload.invalidQuotesCount,validationRejectionCounts,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
   process.exit(1);
 }
-console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,downloadedQuotes,validQuotes:validQuotes.length,invalidQuotes:payload.invalidQuotesCount,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,regime:payload.regime,bestSector:payload.bestSector,worstSector:payload.worstSector,topRadar:payload.radar.slice(0,5)},null,2));
+console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,downloadedQuotes,validQuotes:validQuotes.length,invalidQuotes:payload.invalidQuotesCount,validationRejectionCounts,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,regime:payload.regime,bestSector:payload.bestSector,worstSector:payload.worstSector,topRadar:payload.radar.slice(0,5)},null,2));
 process.exit(validQuotes.length >= MIN_VALID_QUOTES ? 0 : 1);
