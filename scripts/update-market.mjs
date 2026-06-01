@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 const MIN_VALID_QUOTES = 300;
 const MOCK_QUOTES = process.env.MOCK_QUOTES === '1';
 const refreshStartedAt = new Date().toISOString();
-const refreshDiagnostics = {fetchStarted:refreshStartedAt,source:'stooq',sourceReached:false,downloadedQuotes:0,validQuotes:0,invalidQuotes:0,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:'',sourceErrors:[],validationRejectionCounts:{},firstInvalidQuoteReasons:[],snapshotGeneratedAt:'',lastSuccessfulMarketFetchAt:'',lastPriceChangeAt:'',lastMarketQuoteTime:''};
+const refreshDiagnostics = {fetchStarted:refreshStartedAt,source:'stooq',sourceReached:false,downloadedQuotes:0,validQuotes:0,invalidQuotes:0,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:'',sourceErrors:[],validationRejectionCounts:{},firstInvalidQuoteReasons:[],previousTimestamp:'',newlyGeneratedTimestamp:'',timestampComparisonResult:'not compared',timestampUpdateCodePath:'initializing refresh',timestampWillAdvance:false,snapshotGeneratedAt:'',lastSuccessfulMarketFetchAt:'',lastPriceChangeAt:'',lastMarketQuoteTime:''};
 
 const groups = {
   semiconductors: ['NVDA','AMD','AVGO','MRVL','MU','ARM','TSM','QCOM','TXN','ADI','INTC','MPWR','NXPI','MCHP','ON','LSCC','SWKS','QRVO','GFS','WOLF','ALAB','SMTC','RMBS','CRUS','DIOD','POWI','SLAB','FORM','PI','SYNA','SIMO','CAMT','VECO','COHR','LITE'],
@@ -155,10 +155,16 @@ try { existing=JSON.parse(await fs.readFile('data/market.json','utf8')); } catch
 let existingUpdatedAt=existing&&(existing.updatedAt||existing.snapshotGeneratedAt||existing.lastUpdated||existing.timestamp||existing.generatedAt||'')||'';
 const generatedAt=refreshStartedAt;
 const snapshotGeneratedAt=generatedAt;
+const timestampAdvanced=!existingUpdatedAt||snapshotGeneratedAt!==existingUpdatedAt;
+const timestampComparisonResult=!existingUpdatedAt?'no previous timestamp':(timestampAdvanced?'new timestamp differs from previous timestamp':'new timestamp matches previous timestamp');
 const quotesChanged=validQuotes.length>=MIN_VALID_QUOTES&&(!existing||quoteSnapshotSignature(validQuotes)!==quoteSnapshotSignature(Array.isArray(existing.quotes)?existing.quotes:[]));
 const lastSuccessfulMarketFetchAt=validQuotes.length>=MIN_VALID_QUOTES?generatedAt:(existing&&existing.lastSuccessfulMarketFetchAt)||'';
 const lastPriceChangeAt=quotesChanged?generatedAt:((existing&&(existing.lastPriceChangeAt||existingUpdatedAt))||generatedAt);
 const lastMarketQuoteTime=latestQuoteTimestamp(validQuotes)||(existing&&existing.lastMarketQuoteTime)||'';
+refreshDiagnostics.previousTimestamp=existingUpdatedAt;
+refreshDiagnostics.newlyGeneratedTimestamp=snapshotGeneratedAt;
+refreshDiagnostics.timestampComparisonResult=timestampComparisonResult;
+refreshDiagnostics.timestampWillAdvance=timestampAdvanced&&(validQuotes.length>=MIN_VALID_QUOTES||MOCK_QUOTES||!(existing&&Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES));
 refreshDiagnostics.snapshotGeneratedAt=snapshotGeneratedAt;
 refreshDiagnostics.lastSuccessfulMarketFetchAt=lastSuccessfulMarketFetchAt;
 refreshDiagnostics.lastPriceChangeAt=lastPriceChangeAt;
@@ -169,6 +175,8 @@ if (validQuotes.length < MIN_VALID_QUOTES && !MOCK_QUOTES) {
     refreshDiagnostics.marketJsonRewritten=true;
     refreshDiagnostics.newTimestampDetected=false;
     refreshDiagnostics.reason=`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}; preserving existing snapshot with ${existing.validQuotesCount||existing.universeSize}`;
+    refreshDiagnostics.timestampWillAdvance=false;
+    refreshDiagnostics.timestampUpdateCodePath='preserve-existing-snapshot: valid quotes below minimum and existing snapshot is usable; existing timestamps are kept';
     const preserved={...existing,refreshDiagnostics,lastRefreshAttemptAt:generatedAt,lastRefreshAttemptStatus:payload.quoteDownloadStatus,lastRefreshAttemptSuccess:false,staleSnapshot:true};
     await fs.writeFile('data/market.json',JSON.stringify(preserved,null,2));
     console.error(`Preserving existing data/market.json: refresh returned ${validQuotes.length}/${MIN_VALID_QUOTES} valid quotes; existing snapshot has ${existing.validQuotesCount||existing.universeSize}.`);
@@ -176,7 +184,9 @@ if (validQuotes.length < MIN_VALID_QUOTES && !MOCK_QUOTES) {
     process.exit(0);
   }
 }
-refreshDiagnostics.newTimestampDetected=quotesChanged||!existingUpdatedAt;
+refreshDiagnostics.newTimestampDetected=timestampAdvanced;
+refreshDiagnostics.timestampWillAdvance=timestampAdvanced;
+refreshDiagnostics.timestampUpdateCodePath=validQuotes.length>=MIN_VALID_QUOTES?'write-new-snapshot: valid quotes met minimum; payload timestamps use newlyGeneratedTimestamp':'write-new-snapshot-below-minimum: no usable existing snapshot to preserve; payload timestamps use newlyGeneratedTimestamp';
 payload.refreshDiagnostics=refreshDiagnostics;
 try {
   refreshDiagnostics.marketJsonRewritten=true;
