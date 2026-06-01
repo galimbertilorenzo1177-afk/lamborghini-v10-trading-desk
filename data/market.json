@@ -11296,10 +11296,14 @@
     "quotesDownloaded": 0,
     "marketJsonRewritten": true,
     "newTimestampDetected": false,
-    "reason": "below minimum 0/300; preserving existing snapshot with 516"
+    "reason": "below minimum 0/300; preserving existing snapshot with 516",
+    "lastSuccessfulMarketFetchAt": "2026-05-31T15:59:27.114Z",
+    "lastPriceChangeAt": "2026-05-31T15:59:27.114Z"
   },
   "lastRefreshAttemptAt": "2026-05-31T23:45:36.957Z",
   "lastRefreshAttemptStatus": "below minimum 0/300",
   "lastRefreshAttemptSuccess": false,
-  "staleSnapshot": true
+  "staleSnapshot": true,
+  "lastSuccessfulMarketFetchAt": "2026-05-31T15:59:27.114Z",
+  "lastPriceChangeAt": "2026-05-31T15:59:27.114Z"
 }
