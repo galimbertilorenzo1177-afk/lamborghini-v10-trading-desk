@@ -133,6 +133,10 @@ const diagnosticPayload = {
     source: 'stooq',
     sourceReached: true,
     quotesDownloaded: market.validQuotesCount,
+    downloadedCount: market.validQuotesCount,
+    validatedCount: market.validQuotesCount,
+    acceptedCount: market.validQuotesCount,
+    rejectionReason: '',
     marketJsonRewritten: true,
     newTimestampDetected: true,
     reason: '',
@@ -143,8 +147,30 @@ const diagnosticPayload = {
   },
 };
 const { html: diagnosticsHtml } = await renderApp('#diagnostics', diagnosticPayload);
-for (const snippet of ['Refresh status', 'Source: stooq', '<small>Fetch started</small>', '<small>Source reached</small><span class="good">YES</span>', `<small>Quotes downloaded</small>${market.validQuotesCount}`, '<small>market.json rewritten</small><span class="good">YES</span>', '<small>New timestamp detected</small>YES', '<small>Previous timestamp</small>2026-05-30T10:00:00.000Z', '<small>Newly generated timestamp</small>2026-05-31T10:00:00.000Z', '<small>Timestamp comparison</small>new timestamp differs from previous timestamp', '<small>Timestamp update code path</small>write-new-snapshot: valid quotes met minimum; payload timestamps use newlyGeneratedTimestamp']) {
+for (const snippet of ['Refresh status', 'Source: stooq', '<small>Fetch started</small>', '<small>Source reached</small><span class="good">YES</span>', `<small>Quotes downloaded</small>${market.validQuotesCount}`, `<small>downloadedCount</small>${market.validQuotesCount}`, `<small>validatedCount</small>${market.validQuotesCount}`, `<small>acceptedCount</small>${market.validQuotesCount}`, '<small>rejectionReason</small>', '<small>market.json rewritten</small><span class="good">YES</span>', '<small>New timestamp detected</small>YES', '<small>Previous timestamp</small>2026-05-30T10:00:00.000Z', '<small>Newly generated timestamp</small>2026-05-31T10:00:00.000Z', '<small>Timestamp comparison</small>new timestamp differs from previous timestamp', '<small>Timestamp update code path</small>write-new-snapshot: valid quotes met minimum; payload timestamps use newlyGeneratedTimestamp']) {
   if (!diagnosticsHtml.includes(snippet)) failures.push(`diagnostics missing ${snippet}`);
+}
+
+
+const rejectedAttemptPayload = {
+  ...market,
+  refreshDiagnostics: {
+    fetchStarted: '2026-05-31T23:45:35.754Z',
+    source: 'stooq',
+    sourceReached: true,
+    downloadedCount: 0,
+    validatedCount: 0,
+    acceptedCount: 0,
+    rejectionReason: `below minimum 0/${market.minimumValidQuotes || 300}; preserving existing snapshot with ${market.validQuotesCount}`,
+    quotesDownloaded: 0,
+    marketJsonRewritten: true,
+    newTimestampDetected: false,
+    reason: `below minimum 0/${market.minimumValidQuotes || 300}; preserving existing snapshot with ${market.validQuotesCount}`,
+  },
+};
+const { html: rejectedDiagnosticsHtml } = await renderApp('#diagnostics', rejectedAttemptPayload);
+for (const snippet of ['<small>Quotes downloaded</small>0', '<small>downloadedCount</small>0', '<small>validatedCount</small>0', '<small>acceptedCount</small>0', `Reason: below minimum 0/${market.minimumValidQuotes || 300}; preserving existing snapshot with ${market.validQuotesCount}`]) {
+  if (!rejectedDiagnosticsHtml.includes(snippet)) failures.push(`rejected diagnostics missing ${snippet}`);
 }
 
 const nestedPayload = { ...market, quotes: undefined, data: { quotes: market.quotes, radar: market.radar, sectorStrength: market.sectorStrength, regime: market.regime, validQuotesCount: market.validQuotesCount, bestSector: market.bestSector, worstSector: market.worstSector } };

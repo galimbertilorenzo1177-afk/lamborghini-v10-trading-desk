@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 const MIN_VALID_QUOTES = 300;
 const MOCK_QUOTES = process.env.MOCK_QUOTES === '1';
 const refreshStartedAt = new Date().toISOString();
-const refreshDiagnostics = {fetchStarted:refreshStartedAt,source:'stooq',sourceReached:false,downloadedQuotes:0,validQuotes:0,invalidQuotes:0,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:'',sourceErrors:[],validationRejectionCounts:{},firstInvalidQuoteReasons:[],previousTimestamp:'',newlyGeneratedTimestamp:'',timestampComparisonResult:'not compared',timestampUpdateCodePath:'initializing refresh',timestampWillAdvance:false,snapshotGeneratedAt:'',lastSuccessfulMarketFetchAt:'',lastPriceChangeAt:'',lastMarketQuoteTime:''};
+const refreshDiagnostics = {fetchStarted:refreshStartedAt,source:'stooq',sourceReached:false,downloadedCount:0,validatedCount:0,acceptedCount:0,rejectionReason:'',downloadedQuotes:0,validQuotes:0,invalidQuotes:0,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:'',sourceErrors:[],validationRejectionCounts:{},firstInvalidQuoteReasons:[],previousTimestamp:'',newlyGeneratedTimestamp:'',timestampComparisonResult:'not compared',timestampUpdateCodePath:'initializing refresh',timestampWillAdvance:false,snapshotGeneratedAt:'',lastSuccessfulMarketFetchAt:'',lastPriceChangeAt:'',lastMarketQuoteTime:''};
 
 const groups = {
   semiconductors: ['NVDA','AMD','AVGO','MRVL','MU','ARM','TSM','QCOM','TXN','ADI','INTC','MPWR','NXPI','MCHP','ON','LSCC','SWKS','QRVO','GFS','WOLF','ALAB','SMTC','RMBS','CRUS','DIOD','POWI','SLAB','FORM','PI','SYNA','SIMO','CAMT','VECO','COHR','LITE'],
@@ -140,13 +140,21 @@ const sectorCounts=sectorCountsFor(quotes);
 const sectorStrength=sectorRanking(quotes);
 const regime=regimeFrom(quotes, sectorStrength);
 const downloadedQuotes=quotes.filter(q=>q.downloaded).length;
-const invalidQuotes=quotes.length-validQuotes.length;
+const downloadedCount=downloadedQuotes;
+const validatedCount=validQuotes.length;
+const acceptedCount=validatedCount;
+let rejectionReason=validatedCount>=MIN_VALID_QUOTES||MOCK_QUOTES?'':`below minimum ${validatedCount}/${MIN_VALID_QUOTES}`;
+const invalidQuotes=quotes.length-validatedCount;
 const validationRejectionCounts=failedQuotes.reduce((counts,q)=>{const key=q.validationRule||q.error||'invalid';counts[key]=(counts[key]||0)+1;return counts;},{});
 const firstInvalidQuoteReasons=failedQuotes.slice(0,10).map(q=>({ticker:q.ticker,sector:q.sector,status:q.status,downloaded:q.downloaded,sourceSymbol:q.sourceSymbol,validationRule:q.validationRule,error:q.error,rawFields:q.rawFields}));
-refreshDiagnostics.downloadedQuotes=downloadedQuotes;
-refreshDiagnostics.validQuotes=validQuotes.length;
+refreshDiagnostics.downloadedCount=downloadedCount;
+refreshDiagnostics.validatedCount=validatedCount;
+refreshDiagnostics.acceptedCount=acceptedCount;
+refreshDiagnostics.rejectionReason=rejectionReason;
+refreshDiagnostics.downloadedQuotes=downloadedCount;
+refreshDiagnostics.validQuotes=validatedCount;
 refreshDiagnostics.invalidQuotes=invalidQuotes;
-refreshDiagnostics.quotesDownloaded=downloadedQuotes;
+refreshDiagnostics.quotesDownloaded=downloadedCount;
 refreshDiagnostics.validationRejectionCounts=validationRejectionCounts;
 refreshDiagnostics.firstInvalidQuoteReasons=firstInvalidQuoteReasons;
 await fs.mkdir('data',{recursive:true});
@@ -157,48 +165,52 @@ const generatedAt=refreshStartedAt;
 const snapshotGeneratedAt=generatedAt;
 const timestampAdvanced=!existingUpdatedAt||snapshotGeneratedAt!==existingUpdatedAt;
 const timestampComparisonResult=!existingUpdatedAt?'no previous timestamp':(timestampAdvanced?'new timestamp differs from previous timestamp':'new timestamp matches previous timestamp');
-const quotesChanged=validQuotes.length>=MIN_VALID_QUOTES&&(!existing||quoteSnapshotSignature(validQuotes)!==quoteSnapshotSignature(Array.isArray(existing.quotes)?existing.quotes:[]));
-const lastSuccessfulMarketFetchAt=validQuotes.length>=MIN_VALID_QUOTES?generatedAt:(existing&&existing.lastSuccessfulMarketFetchAt)||'';
+const quotesChanged=acceptedCount>=MIN_VALID_QUOTES&&(!existing||quoteSnapshotSignature(validQuotes)!==quoteSnapshotSignature(Array.isArray(existing.quotes)?existing.quotes:[]));
+const lastSuccessfulMarketFetchAt=acceptedCount>=MIN_VALID_QUOTES?generatedAt:(existing&&existing.lastSuccessfulMarketFetchAt)||'';
 const lastPriceChangeAt=quotesChanged?generatedAt:((existing&&(existing.lastPriceChangeAt||existingUpdatedAt))||generatedAt);
 const lastMarketQuoteTime=latestQuoteTimestamp(validQuotes)||(existing&&existing.lastMarketQuoteTime)||'';
 refreshDiagnostics.previousTimestamp=existingUpdatedAt;
 refreshDiagnostics.newlyGeneratedTimestamp=snapshotGeneratedAt;
 refreshDiagnostics.timestampComparisonResult=timestampComparisonResult;
-refreshDiagnostics.timestampWillAdvance=timestampAdvanced&&(validQuotes.length>=MIN_VALID_QUOTES||MOCK_QUOTES||!(existing&&Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES));
+refreshDiagnostics.timestampWillAdvance=timestampAdvanced&&(acceptedCount>=MIN_VALID_QUOTES||MOCK_QUOTES||!(existing&&Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES));
 refreshDiagnostics.snapshotGeneratedAt=snapshotGeneratedAt;
 refreshDiagnostics.lastSuccessfulMarketFetchAt=lastSuccessfulMarketFetchAt;
 refreshDiagnostics.lastPriceChangeAt=lastPriceChangeAt;
 refreshDiagnostics.lastMarketQuoteTime=lastMarketQuoteTime;
-const payload={updatedAt:snapshotGeneratedAt,snapshotGeneratedAt,lastSuccessfulMarketFetchAt,lastPriceChangeAt,lastMarketQuoteTime,source:'stooq',refreshDiagnostics,minimumValidQuotes:MIN_VALID_QUOTES,quoteDownloadSuccess:validQuotes.length>=MIN_VALID_QUOTES,quoteDownloadStatus:validQuotes.length>=MIN_VALID_QUOTES?'success':`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}`,validQuotesCount:validQuotes.length,invalidQuotesCount:invalidQuotes,configuredTickers:symbols,configuredTickersCount:symbols.length,failedQuotes,firstSuccessfulTickers:validQuotes.slice(0,10).map(q=>q.ticker),universeSize:validQuotes.length,groups,sectorCounts,sectorStrength,regime,bestSector:sectorStrength[0]||null,worstSector:sectorStrength.at(-1)||null,quotes,radar,news:[]};
-if (validQuotes.length < MIN_VALID_QUOTES && !MOCK_QUOTES) {
+const payload={updatedAt:snapshotGeneratedAt,snapshotGeneratedAt,lastSuccessfulMarketFetchAt,lastPriceChangeAt,lastMarketQuoteTime,source:'stooq',refreshDiagnostics,minimumValidQuotes:MIN_VALID_QUOTES,quoteDownloadSuccess:acceptedCount>=MIN_VALID_QUOTES,quoteDownloadStatus:acceptedCount>=MIN_VALID_QUOTES?'success':rejectionReason,validQuotesCount:validatedCount,invalidQuotesCount:invalidQuotes,configuredTickers:symbols,configuredTickersCount:symbols.length,failedQuotes,firstSuccessfulTickers:validQuotes.slice(0,10).map(q=>q.ticker),universeSize:validatedCount,groups,sectorCounts,sectorStrength,regime,bestSector:sectorStrength[0]||null,worstSector:sectorStrength.at(-1)||null,quotes,radar,news:[]};
+if (acceptedCount < MIN_VALID_QUOTES && !MOCK_QUOTES) {
   if (existing&&Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES) {
     refreshDiagnostics.marketJsonRewritten=true;
     refreshDiagnostics.newTimestampDetected=false;
-    refreshDiagnostics.reason=`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}; preserving existing snapshot with ${existing.validQuotesCount||existing.universeSize}`;
+    rejectionReason=`below minimum ${validatedCount}/${MIN_VALID_QUOTES}; preserving existing snapshot with ${existing.validQuotesCount||existing.universeSize}`;
+    refreshDiagnostics.rejectionReason=rejectionReason;
+    refreshDiagnostics.reason=rejectionReason;
     refreshDiagnostics.timestampWillAdvance=false;
     refreshDiagnostics.timestampUpdateCodePath='preserve-existing-snapshot: valid quotes below minimum and existing snapshot is usable; existing timestamps are kept';
     const preserved={...existing,refreshDiagnostics,lastRefreshAttemptAt:generatedAt,lastRefreshAttemptStatus:payload.quoteDownloadStatus,lastRefreshAttemptSuccess:false,staleSnapshot:true};
     await fs.writeFile('data/market.json',JSON.stringify(preserved,null,2));
-    console.error(`Preserving existing data/market.json: refresh returned ${validQuotes.length}/${MIN_VALID_QUOTES} valid quotes; existing snapshot has ${existing.validQuotesCount||existing.universeSize}.`);
-    console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:preserved.updatedAt,snapshotGeneratedAt:preserved.snapshotGeneratedAt,lastRefreshAttemptAt:preserved.lastRefreshAttemptAt,lastSuccessfulMarketFetchAt:preserved.lastSuccessfulMarketFetchAt,lastPriceChangeAt:preserved.lastPriceChangeAt,lastMarketQuoteTime:preserved.lastMarketQuoteTime,source:preserved.source,configured:payload.configuredTickersCount,universeSize:preserved.universeSize,downloadedQuotes,validQuotes:validQuotes.length,invalidQuotes:payload.invalidQuotesCount,validationRejectionCounts,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,preservedSnapshot:true},null,2));
+    console.error(`Preserving existing data/market.json: refresh returned ${validatedCount}/${MIN_VALID_QUOTES} valid quotes; existing snapshot has ${existing.validQuotesCount||existing.universeSize}.`);
+    console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:preserved.updatedAt,snapshotGeneratedAt:preserved.snapshotGeneratedAt,lastRefreshAttemptAt:preserved.lastRefreshAttemptAt,lastSuccessfulMarketFetchAt:preserved.lastSuccessfulMarketFetchAt,lastPriceChangeAt:preserved.lastPriceChangeAt,lastMarketQuoteTime:preserved.lastMarketQuoteTime,source:preserved.source,configured:payload.configuredTickersCount,universeSize:preserved.universeSize,downloadedQuotes:downloadedCount,downloadedCount,validQuotes:validatedCount,validatedCount,acceptedCount,rejectionReason,invalidQuotes:payload.invalidQuotesCount,validationRejectionCounts,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,preservedSnapshot:true},null,2));
     process.exit(0);
   }
 }
 refreshDiagnostics.newTimestampDetected=timestampAdvanced;
 refreshDiagnostics.timestampWillAdvance=timestampAdvanced;
-refreshDiagnostics.timestampUpdateCodePath=validQuotes.length>=MIN_VALID_QUOTES?'write-new-snapshot: valid quotes met minimum; payload timestamps use newlyGeneratedTimestamp':'write-new-snapshot-below-minimum: no usable existing snapshot to preserve; payload timestamps use newlyGeneratedTimestamp';
+refreshDiagnostics.timestampUpdateCodePath=acceptedCount>=MIN_VALID_QUOTES?'write-new-snapshot: valid quotes met minimum; payload timestamps use newlyGeneratedTimestamp':'write-new-snapshot-below-minimum: no usable existing snapshot to preserve; payload timestamps use newlyGeneratedTimestamp';
 payload.refreshDiagnostics=refreshDiagnostics;
 try {
   refreshDiagnostics.marketJsonRewritten=true;
-  refreshDiagnostics.reason=validQuotes.length>=MIN_VALID_QUOTES?'':'below minimum valid quotes';
+  rejectionReason=acceptedCount>=MIN_VALID_QUOTES?'':'below minimum valid quotes';
+  refreshDiagnostics.rejectionReason=rejectionReason;
+  refreshDiagnostics.reason=rejectionReason;
   payload.refreshDiagnostics=refreshDiagnostics;
   await fs.writeFile('data/market.json',JSON.stringify(payload,null,2));
 } catch(e) {
   refreshDiagnostics.marketJsonRewritten=false;
   refreshDiagnostics.reason=e&&e.code==='EACCES'?'write permission denied':String(e&&e.message||e||'market.json write failed');
   console.error(`market.json rewrite failed: ${refreshDiagnostics.reason}`);
-  console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,downloadedQuotes,validQuotes:validQuotes.length,invalidQuotes:payload.invalidQuotesCount,validationRejectionCounts,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
+  console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,downloadedQuotes:downloadedCount,downloadedCount,validQuotes:validatedCount,validatedCount,acceptedCount,rejectionReason,invalidQuotes:payload.invalidQuotesCount,validationRejectionCounts,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
   process.exit(1);
 }
-console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,downloadedQuotes,validQuotes:validQuotes.length,invalidQuotes:payload.invalidQuotesCount,validationRejectionCounts,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,regime:payload.regime,bestSector:payload.bestSector,worstSector:payload.worstSector,topRadar:payload.radar.slice(0,5)},null,2));
-process.exit(validQuotes.length >= MIN_VALID_QUOTES ? 0 : 1);
+console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,downloadedQuotes:downloadedCount,downloadedCount,validQuotes:validatedCount,validatedCount,acceptedCount,rejectionReason,invalidQuotes:payload.invalidQuotesCount,validationRejectionCounts,firstInvalidQuoteReasons,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,regime:payload.regime,bestSector:payload.bestSector,worstSector:payload.worstSector,topRadar:payload.radar.slice(0,5)},null,2));
+process.exit(acceptedCount >= MIN_VALID_QUOTES ? 0 : 1);
