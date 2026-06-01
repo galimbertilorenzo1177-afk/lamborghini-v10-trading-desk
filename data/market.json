@@ -1,5 +1,9 @@
 {
   "updatedAt": "2026-05-31T15:59:27.114Z",
+  "snapshotGeneratedAt": "2026-05-31T15:59:27.114Z",
+  "lastSuccessfulMarketFetchAt": "2026-05-31T15:59:27.114Z",
+  "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
+  "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
   "source": "stooq",
   "minimumValidQuotes": 300,
   "quoteDownloadSuccess": true,
@@ -11298,12 +11302,12 @@
     "newTimestampDetected": false,
     "reason": "below minimum 0/300; preserving existing snapshot with 516",
     "lastSuccessfulMarketFetchAt": "2026-05-31T15:59:27.114Z",
-    "lastPriceChangeAt": "2026-05-31T15:59:27.114Z"
+    "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
+    "snapshotGeneratedAt": "2026-05-31T15:59:27.114Z",
+    "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z"
   },
   "lastRefreshAttemptAt": "2026-05-31T23:45:36.957Z",
   "lastRefreshAttemptStatus": "below minimum 0/300",
   "lastRefreshAttemptSuccess": false,
-  "staleSnapshot": true,
-  "lastSuccessfulMarketFetchAt": "2026-05-31T15:59:27.114Z",
-  "lastPriceChangeAt": "2026-05-31T15:59:27.114Z"
+  "staleSnapshot": true
 }
