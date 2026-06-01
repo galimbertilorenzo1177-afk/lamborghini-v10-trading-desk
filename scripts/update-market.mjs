@@ -4,7 +4,7 @@ import fs from 'node:fs/promises';
 const MIN_VALID_QUOTES = 300;
 const MOCK_QUOTES = process.env.MOCK_QUOTES === '1';
 const refreshStartedAt = new Date().toISOString();
-const refreshDiagnostics = {fetchStarted:refreshStartedAt,source:'stooq',sourceReached:false,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:'',sourceErrors:[],lastSuccessfulMarketFetchAt:'',lastPriceChangeAt:''};
+const refreshDiagnostics = {fetchStarted:refreshStartedAt,source:'stooq',sourceReached:false,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:'',sourceErrors:[],snapshotGeneratedAt:'',lastSuccessfulMarketFetchAt:'',lastPriceChangeAt:'',lastMarketQuoteTime:''};
 
 const groups = {
   semiconductors: ['NVDA','AMD','AVGO','MRVL','MU','ARM','TSM','QCOM','TXN','ADI','INTC','MPWR','NXPI','MCHP','ON','LSCC','SWKS','QRVO','GFS','WOLF','ALAB','SMTC','RMBS','CRUS','DIOD','POWI','SLAB','FORM','PI','SYNA','SIMO','CAMT','VECO','COHR','LITE'],
@@ -33,6 +33,15 @@ const names = {
 function isRealTicker(t){return /^[A-Z][A-Z0-9.]{0,5}$/.test(String(t||'').toUpperCase())&&!/^V\d+$/i.test(String(t||''));}
 function quoteSignature(q){return [q.ticker,Number(q.price||0),Number(q.move||0),Number(q.volume||0),q.quoteDate||'',q.quoteTime||''].join('|');}
 function quoteSnapshotSignature(quotes){return quotes.filter(q=>q.valid&&q.price>0).map(quoteSignature).sort().join('\n');}
+function quoteTimestamp(q){
+  const date=String(q&&q.quoteDate||'').trim();
+  const time=String(q&&q.quoteTime||'').trim();
+  if(!date) return '';
+  const normalizedTime=/^\d{2}:\d{2}(:\d{2})?$/.test(time)?(time.length===5?`${time}:00`:time):'00:00:00';
+  const d=new Date(`${date}T${normalizedTime}Z`);
+  return Number.isFinite(d.getTime())?d.toISOString():'';
+}
+function latestQuoteTimestamp(quotes){return quotes.map(quoteTimestamp).filter(Boolean).sort().at(-1)||'';}
 function get(url, timeout=12000){return new Promise((resolve,reject)=>{let done=false;const fail=e=>{if(done)return;done=true;clearTimeout(timer);reject(e);};const ok=v=>{if(done)return;done=true;clearTimeout(timer);resolve(v);};const timer=setTimeout(()=>{const e=new Error('network timeout');e.code='ETIMEDOUT';req.destroy(e);fail(e);},timeout);const req=https.get(url,{headers:{'user-agent':'Mozilla/5.0 LamborghiniV11'}},res=>{refreshDiagnostics.sourceReached=true;if(res.statusCode<200||res.statusCode>=300){res.resume();const e=new Error(`HTTP ${res.statusCode}`);e.code='HTTP_STATUS';fail(e);return;}let data='';res.on('data',d=>data+=d);res.on('end',()=>ok(data));});req.on('error',fail);});}
 function parseCsvLine(line){const out=[];let cur='',quoted=false;for(const ch of line){if(ch==='"'){quoted=!quoted;continue;}if(ch===','&&!quoted){out.push(cur);cur='';continue;}cur+=ch;}out.push(cur);return out;}
 function quoteName(ticker){return names[ticker]||ticker;}
@@ -123,14 +132,18 @@ refreshDiagnostics.quotesDownloaded=validQuotes.length;
 await fs.mkdir('data',{recursive:true});
 let existing=null;
 try { existing=JSON.parse(await fs.readFile('data/market.json','utf8')); } catch {}
-let existingUpdatedAt=existing&&(existing.updatedAt||existing.lastUpdated||existing.timestamp||existing.generatedAt||'')||'';
+let existingUpdatedAt=existing&&(existing.updatedAt||existing.snapshotGeneratedAt||existing.lastUpdated||existing.timestamp||existing.generatedAt||'')||'';
 const generatedAt=refreshStartedAt;
+const snapshotGeneratedAt=generatedAt;
 const quotesChanged=validQuotes.length>=MIN_VALID_QUOTES&&(!existing||quoteSnapshotSignature(validQuotes)!==quoteSnapshotSignature(Array.isArray(existing.quotes)?existing.quotes:[]));
 const lastSuccessfulMarketFetchAt=validQuotes.length>=MIN_VALID_QUOTES?generatedAt:(existing&&existing.lastSuccessfulMarketFetchAt)||'';
 const lastPriceChangeAt=quotesChanged?generatedAt:((existing&&(existing.lastPriceChangeAt||existingUpdatedAt))||generatedAt);
+const lastMarketQuoteTime=latestQuoteTimestamp(validQuotes)||(existing&&existing.lastMarketQuoteTime)||'';
+refreshDiagnostics.snapshotGeneratedAt=snapshotGeneratedAt;
 refreshDiagnostics.lastSuccessfulMarketFetchAt=lastSuccessfulMarketFetchAt;
 refreshDiagnostics.lastPriceChangeAt=lastPriceChangeAt;
-const payload={updatedAt:lastPriceChangeAt,lastSuccessfulMarketFetchAt,lastPriceChangeAt,source:'stooq',refreshDiagnostics,minimumValidQuotes:MIN_VALID_QUOTES,quoteDownloadSuccess:validQuotes.length>=MIN_VALID_QUOTES,quoteDownloadStatus:validQuotes.length>=MIN_VALID_QUOTES?'success':`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}`,validQuotesCount:validQuotes.length,invalidQuotesCount:quotes.length-validQuotes.length,configuredTickers:symbols,configuredTickersCount:symbols.length,failedQuotes,firstSuccessfulTickers:validQuotes.slice(0,10).map(q=>q.ticker),universeSize:validQuotes.length,groups,sectorCounts,sectorStrength,regime,bestSector:sectorStrength[0]||null,worstSector:sectorStrength.at(-1)||null,quotes,radar,news:[]};
+refreshDiagnostics.lastMarketQuoteTime=lastMarketQuoteTime;
+const payload={updatedAt:snapshotGeneratedAt,snapshotGeneratedAt,lastSuccessfulMarketFetchAt,lastPriceChangeAt,lastMarketQuoteTime,source:'stooq',refreshDiagnostics,minimumValidQuotes:MIN_VALID_QUOTES,quoteDownloadSuccess:validQuotes.length>=MIN_VALID_QUOTES,quoteDownloadStatus:validQuotes.length>=MIN_VALID_QUOTES?'success':`below minimum ${validQuotes.length}/${MIN_VALID_QUOTES}`,validQuotesCount:validQuotes.length,invalidQuotesCount:quotes.length-validQuotes.length,configuredTickers:symbols,configuredTickersCount:symbols.length,failedQuotes,firstSuccessfulTickers:validQuotes.slice(0,10).map(q=>q.ticker),universeSize:validQuotes.length,groups,sectorCounts,sectorStrength,regime,bestSector:sectorStrength[0]||null,worstSector:sectorStrength.at(-1)||null,quotes,radar,news:[]};
 if (validQuotes.length < MIN_VALID_QUOTES && !MOCK_QUOTES) {
   if (existing&&Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES) {
     refreshDiagnostics.marketJsonRewritten=true;
@@ -139,7 +152,7 @@ if (validQuotes.length < MIN_VALID_QUOTES && !MOCK_QUOTES) {
     const preserved={...existing,refreshDiagnostics,lastRefreshAttemptAt:generatedAt,lastRefreshAttemptStatus:payload.quoteDownloadStatus,lastRefreshAttemptSuccess:false,staleSnapshot:true};
     await fs.writeFile('data/market.json',JSON.stringify(preserved,null,2));
     console.error(`Preserving existing data/market.json: refresh returned ${validQuotes.length}/${MIN_VALID_QUOTES} valid quotes; existing snapshot has ${existing.validQuotesCount||existing.universeSize}.`);
-    console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:preserved.updatedAt,lastRefreshAttemptAt:preserved.lastRefreshAttemptAt,lastSuccessfulMarketFetchAt:preserved.lastSuccessfulMarketFetchAt,lastPriceChangeAt:preserved.lastPriceChangeAt,source:preserved.source,configured:payload.configuredTickersCount,universeSize:preserved.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,preservedSnapshot:true},null,2));
+    console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:preserved.updatedAt,snapshotGeneratedAt:preserved.snapshotGeneratedAt,lastRefreshAttemptAt:preserved.lastRefreshAttemptAt,lastSuccessfulMarketFetchAt:preserved.lastSuccessfulMarketFetchAt,lastPriceChangeAt:preserved.lastPriceChangeAt,lastMarketQuoteTime:preserved.lastMarketQuoteTime,source:preserved.source,configured:payload.configuredTickersCount,universeSize:preserved.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,preservedSnapshot:true},null,2));
     process.exit(0);
   }
 }
@@ -154,8 +167,8 @@ try {
   refreshDiagnostics.marketJsonRewritten=false;
   refreshDiagnostics.reason=e&&e.code==='EACCES'?'write permission denied':String(e&&e.message||e||'market.json write failed');
   console.error(`market.json rewrite failed: ${refreshDiagnostics.reason}`);
-  console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
+  console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus},null,2));
   process.exit(1);
 }
-console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,regime:payload.regime,bestSector:payload.bestSector,worstSector:payload.worstSector,topRadar:payload.radar.slice(0,5)},null,2));
+console.log(JSON.stringify({refreshStatus:refreshDiagnostics,updatedAt:payload.updatedAt,snapshotGeneratedAt:payload.snapshotGeneratedAt,lastSuccessfulMarketFetchAt:payload.lastSuccessfulMarketFetchAt,lastPriceChangeAt:payload.lastPriceChangeAt,lastMarketQuoteTime:payload.lastMarketQuoteTime,source:payload.source,configured:payload.configuredTickersCount,universeSize:payload.universeSize,invalid:payload.invalidQuotesCount,minimum:MIN_VALID_QUOTES,status:payload.quoteDownloadStatus,regime:payload.regime,bestSector:payload.bestSector,worstSector:payload.worstSector,topRadar:payload.radar.slice(0,5)},null,2));
 process.exit(validQuotes.length >= MIN_VALID_QUOTES ? 0 : 1);
