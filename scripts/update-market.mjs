@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 
 const MIN_VALID_QUOTES = 300;
 const MOCK_QUOTES = process.env.MOCK_QUOTES === '1';
-const refreshDiagnostics = {fetchStarted:new Date().toISOString(),source:'stooq',sourceReached:false,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:''};
+const refreshDiagnostics = {fetchStarted:new Date().toISOString(),source:'stooq',sourceReached:false,quotesDownloaded:0,marketJsonRewritten:false,newTimestampDetected:false,reason:'',sourceErrors:[]};
 
 const groups = {
   semiconductors: ['NVDA','AMD','AVGO','MRVL','MU','ARM','TSM','QCOM','TXN','ADI','INTC','MPWR','NXPI','MCHP','ON','LSCC','SWKS','QRVO','GFS','WOLF','ALAB','SMTC','RMBS','CRUS','DIOD','POWI','SLAB','FORM','PI','SYNA','SIMO','CAMT','VECO','COHR','LITE'],
@@ -30,7 +30,7 @@ const names = {
 };
 
 function isRealTicker(t){return /^[A-Z][A-Z0-9.]{0,5}$/.test(String(t||'').toUpperCase())&&!/^V\d+$/i.test(String(t||''));}
-function get(url, timeout=12000){return new Promise((resolve,reject)=>{const req=https.get(url,{headers:{'user-agent':'Mozilla/5.0 LamborghiniV11'},timeout},res=>{refreshDiagnostics.sourceReached=true;let data='';res.on('data',d=>data+=d);res.on('end',()=>resolve(data));});req.on('error',reject);req.on('timeout',()=>req.destroy(new Error('network timeout')));});}
+function get(url, timeout=12000){return new Promise((resolve,reject)=>{let done=false;const fail=e=>{if(done)return;done=true;clearTimeout(timer);reject(e);};const ok=v=>{if(done)return;done=true;clearTimeout(timer);resolve(v);};const timer=setTimeout(()=>{const e=new Error('network timeout');e.code='ETIMEDOUT';req.destroy(e);fail(e);},timeout);const req=https.get(url,{headers:{'user-agent':'Mozilla/5.0 LamborghiniV11'}},res=>{refreshDiagnostics.sourceReached=true;if(res.statusCode<200||res.statusCode>=300){res.resume();const e=new Error(`HTTP ${res.statusCode}`);e.code='HTTP_STATUS';fail(e);return;}let data='';res.on('data',d=>data+=d);res.on('end',()=>ok(data));});req.on('error',fail);});}
 function parseCsvLine(line){const out=[];let cur='',quoted=false;for(const ch of line){if(ch==='"'){quoted=!quoted;continue;}if(ch===','&&!quoted){out.push(cur);cur='';continue;}cur+=ch;}out.push(cur);return out;}
 function quoteName(ticker){return names[ticker]||ticker;}
 function invalidQuote(ticker, error){return {ticker,name:quoteName(ticker),sector:sectorByTicker[ticker]||'Market scan',price:0,move:0,volume:0,source:'stooq',status:'invalid',valid:false,error:String(error&&error.message||error||'No valid quote')};}
@@ -63,9 +63,17 @@ async function quoteBatch(batch){
   return batch.map(t=>out.get(t)||invalidQuote(t,'No CSV row returned'));
 }
 async function quoteSingle(ticker){return (await quoteBatch([ticker]))[0];}
+function sourceErrorMessage(e){return String(e&&e.code?`${e.code}: ${e.message||e}`:e&&e.message||e||'source error');}
+function isSourceUnavailable(e){return /^(EAI_AGAIN|ENOTFOUND|ECONNRESET|ECONNREFUSED|ETIMEDOUT|HTTP_STATUS)$/i.test(String(e&&e.code||''))||/network timeout|HTTP \d+/i.test(String(e&&e.message||''));}
 async function quoteBatchSafe(batch){
+  let lastError=null;
   for (let attempt=0; attempt<2; attempt++) {
-    try { return await quoteBatch(batch); } catch(e) { if(attempt===1 && batch.length===1) return [invalidQuote(batch[0], e)]; }
+    try { return await quoteBatch(batch); } catch(e) { lastError=e; if(isSourceUnavailable(e)) break; if(attempt===1 && batch.length===1) return [invalidQuote(batch[0], e)]; }
+  }
+  if (lastError&&isSourceUnavailable(lastError)) {
+    const message=sourceErrorMessage(lastError);
+    refreshDiagnostics.sourceErrors.push({batch:batch.slice(0,5),count:batch.length,error:message});
+    return batch.map(t=>invalidQuote(t,message));
   }
   return Promise.all(batch.map(t=>quoteSingle(t).catch(e=>invalidQuote(t,e))));
 }
