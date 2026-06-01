@@ -136,10 +136,14 @@ const diagnosticPayload = {
     marketJsonRewritten: true,
     newTimestampDetected: true,
     reason: '',
+    previousTimestamp: '2026-05-30T10:00:00.000Z',
+    newlyGeneratedTimestamp: '2026-05-31T10:00:00.000Z',
+    timestampComparisonResult: 'new timestamp differs from previous timestamp',
+    timestampUpdateCodePath: 'write-new-snapshot: valid quotes met minimum; payload timestamps use newlyGeneratedTimestamp',
   },
 };
 const { html: diagnosticsHtml } = await renderApp('#diagnostics', diagnosticPayload);
-for (const snippet of ['Refresh status', 'Source: stooq', '<small>Fetch started</small>', '<small>Source reached</small><span class="good">YES</span>', `<small>Quotes downloaded</small>${market.validQuotesCount}`, '<small>market.json rewritten</small><span class="good">YES</span>', '<small>New timestamp detected</small>YES']) {
+for (const snippet of ['Refresh status', 'Source: stooq', '<small>Fetch started</small>', '<small>Source reached</small><span class="good">YES</span>', `<small>Quotes downloaded</small>${market.validQuotesCount}`, '<small>market.json rewritten</small><span class="good">YES</span>', '<small>New timestamp detected</small>YES', '<small>Previous timestamp</small>2026-05-30T10:00:00.000Z', '<small>Newly generated timestamp</small>2026-05-31T10:00:00.000Z', '<small>Timestamp comparison</small>new timestamp differs from previous timestamp', '<small>Timestamp update code path</small>write-new-snapshot: valid quotes met minimum; payload timestamps use newlyGeneratedTimestamp']) {
   if (!diagnosticsHtml.includes(snippet)) failures.push(`diagnostics missing ${snippet}`);
 }
 
