@@ -11294,31 +11294,128 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-06-01T14:17:16.424Z",
+    "fetchStarted": "2026-06-01T19:31:51.408Z",
     "source": "stooq",
     "sourceReached": true,
-    "downloadedCount": 516,
-    "validatedCount": 516,
-    "acceptedCount": 516,
-    "rejectionReason": "",
-    "downloadedQuotes": 516,
-    "validQuotes": 516,
-    "invalidQuotes": 0,
-    "quotesDownloaded": 516,
+    "downloadedCount": 21,
+    "validatedCount": 0,
+    "acceptedCount": 0,
+    "rejectionReason": "below minimum 0/300; preserving existing snapshot with 516",
+    "downloadedQuotes": 21,
+    "validQuotes": 0,
+    "invalidQuotes": 516,
+    "quotesDownloaded": 21,
     "marketJsonRewritten": true,
-    "newTimestampDetected": true,
-    "reason": "",
+    "newTimestampDetected": false,
+    "reason": "below minimum 0/300; preserving existing snapshot with 516",
     "sourceErrors": [],
-    "validationRejectionCounts": {},
-    "firstInvalidQuoteReasons": [],
-    "previousTimestamp": "2026-05-31T15:59:27.114Z",
-    "newlyGeneratedTimestamp": "2026-06-01T14:17:16.424Z",
+    "validationRejectionCounts": {
+      "invalid_close_price": 21,
+      "missing_csv_row": 495
+    },
+    "firstInvalidQuoteReasons": [
+      {
+        "ticker": "NVDA",
+        "sector": "semiconductors",
+        "status": "invalid",
+        "downloaded": true,
+        "sourceSymbol": "NVDA.US",
+        "validationRule": "invalid_close_price",
+        "error": "Invalid close price: TSM.US",
+        "rawFields": {
+          "symbol": "NVDA.US",
+          "open": "MRVL.US",
+          "close": "TSM.US",
+          "volume": "QCOM.US",
+          "date": "AMD.US",
+          "time": "AVGO.US"
+        }
+      },
+      {
+        "ticker": "AMD",
+        "sector": "semiconductors",
+        "status": "missing",
+        "downloaded": false,
+        "validationRule": "missing_csv_row",
+        "error": "No CSV row returned"
+      },
+      {
+        "ticker": "AVGO",
+        "sector": "semiconductors",
+        "status": "missing",
+        "downloaded": false,
+        "validationRule": "missing_csv_row",
+        "error": "No CSV row returned"
+      },
+      {
+        "ticker": "MRVL",
+        "sector": "semiconductors",
+        "status": "missing",
+        "downloaded": false,
+        "validationRule": "missing_csv_row",
+        "error": "No CSV row returned"
+      },
+      {
+        "ticker": "MU",
+        "sector": "semiconductors",
+        "status": "missing",
+        "downloaded": false,
+        "validationRule": "missing_csv_row",
+        "error": "No CSV row returned"
+      },
+      {
+        "ticker": "ARM",
+        "sector": "semiconductors",
+        "status": "missing",
+        "downloaded": false,
+        "validationRule": "missing_csv_row",
+        "error": "No CSV row returned"
+      },
+      {
+        "ticker": "TSM",
+        "sector": "semiconductors",
+        "status": "missing",
+        "downloaded": false,
+        "validationRule": "missing_csv_row",
+        "error": "No CSV row returned"
+      },
+      {
+        "ticker": "QCOM",
+        "sector": "semiconductors",
+        "status": "missing",
+        "downloaded": false,
+        "validationRule": "missing_csv_row",
+        "error": "No CSV row returned"
+      },
+      {
+        "ticker": "TXN",
+        "sector": "semiconductors",
+        "status": "missing",
+        "downloaded": false,
+        "validationRule": "missing_csv_row",
+        "error": "No CSV row returned"
+      },
+      {
+        "ticker": "ADI",
+        "sector": "semiconductors",
+        "status": "missing",
+        "downloaded": false,
+        "validationRule": "missing_csv_row",
+        "error": "No CSV row returned"
+      }
+    ],
+    "previousTimestamp": "2026-06-01T14:17:16.424Z",
+    "newlyGeneratedTimestamp": "2026-06-01T19:31:51.408Z",
     "timestampComparisonResult": "new timestamp differs from previous timestamp",
-    "timestampUpdateCodePath": "write-new-snapshot: valid quotes met minimum; payload timestamps use newlyGeneratedTimestamp",
-    "timestampWillAdvance": true,
-    "snapshotGeneratedAt": "2026-06-01T14:17:16.424Z",
+    "timestampUpdateCodePath": "preserve-existing-snapshot: valid quotes below minimum and existing snapshot is usable; existing timestamps are kept",
+    "timestampWillAdvance": false,
+    "snapshotGeneratedAt": "2026-06-01T19:31:51.408Z",
     "lastSuccessfulMarketFetchAt": "2026-06-01T14:17:16.424Z",
     "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
     "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z"
-  }
+  },
+  "lastRefreshAttemptAt": "2026-06-01T19:31:51.408Z",
+  "lastRefreshAttemptStatus": "below minimum 0/300",
+  "lastRefreshAttemptSuccess": false,
+  "staleSnapshot": true
 }
