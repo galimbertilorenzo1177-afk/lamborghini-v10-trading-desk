@@ -11294,7 +11294,7 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-06-01T19:31:51.408Z",
+    "fetchStarted": "2026-06-02T11:54:20.199Z",
     "source": "stooq",
     "sourceReached": true,
     "downloadedCount": 21,
@@ -11405,16 +11405,16 @@
       }
     ],
     "previousTimestamp": "2026-06-01T14:17:16.424Z",
-    "newlyGeneratedTimestamp": "2026-06-01T19:31:51.408Z",
+    "newlyGeneratedTimestamp": "2026-06-02T11:54:20.199Z",
     "timestampComparisonResult": "new timestamp differs from previous timestamp",
     "timestampUpdateCodePath": "preserve-existing-snapshot: valid quotes below minimum and existing snapshot is usable; existing timestamps are kept",
     "timestampWillAdvance": false,
-    "snapshotGeneratedAt": "2026-06-01T19:31:51.408Z",
+    "snapshotGeneratedAt": "2026-06-02T11:54:20.199Z",
     "lastSuccessfulMarketFetchAt": "2026-06-01T14:17:16.424Z",
     "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
     "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z"
   },
-  "lastRefreshAttemptAt": "2026-06-01T19:31:51.408Z",
+  "lastRefreshAttemptAt": "2026-06-02T11:54:20.199Z",
   "lastRefreshAttemptStatus": "below minimum 0/300",
   "lastRefreshAttemptSuccess": false,
   "staleSnapshot": true
