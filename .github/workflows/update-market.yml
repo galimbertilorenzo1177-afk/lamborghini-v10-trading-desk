@@ -1,37 +1,43 @@
-name: Update market data
+name: Refresh market.json
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: "*/15 * * * *"
 
 permissions:
   contents: write
 
 concurrency:
-  group: update-market
+  group: refresh-market-json
   cancel-in-progress: false
 
 jobs:
-  update-market:
+  refresh-market:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - name: Generate market.json
-        timeout-minutes: 10
-        run: node scripts/update-market.mjs
-      - name: Show market.json diff
-        if: always()
-        run: git diff -- data/market.json || true
-      - name: Commit updated market data
+          node-version: "20"
+
+      - name: Refresh data/market.json
+        run: node scripts/refresh-market.js
+
+      - name: Commit refreshed market.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet data/market.json; then
+            echo "No market.json changes to commit"
+            exit 0
+          fi
+
           git add data/market.json
-          git diff --cached --quiet || git commit -m "Update market data"
+          git commit -m "Refresh market.json"
           git push
