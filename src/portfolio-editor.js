@@ -3,10 +3,30 @@
 
   var STORAGE_KEY='lv10_portfolio';
   var WATCH_KEY='lv10_watch';
+  var KNOWN_NAMES={
+    'AMPLITECH GROUP':'AMPG',
+    'AMPLITECH':'AMPG',
+    'DATADOG':'DDOG',
+    'FLUENCE':'FLNC',
+    'FLUENCE ENERGY':'FLNC',
+    'CHOR':'CHOR',
+    'COHERENT':'COHR',
+    'MARVELL':'MRVL',
+    'MARVELL TECHNOLOGY':'MRVL',
+    'LUMENTUM':'LITE',
+    'LUMENTUM HOLDINGS':'LITE'
+  };
 
   function $(q,root){return (root||document).querySelector(q)}
   function esc(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-  function ticker(v){return String(v||'').toUpperCase().trim().replace(/\.US$/,'')}
+  function cleanText(v){return String(v||'').trim()}
+  function ticker(v){
+    var raw=cleanText(v).toUpperCase().replace(/\.US$/,'');
+    raw=KNOWN_NAMES[raw]||raw;
+    raw=raw.replace(/[^A-Z0-9.]/g,'');
+    return raw;
+  }
+  function validTicker(t){return /^[A-Z][A-Z0-9.]{0,7}$/.test(String(t||''))}
   function number(v){return Number(String(v||'').replace(',','.'))||0}
   function load(key,fallback){try{var v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch(e){return fallback}}
   function save(key,value){localStorage.setItem(key,JSON.stringify(value))}
@@ -15,14 +35,15 @@
 
   function addOrUpdatePosition(pos){
     var list=load(STORAGE_KEY,[]);
-    var t=ticker(pos.t);
-    if(!t){alert('Inserisci un ticker valido');return false}
+    var t=ticker(pos.t||pos.name);
+    if(!validTicker(t)){alert('Inserisci un ticker valido, esempio AMPG. Non il nome azienda.');return false}
     if(!pos.qty||pos.qty<=0){alert('Inserisci una quantità maggiore di zero');return false}
     if(!pos.pmc||pos.pmc<=0){alert('Inserisci un PMC maggiore di zero');return false}
 
     var existing=list.findIndex(function(p){return ticker(p.t)===t});
     var clean={
       t:t,
+      name:cleanText(pos.name)||t,
       qty:Number(pos.qty),
       pmc:Number(pos.pmc),
       date:pos.date||'',
@@ -40,11 +61,13 @@
 
     var watch=load(WATCH_KEY,[]);
     if(!watch.some(function(w){return ticker(w.t)===t})){
-      watch.push({t:t,name:t,sector:'Manual portfolio',price:0,move:0,event:'manual portfolio add',note:'added from portfolio editor',source:'portfolio-local'});
+      watch.push({t:t,name:clean.name||t,sector:'Manual portfolio',price:0,move:0,event:'manual portfolio add',note:'added from portfolio editor',source:'portfolio-local'});
       save(WATCH_KEY,watch);
     }
     return true;
   }
+
+  function value(id,root){var el=$('#'+id,root)||document.getElementById(id);return el?el.value:''}
 
   function inject(){
     if(!portfolioPage())return;
@@ -59,7 +82,8 @@
       '<div class="section-title"><h3>Aggiungi titolo al portafoglio</h3><button id="portfolioAddToggle" class="ghost" type="button">+ Aggiungi posizione</button></div>'+
       '<div id="portfolioAddForm" style="display:none">'+
         '<div class="grid">'+
-          '<label>Ticker<input id="portfolioAddTicker" placeholder="AMPG"></label>'+
+          '<label>Ticker / simbolo<input id="portfolioAddTicker" autocomplete="off" autocapitalize="characters" placeholder="AMPG"></label>'+
+          '<label>Nome titolo<input id="portfolioAddName" autocomplete="off" placeholder="Amplitech Group"></label>'+
           '<label>Quantità<input id="portfolioAddQty" type="number" step="1" placeholder="100"></label>'+
           '<label>PMC / Prezzo medio<input id="portfolioAddPmc" type="number" step="0.01" placeholder="5.28"></label>'+
           '<label>Data acquisto<input id="portfolioAddDate" type="date"></label>'+
@@ -71,22 +95,23 @@
 
     page.insertBefore(card,page.firstChild);
 
-    $('#portfolioAddToggle').onclick=function(){
-      var form=$('#portfolioAddForm');
+    $('#portfolioAddToggle',card).onclick=function(){
+      var form=$('#portfolioAddForm',card);
       form.style.display=form.style.display==='none'?'block':'none';
-      var input=$('#portfolioAddTicker');
+      var input=$('#portfolioAddTicker',card);
       if(form.style.display==='block'&&input)input.focus();
     };
-    $('#portfolioAddCancel').onclick=function(){
-      $('#portfolioAddForm').style.display='none';
+    $('#portfolioAddCancel',card).onclick=function(){
+      $('#portfolioAddForm',card).style.display='none';
     };
-    $('#portfolioAddSave').onclick=function(){
+    $('#portfolioAddSave',card).onclick=function(){
       var ok=addOrUpdatePosition({
-        t:$('#portfolioAddTicker').value,
-        qty:number($('#portfolioAddQty').value),
-        pmc:number($('#portfolioAddPmc').value),
-        date:$('#portfolioAddDate').value,
-        plan:$('#portfolioAddPlan').value.trim()
+        t:value('portfolioAddTicker',card),
+        name:value('portfolioAddName',card),
+        qty:number(value('portfolioAddQty',card)),
+        pmc:number(value('portfolioAddPmc',card)),
+        date:value('portfolioAddDate',card),
+        plan:cleanText(value('portfolioAddPlan',card))
       });
       if(ok){
         alert('Posizione salvata. Ricarico il Portfolio.');
