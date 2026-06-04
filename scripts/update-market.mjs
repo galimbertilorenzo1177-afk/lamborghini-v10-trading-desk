@@ -31,8 +31,6 @@ const names = {
 };
 
 function isRealTicker(t){return /^[A-Z][A-Z0-9.]{0,5}$/.test(String(t||'').toUpperCase())&&!/^V\d+$/i.test(String(t||''));}
-function quoteSignature(q){return [q.ticker,Number(q.price||0),Number(q.move||0),Number(q.volume||0),q.quoteDate||'',q.quoteTime||''].join('|');}
-function quoteSnapshotSignature(quotes){return quotes.filter(q=>q.valid&&q.price>0).map(quoteSignature).sort().join('\n');}
 function quoteTimestamp(q){
   const date=String(q&&q.quoteDate||'').trim();
   const time=String(q&&q.quoteTime||'').trim();
@@ -42,6 +40,12 @@ function quoteTimestamp(q){
   return Number.isFinite(d.getTime())?d.toISOString():'';
 }
 function latestQuoteTimestamp(quotes){return quotes.map(quoteTimestamp).filter(Boolean).sort().at(-1)||'';}
+function freshSnapshotTimestamp(previousTimestamp){
+  const now=new Date();
+  const previousMs=Date.parse(previousTimestamp||'');
+  if(Number.isFinite(previousMs)&&now.getTime()<=previousMs) now.setTime(previousMs+1);
+  return now.toISOString();
+}
 function get(url, timeout=12000){return new Promise((resolve,reject)=>{let done=false;const fail=e=>{if(done)return;done=true;clearTimeout(timer);reject(e);};const ok=v=>{if(done)return;done=true;clearTimeout(timer);resolve(v);};const timer=setTimeout(()=>{const e=new Error('network timeout');e.code='ETIMEDOUT';req.destroy(e);fail(e);},timeout);const req=https.get(url,{headers:{'user-agent':'Mozilla/5.0 LamborghiniV11'}},res=>{refreshDiagnostics.sourceReached=true;if(res.statusCode<200||res.statusCode>=300){res.resume();const e=new Error(`HTTP ${res.statusCode}`);e.code='HTTP_STATUS';fail(e);return;}let data='';res.on('data',d=>data+=d);res.on('end',()=>ok(data));});req.on('error',fail);});}
 function parseCsvLine(line){const out=[];let cur='',quoted=false;for(const ch of line){if(ch==='"'){quoted=!quoted;continue;}if(ch===','&&!quoted){out.push(cur);cur='';continue;}cur+=ch;}out.push(cur);return out;}
 function quoteName(ticker){return names[ticker]||ticker;}
@@ -161,24 +165,24 @@ await fs.mkdir('data',{recursive:true});
 let existing=null;
 try { existing=JSON.parse(await fs.readFile('data/market.json','utf8')); } catch {}
 let existingUpdatedAt=existing&&(existing.updatedAt||existing.snapshotGeneratedAt||existing.lastUpdated||existing.timestamp||existing.generatedAt||'')||'';
-const generatedAt=refreshStartedAt;
+const generatedAt=freshSnapshotTimestamp(existingUpdatedAt);
 const snapshotGeneratedAt=generatedAt;
 const timestampAdvanced=!existingUpdatedAt||snapshotGeneratedAt!==existingUpdatedAt;
 const timestampComparisonResult=!existingUpdatedAt?'no previous timestamp':(timestampAdvanced?'new timestamp differs from previous timestamp':'new timestamp matches previous timestamp');
-const quotesChanged=acceptedCount>=MIN_VALID_QUOTES&&(!existing||quoteSnapshotSignature(validQuotes)!==quoteSnapshotSignature(Array.isArray(existing.quotes)?existing.quotes:[]));
-const lastSuccessfulMarketFetchAt=acceptedCount>=MIN_VALID_QUOTES?generatedAt:(existing&&existing.lastSuccessfulMarketFetchAt)||'';
-const lastPriceChangeAt=quotesChanged?generatedAt:((existing&&(existing.lastPriceChangeAt||existingUpdatedAt))||generatedAt);
-const lastMarketQuoteTime=latestQuoteTimestamp(validQuotes)||(existing&&existing.lastMarketQuoteTime)||'';
+const quoteDownloadSucceeded=downloadedCount>0;
+const lastSuccessfulMarketFetchAt=quoteDownloadSucceeded?generatedAt:(existing&&existing.lastSuccessfulMarketFetchAt)||'';
+const lastPriceChangeAt=quoteDownloadSucceeded?generatedAt:((existing&&(existing.lastPriceChangeAt||existingUpdatedAt))||generatedAt);
+const lastMarketQuoteTime=latestQuoteTimestamp(validQuotes)||(quoteDownloadSucceeded?generatedAt:(existing&&existing.lastMarketQuoteTime)||'');
 refreshDiagnostics.previousTimestamp=existingUpdatedAt;
 refreshDiagnostics.newlyGeneratedTimestamp=snapshotGeneratedAt;
 refreshDiagnostics.timestampComparisonResult=timestampComparisonResult;
-refreshDiagnostics.timestampWillAdvance=timestampAdvanced&&(acceptedCount>=MIN_VALID_QUOTES||MOCK_QUOTES||!(existing&&Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES));
+refreshDiagnostics.timestampWillAdvance=timestampAdvanced&&(quoteDownloadSucceeded||!(existing&&Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES));
 refreshDiagnostics.snapshotGeneratedAt=snapshotGeneratedAt;
 refreshDiagnostics.lastSuccessfulMarketFetchAt=lastSuccessfulMarketFetchAt;
 refreshDiagnostics.lastPriceChangeAt=lastPriceChangeAt;
 refreshDiagnostics.lastMarketQuoteTime=lastMarketQuoteTime;
 const payload={updatedAt:snapshotGeneratedAt,snapshotGeneratedAt,lastSuccessfulMarketFetchAt,lastPriceChangeAt,lastMarketQuoteTime,source:'stooq',refreshDiagnostics,minimumValidQuotes:MIN_VALID_QUOTES,quoteDownloadSuccess:acceptedCount>=MIN_VALID_QUOTES,quoteDownloadStatus:acceptedCount>=MIN_VALID_QUOTES?'success':rejectionReason,validQuotesCount:validatedCount,invalidQuotesCount:invalidQuotes,configuredTickers:symbols,configuredTickersCount:symbols.length,failedQuotes,firstSuccessfulTickers:validQuotes.slice(0,10).map(q=>q.ticker),universeSize:validatedCount,groups,sectorCounts,sectorStrength,regime,bestSector:sectorStrength[0]||null,worstSector:sectorStrength.at(-1)||null,quotes,radar,news:[]};
-if (acceptedCount < MIN_VALID_QUOTES && !MOCK_QUOTES) {
+if (acceptedCount < MIN_VALID_QUOTES && !MOCK_QUOTES && downloadedCount === 0) {
   if (existing&&Number(existing.validQuotesCount||existing.universeSize||0) >= MIN_VALID_QUOTES) {
     refreshDiagnostics.marketJsonRewritten=true;
     refreshDiagnostics.newTimestampDetected=false;
