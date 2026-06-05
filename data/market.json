@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-06-05T11:39:44.716Z",
-  "snapshotGeneratedAt": "2026-06-05T11:39:44.716Z",
-  "lastSuccessfulMarketFetchAt": "2026-06-05T11:39:44.716Z",
+  "updatedAt": "2026-06-05T18:26:42.813Z",
+  "snapshotGeneratedAt": "2026-06-05T18:26:42.813Z",
+  "lastSuccessfulMarketFetchAt": "2026-06-05T18:26:42.813Z",
   "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
   "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
   "source": "stooq",
@@ -11294,12 +11294,12 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-06-05T11:39:44.713Z",
+    "fetchStarted": "2026-06-05T18:26:42.809Z",
     "source": "stooq",
     "sourceReached": true,
-    "downloadedCount": 0,
-    "downloadedQuotes": 0,
-    "quotesDownloaded": 0,
+    "downloadedCount": 21,
+    "downloadedQuotes": 21,
+    "quotesDownloaded": 21,
     "validatedCount": 516,
     "validQuotes": 516,
     "acceptedCount": 516,
@@ -11310,27 +11310,37 @@
     "reason": "",
     "marketJsonRewritten": true,
     "newTimestampDetected": true,
-    "previousTimestamp": "2026-06-04T22:54:25.888Z",
-    "newlyGeneratedTimestamp": "2026-06-05T11:39:44.716Z",
+    "previousTimestamp": "2026-06-05T11:39:44.716Z",
+    "newlyGeneratedTimestamp": "2026-06-05T18:26:42.813Z",
     "timestampComparisonResult": "new timestamp differs from previous timestamp",
     "timestampUpdateCodePath": "preserve-existing-quotes-but-accept-usable-snapshot: live refresh 0/300, existing snapshot 516; timestamps advanced",
     "timestampWillAdvance": true,
-    "snapshotGeneratedAt": "2026-06-05T11:39:44.716Z",
-    "lastSuccessfulMarketFetchAt": "2026-06-05T11:39:44.716Z",
+    "snapshotGeneratedAt": "2026-06-05T18:26:42.813Z",
+    "lastSuccessfulMarketFetchAt": "2026-06-05T18:26:42.813Z",
     "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
     "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
     "sourceErrors": [],
     "validationRejectionCounts": {
-      "missing_csv_row": 516
+      "invalid_close_price": 21,
+      "missing_csv_row": 495
     },
     "firstInvalidQuoteReasons": [
       {
         "ticker": "NVDA",
         "sector": "semiconductors",
-        "status": "missing",
-        "downloaded": false,
-        "validationRule": "missing_csv_row",
-        "error": "No CSV row returned"
+        "status": "invalid",
+        "downloaded": true,
+        "sourceSymbol": "NVDA.US",
+        "validationRule": "invalid_close_price",
+        "error": "Invalid close price: TSM.US",
+        "rawFields": {
+          "symbol": "NVDA.US",
+          "open": "MRVL.US",
+          "close": "TSM.US",
+          "volume": "QCOM.US",
+          "date": "AMD.US",
+          "time": "AVGO.US"
+        }
       },
       {
         "ticker": "AMD",
@@ -11406,7 +11416,7 @@
       }
     ]
   },
-  "lastRefreshAttemptAt": "2026-06-05T11:39:44.716Z",
+  "lastRefreshAttemptAt": "2026-06-05T18:26:42.813Z",
   "lastRefreshAttemptStatus": "live refresh below minimum 0/300; existing snapshot accepted",
   "lastRefreshAttemptSuccess": true,
   "staleSnapshot": false
