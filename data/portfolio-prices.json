@@ -1,0 +1,32 @@
+{
+  "updatedAt": "2026-06-06T17:30:00.000Z",
+  "source": "manual-portfolio-price-override",
+  "note": "Prezzi portfolio usati quando il market feed Stooq/Yahoo restituisce dati incoerenti o split-adjusted.",
+  "prices": {
+    "COHR": {
+      "price": 376.99,
+      "source": "portfolio-override",
+      "note": "Coherent price from user portfolio screenshot"
+    },
+    "NOW": {
+      "price": 112.45,
+      "source": "portfolio-override",
+      "note": "ServiceNow price from user portfolio screenshot"
+    },
+    "DDOG": {
+      "price": 234.11,
+      "source": "portfolio-override",
+      "note": "Datadog price from user portfolio screenshot"
+    },
+    "FCEL": {
+      "price": 17.33,
+      "source": "portfolio-override",
+      "note": "FuelCell Energy price from user portfolio screenshot"
+    },
+    "INCY": {
+      "price": 102.38,
+      "source": "portfolio-override",
+      "note": "Incyte price from user portfolio screenshot"
+    }
+  }
+}
