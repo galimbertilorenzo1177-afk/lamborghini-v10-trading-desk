@@ -5,6 +5,8 @@
   var MARKET_KEY='lv10_market';
   var CAPITAL_KEY='lv10_capital_profile';
   var OVERRIDE_KEY='lv10_portfolio_price_overrides';
+  var FX_KEY='lv10_fx_profile';
+  var DEFAULT_EUR_USD=1.14;
   var DEFAULT_OVERRIDES={
     COHR:{price:376.99,source:'portfolio-override'},
     NOW:{price:112.45,source:'portfolio-override'},
@@ -27,10 +29,18 @@
   }
   function load(k,f){try{var v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
   function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-  function money(v){var n=Number(v)||0;var sign=n>0?'+':'';return sign+n.toLocaleString('it-IT',{maximumFractionDigits:0})+' $'}
-  function usd(v){var n=Number(v)||0;return n.toLocaleString('it-IT',{maximumFractionDigits:2})+' $'}
-  function pct(v){var n=Number(v)||0;var sign=n>0?'+':'';return sign+n.toFixed(2)+'%'}
+  function usd(v){return (Number(v)||0).toLocaleString('it-IT',{maximumFractionDigits:2})+' $'}
+  function eur(v){return (Number(v)||0).toLocaleString('it-IT',{maximumFractionDigits:2})+' €'}
+  function moneyUsd(v){var n=Number(v)||0;return (n>0?'+':'')+n.toLocaleString('it-IT',{maximumFractionDigits:0})+' $'}
+  function moneyEur(v){var n=Number(v)||0;return (n>0?'+':'')+n.toLocaleString('it-IT',{maximumFractionDigits:0})+' €'}
+  function pct(v){var n=Number(v)||0;return (n>0?'+':'')+n.toFixed(2)+'%'}
   function portfolioPage(){return (location.hash.replace('#','')||'home')==='portfolio'}
+  function fx(){
+    var f=load(FX_KEY,null);
+    var eurUsd=f&&num(f.eurUsd)>0?num(f.eurUsd):DEFAULT_EUR_USD;
+    if(!f)save(FX_KEY,{baseCurrency:'EUR',quoteCurrency:'USD',eurUsd:eurUsd,manual:true});
+    return {eurUsd:eurUsd,usdEur:1/eurUsd};
+  }
   function loadOverrides(){
     var o=load(OVERRIDE_KEY,null);
     if(!o){save(OVERRIDE_KEY,DEFAULT_OVERRIDES);o=DEFAULT_OVERRIDES}
@@ -48,9 +58,8 @@
     Object.keys(overrides).forEach(function(t){
       var ov=overrides[t]||{};
       var p=num(ov.price);
-      if(ticker(t)&&p>0){
-        out[ticker(t)]=Object.assign({},out[ticker(t)]||{},ov,{ticker:ticker(t),t:ticker(t),symbol:ticker(t),price:p,close:p,last:p,_ticker:ticker(t),_price:p,source:ov.source||'portfolio-override',valid:true});
-      }
+      var tk=ticker(t);
+      if(tk&&p>0)out[tk]=Object.assign({},out[tk]||{},ov,{ticker:tk,t:tk,symbol:tk,price:p,close:p,last:p,_ticker:tk,_price:p,source:ov.source||'portfolio-override',valid:true});
     });
     return out;
   }
@@ -68,27 +77,28 @@
       return {p:p,q:q,live:live,invested:invested,value:value,pl:pl,plPct:plPct,move:q?num(q.move):0};
     });
   }
+  function metric(k,v,c){return '<div class="metric"><small>'+k+'</small>'+(c?'<span class="'+c+'">'+v+'</span>':v)+'</div>'}
   function summaryHtml(){
-    var cap=capital();
-    var rows=calcRows();
-    var invested=rows.reduce(function(s,r){return s+r.invested},0);
-    var value=rows.reduce(function(s,r){return s+(r.value||r.invested)},0);
-    var computedTotal=value+cap.free;
-    var pl=rows.reduce(function(s,r){return s+r.pl},0);
-    var plPct=invested?pl/invested*100:0;
+    var cap=capital(), rate=fx(), rows=calcRows();
+    var investedUsd=rows.reduce(function(s,r){return s+r.invested},0);
+    var valueUsd=rows.reduce(function(s,r){return s+(r.value||r.invested)},0);
+    var plUsd=rows.reduce(function(s,r){return s+r.pl},0);
+    var valueEur=valueUsd*rate.usdEur;
+    var plEur=plUsd*rate.usdEur;
+    var computedTotalEur=valueEur+cap.free;
+    var plPct=investedUsd?plUsd/investedUsd*100:0;
     var liveCount=rows.filter(function(r){return r.live>0}).length;
     var best=rows.filter(function(r){return r.live>0}).sort(function(a,b){return b.plPct-a.plPct})[0];
     var worst=rows.filter(function(r){return r.live>0}).sort(function(a,b){return a.plPct-b.plPct})[0];
     return '<section id="portfolio-summary-card" class="card">'+
       '<div class="section-title"><h3>Portafoglio totale</h3><span class="tag">'+liveCount+'/'+rows.length+' prezzi live</span></div>'+ 
       '<div class="grid">'+
-        metric('Investito',usd(invested))+metric('Valore attuale',usd(value))+metric('P/L totale',money(pl),pl>=0?'good':'bad')+metric('P/L %',pct(plPct),pl>=0?'good':'bad')+
-        metric('Capitale libero',usd(cap.free))+metric('Capitale trading',usd(cap.trading))+metric('Capitale totale calcolato',usd(computedTotal))+metric('Esposizione su capitale totale',computedTotal?pct(value/computedTotal*100):'N/D')+metric('Esposizione su capitale trading',cap.trading?pct(value/cap.trading*100):'N/D')+
+        metric('Investito',usd(investedUsd))+metric('Valore attuale',usd(valueUsd))+metric('P/L totale',moneyUsd(plUsd),plUsd>=0?'good':'bad')+metric('P/L %',pct(plPct),plUsd>=0?'good':'bad')+
+        metric('Valore attuale €',eur(valueEur))+metric('P/L €',moneyEur(plEur),plEur>=0?'good':'bad')+metric('Cambio EUR/USD',rate.eurUsd.toFixed(4))+metric('Capitale libero €',eur(cap.free))+
+        metric('Capitale trading €',eur(cap.trading))+metric('Capitale totale calcolato €',eur(computedTotalEur))+metric('Esposizione su capitale totale',computedTotalEur?pct(valueEur/computedTotalEur*100):'N/D')+metric('Esposizione su capitale trading',cap.trading?pct(valueEur/cap.trading*100):'N/D')+
         metric('Migliore',best?best.p.t+' '+pct(best.plPct):'N/D')+metric('Peggiore',worst?worst.p.t+' '+pct(worst.plPct):'N/D')+
-      '</div>'+ 
-      '</section>';
+      '</div></section>';
   }
-  function metric(k,v,c){return '<div class="metric"><small>'+k+'</small>'+(c?'<span class="'+c+'">'+v+'</span>':v)+'</div>'}
   function injectSummary(){
     if(!portfolioPage())return;
     var old=$('#portfolio-summary-card');
@@ -100,45 +110,32 @@
     var first=page.firstElementChild;
     if(first)page.insertBefore(wrap.firstElementChild,first);else page.appendChild(wrap.firstElementChild);
   }
-  function patchTextLabels(){
-    if(!portfolioPage())return;
-    $all('.metric small').forEach(function(s){
-      var t=clean(s.textContent);
-      if(t==='P/L €')s.textContent='P/L $';
-      if(t==='Peso su capitale totale')s.textContent='Esposizione su capitale totale';
-      if(t==='Peso su capitale trading')s.textContent='Esposizione su capitale trading';
-    });
-  }
   function patchPortfolioCalculations(){
     if(!portfolioPage())return;
     var rows=calcRows();
     var cap=capital();
+    var rate=fx();
     rows.forEach(function(r){
       if(!r.live)return;
-      var card=$all('.card').find(function(c){
-        var h=c.querySelector('h2,b,.ticker');
-        return h&&ticker(h.textContent)===r.p.t;
-      });
+      var card=$all('.card').find(function(c){var h=c.querySelector('h2,b,.ticker');return h&&ticker(h.textContent)===r.p.t});
       if(!card)return;
       $all('.metric',card).forEach(function(m){
         var small=$('small',m); if(!small)return;
         var label=clean(small.textContent);
         if(label==='Live price')m.innerHTML='<small>Live price</small>'+usd(r.live);
-        if(label==='P/L €'||label==='P/L $')m.innerHTML='<small>P/L $</small>'+(r.pl>=0?'<span class="good">'+money(r.pl)+'</span>':'<span class="bad">'+money(r.pl)+'</span>');
+        if(label==='P/L €'||label==='P/L $')m.innerHTML='<small>P/L $</small>'+(r.pl>=0?'<span class="good">'+moneyUsd(r.pl)+'</span>':'<span class="bad">'+moneyUsd(r.pl)+'</span>');
         if(label==='P/L %')m.innerHTML='<small>P/L %</small>'+(r.plPct>=0?'<span class="good">'+pct(r.plPct)+'</span>':'<span class="bad">'+pct(r.plPct)+'</span>');
         if(label==='Distanza dal PMC')m.innerHTML='<small>Distanza dal PMC</small>'+(r.plPct>=0?'<span class="good">'+pct(r.plPct)+'</span>':'<span class="bad">'+pct(r.plPct)+'</span>');
-        if(label==='Peso capitale trading'||label==='Peso su capitale trading'||label==='Esposizione su capitale trading')m.innerHTML='<small>Esposizione su capitale trading</small>'+(cap.trading?pct((r.value||r.invested)/cap.trading*100):'N/D');
+        if(label==='Peso capitale trading'||label==='Peso su capitale trading'||label==='Esposizione su capitale trading')m.innerHTML='<small>Esposizione su capitale trading</small>'+(cap.trading?pct(((r.value||r.invested)*rate.usdEur)/cap.trading*100):'N/D');
       });
       var sourceTag=card.querySelector('.tag');
       if(sourceTag&&r.q&&r.q.source==='portfolio-override')sourceTag.textContent='Fonte: override portfolio';
     });
   }
   function hideBadQuoteTime(){
-    $all('.market-status small').forEach(function(el){
-      if(clean(el.textContent).indexOf('Price data time: 31/05/2026')>=0)el.textContent='Quote source: latest successful market refresh';
-    });
+    $all('.market-status small').forEach(function(el){if(clean(el.textContent).indexOf('Price data time: 31/05/2026')>=0)el.textContent='Quote source: latest successful market refresh'});
   }
-  function run(){setTimeout(function(){injectSummary();patchPortfolioCalculations();patchTextLabels();hideBadQuoteTime();},250)}
+  function run(){setTimeout(function(){injectSummary();patchPortfolioCalculations();hideBadQuoteTime();},250)}
   window.addEventListener('load',run);
   window.addEventListener('hashchange',run);
   new MutationObserver(function(){if(portfolioPage()){run();hideBadQuoteTime();}}).observe(document.documentElement,{childList:true,subtree:true});
