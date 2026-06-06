@@ -55,7 +55,7 @@
     return out;
   }
   function portfolio(){return (load(PORTFOLIO_KEY,[])||[]).map(function(p){return Object.assign({},p,{t:ticker(p.t),qty:num(p.qty),pmc:num(p.pmc)})}).filter(function(p){return p.t&&p.qty>0&&p.pmc>0})}
-  function capital(){var c=load(CAPITAL_KEY,{});return {total:num(c.totalCapital)||5000,trading:num(c.tradingCapital)||0,free:num(c.freeCash)||0}}
+  function capital(){var c=load(CAPITAL_KEY,{});return {trading:num(c.tradingCapital)||0,free:num(c.freeCash)||0}}
   function calcRows(){
     var quotes=marketQuotes();
     return portfolio().map(function(p){
@@ -73,6 +73,7 @@
     var rows=calcRows();
     var invested=rows.reduce(function(s,r){return s+r.invested},0);
     var value=rows.reduce(function(s,r){return s+(r.value||r.invested)},0);
+    var computedTotal=value+cap.free;
     var pl=rows.reduce(function(s,r){return s+r.pl},0);
     var plPct=invested?pl/invested*100:0;
     var liveCount=rows.filter(function(r){return r.live>0}).length;
@@ -82,7 +83,7 @@
       '<div class="section-title"><h3>Portafoglio totale</h3><span class="tag">'+liveCount+'/'+rows.length+' prezzi live</span></div>'+ 
       '<div class="grid">'+
         metric('Investito',usd(invested))+metric('Valore attuale',usd(value))+metric('P/L totale',money(pl),pl>=0?'good':'bad')+metric('P/L %',pct(plPct),pl>=0?'good':'bad')+
-        metric('Capitale libero',usd(cap.free))+metric('Capitale trading',usd(cap.trading))+metric('Peso su capitale totale',cap.total?pct(value/cap.total*100):'N/D')+metric('Peso su capitale trading',cap.trading?pct(value/cap.trading*100):'N/D')+
+        metric('Capitale libero',usd(cap.free))+metric('Capitale trading',usd(cap.trading))+metric('Capitale totale calcolato',usd(computedTotal))+metric('Esposizione su capitale totale',computedTotal?pct(value/computedTotal*100):'N/D')+metric('Esposizione su capitale trading',cap.trading?pct(value/cap.trading*100):'N/D')+
         metric('Migliore',best?best.p.t+' '+pct(best.plPct):'N/D')+metric('Peggiore',worst?worst.p.t+' '+pct(worst.plPct):'N/D')+
       '</div>'+ 
       '</section>';
@@ -104,6 +105,8 @@
     $all('.metric small').forEach(function(s){
       var t=clean(s.textContent);
       if(t==='P/L €')s.textContent='P/L $';
+      if(t==='Peso su capitale totale')s.textContent='Esposizione su capitale totale';
+      if(t==='Peso su capitale trading')s.textContent='Esposizione su capitale trading';
     });
   }
   function patchPortfolioCalculations(){
@@ -124,7 +127,7 @@
         if(label==='P/L €'||label==='P/L $')m.innerHTML='<small>P/L $</small>'+(r.pl>=0?'<span class="good">'+money(r.pl)+'</span>':'<span class="bad">'+money(r.pl)+'</span>');
         if(label==='P/L %')m.innerHTML='<small>P/L %</small>'+(r.plPct>=0?'<span class="good">'+pct(r.plPct)+'</span>':'<span class="bad">'+pct(r.plPct)+'</span>');
         if(label==='Distanza dal PMC')m.innerHTML='<small>Distanza dal PMC</small>'+(r.plPct>=0?'<span class="good">'+pct(r.plPct)+'</span>':'<span class="bad">'+pct(r.plPct)+'</span>');
-        if(label==='Peso capitale trading'||label==='Peso su capitale trading')m.innerHTML='<small>Peso capitale trading</small>'+(cap.trading?pct((r.value||r.invested)/cap.trading*100):'N/D');
+        if(label==='Peso capitale trading'||label==='Peso su capitale trading'||label==='Esposizione su capitale trading')m.innerHTML='<small>Esposizione su capitale trading</small>'+(cap.trading?pct((r.value||r.invested)/cap.trading*100):'N/D');
       });
       var sourceTag=card.querySelector('.tag');
       if(sourceTag&&r.q&&r.q.source==='portfolio-override')sourceTag.textContent='Fonte: override portfolio';
