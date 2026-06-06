@@ -38,9 +38,34 @@ function nameFor(t){
 function sectorFor(t){
   return ({AMPG:'Semiconductors/AI',FCEL:'Energy/clean tech',INCY:'Healthcare/biotech',CHOR:'Energy',FLNC:'Energy/clean tech'})[t]||'Portfolio manual';
 }
-async function fetchExtraQuotes(tickers){
+function quoteObject(ticker, price, prevClose, source, extra={}){
+  const move=Number.isFinite(prevClose)&&prevClose>0?Number((((price-prevClose)/prevClose)*100).toFixed(2)):0;
+  const now=new Date().toISOString();
+  return {
+    ticker,
+    t:ticker,
+    symbol:ticker,
+    name:nameFor(ticker),
+    sector:sectorFor(ticker),
+    price,
+    close:price,
+    last:price,
+    move,
+    volume:Number(extra.volume||0),
+    source,
+    sourceSymbol:extra.sourceSymbol||ticker,
+    quoteDate:(extra.quoteDate||now.slice(0,10)),
+    quoteTime:(extra.quoteTime||now.slice(11,19)),
+    status:'ok',
+    valid:true,
+    downloaded:true,
+    event:'portfolio universe patch',
+    note:'extra ticker needed by portfolio'
+  };
+}
+async function fetchStooqQuotes(tickers){
   const query=tickers.map(t=>t.toLowerCase()+'.us').join(',');
-  const url=`https://stooq.com/q/l/?s=${encodeURIComponent(query)}&f=sd2t2ohlcv&h&e=csv`;
+  const url=`https://stooq.com/q/l/?s=${query}&f=sd2t2ohlcv&h&e=csv`;
   const csv=await get(url);
   const rows=csv.trim().split(/\r?\n/).filter(Boolean);
   if(rows.length<2)return [];
@@ -53,32 +78,36 @@ async function fetchExtraQuotes(tickers){
     if(!tickers.includes(ticker))continue;
     const close=cleanNum(mapped.close);
     const open=cleanNum(mapped.open);
-    const volume=cleanNum(mapped.volume);
     if(!Number.isFinite(close)||close<=0)continue;
-    const move=Number.isFinite(open)&&open>0?Number((((close-open)/open)*100).toFixed(2)):0;
-    results.push({
-      ticker,
-      t:ticker,
-      symbol:ticker,
-      name:nameFor(ticker),
-      sector:sectorFor(ticker),
-      price:close,
-      close,
-      last:close,
-      move,
-      volume:Number.isFinite(volume)?volume:0,
-      source:'stooq',
-      sourceSymbol:mapped.symbol,
-      quoteDate:mapped.date,
-      quoteTime:mapped.time,
-      status:'ok',
-      valid:true,
-      downloaded:true,
-      event:'portfolio universe patch',
-      note:'extra ticker needed by portfolio'
-    });
+    results.push(quoteObject(ticker,close,open,'stooq',{volume:cleanNum(mapped.volume),sourceSymbol:mapped.symbol,quoteDate:mapped.date,quoteTime:mapped.time}));
   }
   return results;
+}
+async function fetchYahooQuote(ticker){
+  const url=`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=1d&interval=1d`;
+  const raw=await get(url);
+  const json=JSON.parse(raw);
+  const result=json&&json.chart&&json.chart.result&&json.chart.result[0];
+  if(!result)throw new Error('Yahoo empty result');
+  const meta=result.meta||{};
+  const price=Number(meta.regularMarketPrice||meta.previousClose||meta.chartPreviousClose);
+  const prev=Number(meta.previousClose||meta.chartPreviousClose||price);
+  if(!Number.isFinite(price)||price<=0)throw new Error('Yahoo invalid price');
+  return quoteObject(ticker,price,prev,'yahoo-chart',{volume:0,sourceSymbol:ticker});
+}
+async function fetchExtraQuotes(tickers){
+  const stooq=await fetchStooqQuotes(tickers).catch(e=>{console.warn('Stooq extra batch failed:',e.message||e);return []});
+  const byTicker=new Map(stooq.map(q=>[q.ticker,q]));
+  for(const ticker of tickers){
+    if(byTicker.has(ticker))continue;
+    try{
+      const q=await fetchYahooQuote(ticker);
+      byTicker.set(ticker,q);
+    }catch(e){
+      console.warn('Yahoo fallback failed for',ticker,':',e.message||e);
+    }
+  }
+  return Array.from(byTicker.values());
 }
 function isValid(q){return q&&q.valid!==false&&Number(q.price||q.close||q.last)>0&&String(q.ticker||q.t||q.symbol||'').trim();}
 
