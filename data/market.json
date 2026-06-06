@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-06-06T12:19:39.698Z",
-  "snapshotGeneratedAt": "2026-06-06T12:19:39.698Z",
-  "lastSuccessfulMarketFetchAt": "2026-06-06T12:19:39.698Z",
+  "updatedAt": "2026-06-06T16:27:12.758Z",
+  "snapshotGeneratedAt": "2026-06-06T16:27:12.758Z",
+  "lastSuccessfulMarketFetchAt": "2026-06-06T16:27:12.758Z",
   "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
   "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
   "source": "stooq",
@@ -526,9 +526,14 @@
     "IGV",
     "SKYY",
     "FDN",
-    "VOO"
+    "VOO",
+    "AMPG",
+    "FCEL",
+    "INCY",
+    "CHOR",
+    "FLNC"
   ],
-  "configuredTickersCount": 516,
+  "configuredTickersCount": 521,
   "failedQuotes": [],
   "firstSuccessfulTickers": [
     "NVDA",
@@ -11294,7 +11299,7 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-06-06T12:19:39.694Z",
+    "fetchStarted": "2026-06-06T16:27:12.754Z",
     "source": "stooq",
     "sourceReached": true,
     "downloadedCount": 0,
@@ -11310,13 +11315,13 @@
     "reason": "",
     "marketJsonRewritten": true,
     "newTimestampDetected": true,
-    "previousTimestamp": "2026-06-06T08:17:56.764Z",
-    "newlyGeneratedTimestamp": "2026-06-06T12:19:39.698Z",
+    "previousTimestamp": "2026-06-06T12:19:39.698Z",
+    "newlyGeneratedTimestamp": "2026-06-06T16:27:12.758Z",
     "timestampComparisonResult": "new timestamp differs from previous timestamp",
     "timestampUpdateCodePath": "preserve-existing-quotes-but-accept-usable-snapshot: live refresh 0/300, existing snapshot 516; timestamps advanced",
     "timestampWillAdvance": true,
-    "snapshotGeneratedAt": "2026-06-06T12:19:39.698Z",
-    "lastSuccessfulMarketFetchAt": "2026-06-06T12:19:39.698Z",
+    "snapshotGeneratedAt": "2026-06-06T16:27:12.758Z",
+    "lastSuccessfulMarketFetchAt": "2026-06-06T16:27:12.758Z",
     "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
     "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
     "sourceErrors": [],
@@ -11404,9 +11409,17 @@
         "validationRule": "missing_csv_row",
         "error": "No CSV row returned"
       }
-    ]
+    ],
+    "portfolioPatchTickers": [
+      "AMPG",
+      "FCEL",
+      "INCY",
+      "CHOR",
+      "FLNC"
+    ],
+    "portfolioPatchAcceptedTickers": []
   },
-  "lastRefreshAttemptAt": "2026-06-06T12:19:39.698Z",
+  "lastRefreshAttemptAt": "2026-06-06T16:27:12.758Z",
   "lastRefreshAttemptStatus": "live refresh below minimum 0/300; existing snapshot accepted",
   "lastRefreshAttemptSuccess": true,
   "staleSnapshot": false
