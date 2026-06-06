@@ -29,6 +29,33 @@
   function save(key,value){localStorage.setItem(key,JSON.stringify(value))}
   function portfolioPage(){return (location.hash.replace('#','')||'home')==='portfolio'}
 
+  function labelText(el){var label=el.closest&&el.closest('label');return label?String(label.textContent||'').toLowerCase():''}
+  function fieldByLabel(root, words){
+    var fields=Array.prototype.slice.call(root.querySelectorAll('input,textarea'));
+    for(var i=0;i<fields.length;i++){
+      var txt=labelText(fields[i]);
+      for(var j=0;j<words.length;j++) if(txt.indexOf(words[j])>=0) return fields[i];
+    }
+    return null;
+  }
+  function valuesFromVisibleForm(root){
+    var inputs=Array.prototype.slice.call(root.querySelectorAll('input'));
+    var textareas=Array.prototype.slice.call(root.querySelectorAll('textarea'));
+    var tickerEl=fieldByLabel(root,['ticker','simbolo'])||inputs[0];
+    var nameEl=fieldByLabel(root,['nome']);
+    var qtyEl=fieldByLabel(root,['quant']);
+    var pmcEl=fieldByLabel(root,['pmc','prezzo medio']);
+    var dateEl=fieldByLabel(root,['data']);
+    var noteEl=fieldByLabel(root,['note','piano'])||textareas[0];
+    return {
+      t:tickerEl?tickerEl.value:'',
+      name:nameEl?nameEl.value:'',
+      qty:number(qtyEl?qtyEl.value:''),
+      pmc:number(pmcEl?pmcEl.value:''),
+      date:dateEl?dateEl.value:'',
+      plan:noteEl?cleanText(noteEl.value):''
+    };
+  }
   function bestTickerFromForm(root,pos){
     var candidates=[pos.t,pos.name];
     Array.prototype.slice.call(root.querySelectorAll('input,textarea')).forEach(function(el){candidates.push(el.value)});
@@ -38,17 +65,15 @@
     }
     return '';
   }
-
   function addOrUpdatePosition(pos,root){
     var list=load(STORAGE_KEY,[]);
     var t=bestTickerFromForm(root,pos);
-    if(!t){alert('Inserisci AMPG nel campo Ticker / simbolo');return false}
+    if(!t){alert('Inserisci il ticker, esempio AMPG o COHR');return false}
     if(!pos.qty||pos.qty<=0){alert('Inserisci una quantità maggiore di zero');return false}
     if(!pos.pmc||pos.pmc<=0){alert('Inserisci un PMC maggiore di zero');return false}
 
     var existing=list.findIndex(function(p){return ticker(p.t)===t});
     var clean={t:t,name:cleanText(pos.name)||t,qty:Number(pos.qty),pmc:Number(pos.pmc),date:pos.date||'',plan:pos.plan||''};
-
     if(existing>=0){
       if(!confirm(t+' è già nel portafoglio. Vuoi aggiornare quantità e PMC?'))return false;
       list[existing]=Object.assign({},list[existing],clean);
@@ -100,7 +125,9 @@
       if(form.style.display==='block'&&input)input.focus();
     };
     $('#portfolioAddCancel',card).onclick=function(){ $('#portfolioAddForm',card).style.display='none'; };
-    $('#portfolioAddSave',card).onclick=function(){
+    $('#portfolioAddSave',card).onclick=function(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
       var ok=addOrUpdatePosition({
         t:value('portfolioAddTicker',card),
         name:value('portfolioAddName',card),
@@ -112,6 +139,22 @@
       if(ok){ alert('Posizione salvata. Ricarico il Portfolio.'); location.hash='#portfolio'; location.reload(); }
     };
   }
+
+  document.addEventListener('click',function(ev){
+    if(!portfolioPage())return;
+    var btn=ev.target&&ev.target.closest&&ev.target.closest('button');
+    if(!btn)return;
+    var text=String(btn.textContent||'').toLowerCase();
+    if(text.indexOf('salva posizione')<0)return;
+    var root=btn.closest('.card')||document;
+    var pos=valuesFromVisibleForm(root);
+    if(!pos.t && !pos.name)return;
+    ev.preventDefault();
+    ev.stopPropagation();
+    if(ev.stopImmediatePropagation)ev.stopImmediatePropagation();
+    var ok=addOrUpdatePosition(pos,root);
+    if(ok){ alert('Posizione salvata. Ricarico il Portfolio.'); location.hash='#portfolio'; location.reload(); }
+  },true);
 
   function schedule(){setTimeout(inject,150)}
   window.addEventListener('hashchange',schedule);
