@@ -4,6 +4,14 @@
   var PORTFOLIO_KEY='lv10_portfolio';
   var MARKET_KEY='lv10_market';
   var CAPITAL_KEY='lv10_capital_profile';
+  var OVERRIDE_KEY='lv10_portfolio_price_overrides';
+  var DEFAULT_OVERRIDES={
+    COHR:{price:376.99,source:'portfolio-override'},
+    NOW:{price:112.45,source:'portfolio-override'},
+    DDOG:{price:234.11,source:'portfolio-override'},
+    FCEL:{price:17.33,source:'portfolio-override'},
+    INCY:{price:102.38,source:'portfolio-override'}
+  };
 
   function $(q,root){return (root||document).querySelector(q)}
   function $all(q,root){return Array.prototype.slice.call((root||document).querySelectorAll(q))}
@@ -18,17 +26,31 @@
     return Number.isFinite(n)?n:0;
   }
   function load(k,f){try{var v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
+  function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
   function money(v){var n=Number(v)||0;var sign=n>0?'+':'';return sign+n.toLocaleString('it-IT',{maximumFractionDigits:0})+' $'}
   function usd(v){var n=Number(v)||0;return n.toLocaleString('it-IT',{maximumFractionDigits:2})+' $'}
   function pct(v){var n=Number(v)||0;var sign=n>0?'+':'';return sign+n.toFixed(2)+'%'}
   function portfolioPage(){return (location.hash.replace('#','')||'home')==='portfolio'}
+  function loadOverrides(){
+    var o=load(OVERRIDE_KEY,null);
+    if(!o){save(OVERRIDE_KEY,DEFAULT_OVERRIDES);o=DEFAULT_OVERRIDES}
+    return Object.assign({},DEFAULT_OVERRIDES,o||{});
+  }
   function marketQuotes(){
     var m=load(MARKET_KEY,{quotes:[]});
+    var overrides=loadOverrides();
     var out={};
     (m.quotes||[]).forEach(function(q){
       var t=ticker(q.ticker||q.t||q.symbol);
       var p=num(q.price||q.close||q.last);
       if(t&&p>0)out[t]=Object.assign({},q,{_ticker:t,_price:p});
+    });
+    Object.keys(overrides).forEach(function(t){
+      var ov=overrides[t]||{};
+      var p=num(ov.price);
+      if(ticker(t)&&p>0){
+        out[ticker(t)]=Object.assign({},out[ticker(t)]||{},ov,{ticker:ticker(t),t:ticker(t),symbol:ticker(t),price:p,close:p,last:p,_ticker:ticker(t),_price:p,source:ov.source||'portfolio-override',valid:true});
+      }
     });
     return out;
   }
@@ -68,7 +90,8 @@
   function metric(k,v,c){return '<div class="metric"><small>'+k+'</small>'+(c?'<span class="'+c+'">'+v+'</span>':v)+'</div>'}
   function injectSummary(){
     if(!portfolioPage())return;
-    if($('#portfolio-summary-card'))return;
+    var old=$('#portfolio-summary-card');
+    if(old)old.remove();
     var page=$('.page');
     if(!page)return;
     var wrap=document.createElement('div');
@@ -82,24 +105,11 @@
       var t=clean(s.textContent);
       if(t==='P/L €')s.textContent='P/L $';
     });
-    $all('.metric').forEach(function(m){
-      var small=$('small',m);if(!small)return;
-      var label=clean(small.textContent);
-      if(label==='P/L $'){
-        var txt=clean(m.textContent).replace('P/L $','');
-        var val=num(txt);
-        if(val||/0/.test(txt))m.innerHTML='<small>P/L $</small>'+(val>=0?'<span class="good">'+money(val)+'</span>':'<span class="bad">'+money(val)+'</span>');
-      }
-      if(label==='P/L %'||label==='Distanza dal PMC'){
-        var txt2=clean(m.textContent).replace(label,'');
-        var v=num(txt2);
-        if(v||/0/.test(txt2))m.innerHTML='<small>'+label+'</small>'+(v>=0?'<span class="good">'+pct(v)+'</span>':'<span class="bad">'+pct(v)+'</span>');
-      }
-    });
   }
   function patchPortfolioCalculations(){
     if(!portfolioPage())return;
     var rows=calcRows();
+    var cap=capital();
     rows.forEach(function(r){
       if(!r.live)return;
       var card=$all('.card').find(function(c){
@@ -114,7 +124,10 @@
         if(label==='P/L €'||label==='P/L $')m.innerHTML='<small>P/L $</small>'+(r.pl>=0?'<span class="good">'+money(r.pl)+'</span>':'<span class="bad">'+money(r.pl)+'</span>');
         if(label==='P/L %')m.innerHTML='<small>P/L %</small>'+(r.plPct>=0?'<span class="good">'+pct(r.plPct)+'</span>':'<span class="bad">'+pct(r.plPct)+'</span>');
         if(label==='Distanza dal PMC')m.innerHTML='<small>Distanza dal PMC</small>'+(r.plPct>=0?'<span class="good">'+pct(r.plPct)+'</span>':'<span class="bad">'+pct(r.plPct)+'</span>');
+        if(label==='Peso capitale trading'||label==='Peso su capitale trading')m.innerHTML='<small>Peso capitale trading</small>'+(cap.trading?pct((r.value||r.invested)/cap.trading*100):'N/D');
       });
+      var sourceTag=card.querySelector('.tag');
+      if(sourceTag&&r.q&&r.q.source==='portfolio-override')sourceTag.textContent='Fonte: override portfolio';
     });
   }
   function hideBadQuoteTime(){
