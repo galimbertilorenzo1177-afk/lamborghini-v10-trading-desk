@@ -4,7 +4,8 @@ import https from 'node:https';
 import fs from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 
-const EXTRA_TICKERS = ['AMPG','FCEL','INCY','CHOR','FLNC'];
+const EXTRA_TICKERS = ['AMPG','FCEL','INCY','CHOR','FLNC','COHR','NOW','DDOG'];
+const YAHOO_FIRST = new Set(['COHR','NOW','DDOG','INCY','FCEL']);
 const DATA_PATH = 'data/market.json';
 
 function get(url, timeout=16000){
@@ -33,10 +34,10 @@ function cleanNum(v){
   return Number.isFinite(n)?n:NaN;
 }
 function nameFor(t){
-  return ({AMPG:'Amplitech Group',FCEL:'FuelCell Energy',INCY:'Incyte',CHOR:'Chord Energy',FLNC:'Fluence Energy'})[t]||t;
+  return ({AMPG:'Amplitech Group',FCEL:'FuelCell Energy',INCY:'Incyte',CHOR:'Chord Energy',FLNC:'Fluence Energy',COHR:'Coherent',NOW:'ServiceNow',DDOG:'Datadog'})[t]||t;
 }
 function sectorFor(t){
-  return ({AMPG:'Semiconductors/AI',FCEL:'Energy/clean tech',INCY:'Healthcare/biotech',CHOR:'Energy',FLNC:'Energy/clean tech'})[t]||'Portfolio manual';
+  return ({AMPG:'Semiconductors/AI',FCEL:'Energy/clean tech',INCY:'Healthcare/biotech',CHOR:'Energy',FLNC:'Energy/clean tech',COHR:'Semiconductors/optical',NOW:'Software',DDOG:'Software/observability'})[t]||'Portfolio manual';
 }
 function quoteObject(ticker, price, prevClose, source, extra={}){
   const move=Number.isFinite(prevClose)&&prevClose>0?Number((((price-prevClose)/prevClose)*100).toFixed(2)):0;
@@ -60,7 +61,7 @@ function quoteObject(ticker, price, prevClose, source, extra={}){
     valid:true,
     downloaded:true,
     event:'portfolio universe patch',
-    note:'extra ticker needed by portfolio'
+    note:'portfolio quote preferred source'
   };
 }
 async function fetchStooqQuotes(tickers){
@@ -84,14 +85,17 @@ async function fetchStooqQuotes(tickers){
   return results;
 }
 async function fetchYahooQuote(ticker){
-  const url=`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=1d&interval=1d`;
+  const url=`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?range=5d&interval=1d`;
   const raw=await get(url);
   const json=JSON.parse(raw);
   const result=json&&json.chart&&json.chart.result&&json.chart.result[0];
   if(!result)throw new Error('Yahoo empty result');
   const meta=result.meta||{};
-  const price=Number(meta.regularMarketPrice||meta.previousClose||meta.chartPreviousClose);
-  const prev=Number(meta.previousClose||meta.chartPreviousClose||price);
+  const quote=result.indicators&&result.indicators.quote&&result.indicators.quote[0]||{};
+  const closes=(quote.close||[]).filter(v=>Number.isFinite(Number(v))&&Number(v)>0).map(Number);
+  const yahooPrice=Number(meta.regularMarketPrice);
+  const price=Number.isFinite(yahooPrice)&&yahooPrice>0?yahooPrice:closes.at(-1);
+  const prev=Number(meta.previousClose||meta.chartPreviousClose||closes.at(-2)||price);
   if(!Number.isFinite(price)||price<=0)throw new Error('Yahoo invalid price');
   return quoteObject(ticker,price,prev,'yahoo-chart',{volume:0,sourceSymbol:ticker});
 }
@@ -99,7 +103,7 @@ async function fetchExtraQuotes(tickers){
   const stooq=await fetchStooqQuotes(tickers).catch(e=>{console.warn('Stooq extra batch failed:',e.message||e);return []});
   const byTicker=new Map(stooq.map(q=>[q.ticker,q]));
   for(const ticker of tickers){
-    if(byTicker.has(ticker))continue;
+    if(byTicker.has(ticker)&&!YAHOO_FIRST.has(ticker))continue;
     try{
       const q=await fetchYahooQuote(ticker);
       byTicker.set(ticker,q);
@@ -142,7 +146,8 @@ try{
 
   market.refreshDiagnostics=Object.assign({},market.refreshDiagnostics||{}, {
     portfolioPatchTickers: EXTRA_TICKERS,
-    portfolioPatchAcceptedTickers: extras.map(q=>q.ticker),
+    yahooFirstTickers: Array.from(YAHOO_FIRST),
+    portfolioPatchAcceptedTickers: extras.map(q=>`${q.ticker}:${q.source}:${q.price}`),
     validQuotes: valid.length,
     validatedCount: valid.length,
     acceptedCount: valid.length,
@@ -152,7 +157,7 @@ try{
   });
 
   await fs.writeFile(DATA_PATH,JSON.stringify(market,null,2));
-  console.log(JSON.stringify({portfolioPatch:'ok',addedOrUpdated:extras.map(q=>q.ticker),validQuotesCount:market.validQuotesCount,configuredTickersCount:market.configuredTickersCount},null,2));
+  console.log(JSON.stringify({portfolioPatch:'ok',addedOrUpdated:extras.map(q=>({ticker:q.ticker,source:q.source,price:q.price})),validQuotesCount:market.validQuotesCount,configuredTickersCount:market.configuredTickersCount},null,2));
 }catch(e){
   console.warn('Portfolio ticker patch failed:',e.message||e);
 }
