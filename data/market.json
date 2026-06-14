@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-06-13T20:49:29.330Z",
-  "snapshotGeneratedAt": "2026-06-13T20:49:29.330Z",
-  "lastSuccessfulMarketFetchAt": "2026-06-13T20:49:29.330Z",
+  "updatedAt": "2026-06-14T08:56:47.018Z",
+  "snapshotGeneratedAt": "2026-06-14T08:56:47.018Z",
+  "lastSuccessfulMarketFetchAt": "2026-06-14T08:56:47.018Z",
   "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
   "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
   "source": "stooq",
@@ -1825,8 +1825,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "COHR",
-      "quoteDate": "2026-06-13",
-      "quoteTime": "20:49:35",
+      "quoteDate": "2026-06-14",
+      "quoteTime": "08:56:52",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2364,8 +2364,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "DDOG",
-      "quoteDate": "2026-06-13",
-      "quoteTime": "20:49:35",
+      "quoteDate": "2026-06-14",
+      "quoteTime": "08:56:52",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2469,8 +2469,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "NOW",
-      "quoteDate": "2026-06-13",
-      "quoteTime": "20:49:35",
+      "quoteDate": "2026-06-14",
+      "quoteTime": "08:56:52",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8608,8 +8608,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "AMPG",
-      "quoteDate": "2026-06-13",
-      "quoteTime": "20:49:35",
+      "quoteDate": "2026-06-14",
+      "quoteTime": "08:56:52",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8629,8 +8629,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "FCEL",
-      "quoteDate": "2026-06-13",
-      "quoteTime": "20:49:35",
+      "quoteDate": "2026-06-14",
+      "quoteTime": "08:56:52",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8650,8 +8650,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "INCY",
-      "quoteDate": "2026-06-13",
-      "quoteTime": "20:49:35",
+      "quoteDate": "2026-06-14",
+      "quoteTime": "08:56:52",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8671,8 +8671,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "FLNC",
-      "quoteDate": "2026-06-13",
-      "quoteTime": "20:49:35",
+      "quoteDate": "2026-06-14",
+      "quoteTime": "08:56:52",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -11404,7 +11404,7 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-06-13T20:49:29.326Z",
+    "fetchStarted": "2026-06-14T08:56:47.015Z",
     "source": "stooq",
     "sourceReached": true,
     "downloadedCount": 0,
@@ -11420,27 +11420,16 @@
     "reason": "",
     "marketJsonRewritten": true,
     "newTimestampDetected": true,
-    "previousTimestamp": "2026-06-13T15:53:07.834Z",
-    "newlyGeneratedTimestamp": "2026-06-13T20:49:29.330Z",
+    "previousTimestamp": "2026-06-13T20:49:29.330Z",
+    "newlyGeneratedTimestamp": "2026-06-14T08:56:47.018Z",
     "timestampComparisonResult": "new timestamp differs from previous timestamp",
     "timestampUpdateCodePath": "preserve-existing-quotes-but-accept-usable-snapshot: live refresh 0/300, existing snapshot 520; timestamps advanced",
     "timestampWillAdvance": true,
-    "snapshotGeneratedAt": "2026-06-13T20:49:29.330Z",
-    "lastSuccessfulMarketFetchAt": "2026-06-13T20:49:29.330Z",
+    "snapshotGeneratedAt": "2026-06-14T08:56:47.018Z",
+    "lastSuccessfulMarketFetchAt": "2026-06-14T08:56:47.018Z",
     "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
     "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
     "sourceErrors": [
-      {
-        "batch": [
-          "NVDA",
-          "AMD",
-          "AVGO",
-          "MRVL",
-          "MU"
-        ],
-        "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
-      },
       {
         "batch": [
           "POWI",
@@ -11448,6 +11437,17 @@
           "FORM",
           "PI",
           "SYNA"
+        ],
+        "count": 25,
+        "error": "HTTP_STATUS: HTTP 404"
+      },
+      {
+        "batch": [
+          "NVDA",
+          "AMD",
+          "AVGO",
+          "MRVL",
+          "MU"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11564,22 +11564,22 @@
       },
       {
         "batch": [
-          "CVNA",
-          "CAR",
-          "AZO",
-          "ORLY",
-          "GPC"
+          "LVS",
+          "MGM",
+          "CZR",
+          "PENN",
+          "DKNG"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
       },
       {
         "batch": [
-          "LVS",
-          "MGM",
-          "CZR",
-          "PENN",
-          "DKNG"
+          "CVNA",
+          "CAR",
+          "AZO",
+          "ORLY",
+          "GPC"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11608,22 +11608,22 @@
       },
       {
         "batch": [
-          "FSLR",
-          "ENPH",
-          "MPC",
-          "PSX",
-          "VLO"
+          "ED",
+          "AWK",
+          "LIN",
+          "APD",
+          "SHW"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
       },
       {
         "batch": [
-          "ED",
-          "AWK",
-          "LIN",
-          "APD",
-          "SHW"
+          "FSLR",
+          "ENPH",
+          "MPC",
+          "PSX",
+          "VLO"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11774,7 +11774,7 @@
       "DDOG:yahoo-chart:229.9"
     ]
   },
-  "lastRefreshAttemptAt": "2026-06-13T20:49:29.330Z",
+  "lastRefreshAttemptAt": "2026-06-14T08:56:47.018Z",
   "lastRefreshAttemptStatus": "live refresh below minimum 0/300; existing snapshot accepted",
   "lastRefreshAttemptSuccess": true,
   "staleSnapshot": false
