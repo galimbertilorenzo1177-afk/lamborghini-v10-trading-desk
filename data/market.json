@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-04T17:11:12.020Z",
-  "snapshotGeneratedAt": "2026-08-04T17:11:12.020Z",
-  "lastSuccessfulMarketFetchAt": "2026-08-04T17:11:12.020Z",
+  "updatedAt": "2026-08-04T18:51:21.557Z",
+  "snapshotGeneratedAt": "2026-08-04T18:51:21.557Z",
+  "lastSuccessfulMarketFetchAt": "2026-08-04T18:51:21.557Z",
   "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
   "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
   "source": "stooq",
@@ -1818,15 +1818,15 @@
       "symbol": "COHR",
       "name": "Coherent",
       "sector": "Semiconductors/optical",
-      "price": 332.565,
-      "close": 332.565,
-      "last": 332.565,
-      "move": 36.67,
+      "price": 330.81,
+      "close": 330.81,
+      "last": 330.81,
+      "move": 35.95,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "COHR",
       "quoteDate": "2026-08-04",
-      "quoteTime": "17:11:18",
+      "quoteTime": "18:51:27",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2357,15 +2357,15 @@
       "symbol": "DDOG",
       "name": "Datadog",
       "sector": "Software/observability",
-      "price": 287.26,
-      "close": 287.26,
-      "last": 287.26,
-      "move": 14.5,
+      "price": 288.61,
+      "close": 288.61,
+      "last": 288.61,
+      "move": 15.04,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "DDOG",
       "quoteDate": "2026-08-04",
-      "quoteTime": "17:11:18",
+      "quoteTime": "18:51:28",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2462,15 +2462,15 @@
       "symbol": "NOW",
       "name": "ServiceNow",
       "sector": "Software",
-      "price": 116.16,
-      "close": 116.16,
-      "last": 116.16,
-      "move": 5.01,
+      "price": 117.04,
+      "close": 117.04,
+      "last": 117.04,
+      "move": 5.8,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "NOW",
       "quoteDate": "2026-08-04",
-      "quoteTime": "17:11:18",
+      "quoteTime": "18:51:27",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8601,15 +8601,15 @@
       "symbol": "AMPG",
       "name": "Amplitech Group",
       "sector": "Semiconductors/AI",
-      "price": 5.29,
-      "close": 5.29,
-      "last": 5.29,
-      "move": 7.96,
+      "price": 5.33,
+      "close": 5.33,
+      "last": 5.33,
+      "move": 8.78,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "AMPG",
       "quoteDate": "2026-08-04",
-      "quoteTime": "17:11:17",
+      "quoteTime": "18:51:27",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8622,15 +8622,15 @@
       "symbol": "FCEL",
       "name": "FuelCell Energy",
       "sector": "Energy/clean tech",
-      "price": 22.85,
-      "close": 22.85,
-      "last": 22.85,
-      "move": 16.23,
+      "price": 22.82,
+      "close": 22.82,
+      "last": 22.82,
+      "move": 16.07,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "FCEL",
       "quoteDate": "2026-08-04",
-      "quoteTime": "17:11:18",
+      "quoteTime": "18:51:27",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8643,15 +8643,15 @@
       "symbol": "INCY",
       "name": "Incyte",
       "sector": "Healthcare/biotech",
-      "price": 120,
-      "close": 120,
-      "last": 120,
-      "move": -7.64,
+      "price": 119.891,
+      "close": 119.891,
+      "last": 119.891,
+      "move": -7.73,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "INCY",
       "quoteDate": "2026-08-04",
-      "quoteTime": "17:11:18",
+      "quoteTime": "18:51:27",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8664,15 +8664,15 @@
       "symbol": "FLNC",
       "name": "Fluence Energy",
       "sector": "Energy/clean tech",
-      "price": 15.515,
-      "close": 15.515,
-      "last": 15.515,
-      "move": 22.94,
+      "price": 15.71,
+      "close": 15.71,
+      "last": 15.71,
+      "move": 24.48,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "FLNC",
       "quoteDate": "2026-08-04",
-      "quoteTime": "17:11:18",
+      "quoteTime": "18:51:27",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -11404,7 +11404,7 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-08-04T17:11:12.016Z",
+    "fetchStarted": "2026-08-04T18:51:21.553Z",
     "source": "stooq",
     "sourceReached": true,
     "downloadedCount": 0,
@@ -11420,13 +11420,13 @@
     "reason": "",
     "marketJsonRewritten": true,
     "newTimestampDetected": true,
-    "previousTimestamp": "2026-08-04T15:24:38.833Z",
-    "newlyGeneratedTimestamp": "2026-08-04T17:11:12.020Z",
+    "previousTimestamp": "2026-08-04T17:11:12.020Z",
+    "newlyGeneratedTimestamp": "2026-08-04T18:51:21.557Z",
     "timestampComparisonResult": "new timestamp differs from previous timestamp",
     "timestampUpdateCodePath": "preserve-existing-quotes-but-accept-usable-snapshot: live refresh 0/300, existing snapshot 520; timestamps advanced",
     "timestampWillAdvance": true,
-    "snapshotGeneratedAt": "2026-08-04T17:11:12.020Z",
-    "lastSuccessfulMarketFetchAt": "2026-08-04T17:11:12.020Z",
+    "snapshotGeneratedAt": "2026-08-04T18:51:21.557Z",
+    "lastSuccessfulMarketFetchAt": "2026-08-04T18:51:21.557Z",
     "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
     "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
     "sourceErrors": [
@@ -11454,17 +11454,6 @@
       },
       {
         "batch": [
-          "COHU",
-          "BRKR",
-          "VNT",
-          "KEYS",
-          "FLEX"
-        ],
-        "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
-      },
-      {
-        "batch": [
           "META",
           "SNOW",
           "MDB",
@@ -11476,11 +11465,11 @@
       },
       {
         "batch": [
-          "PATH",
-          "BILL",
-          "ESTC",
-          "GTLB",
-          "MNDY"
+          "COHU",
+          "BRKR",
+          "VNT",
+          "KEYS",
+          "FLEX"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11498,11 +11487,11 @@
       },
       {
         "batch": [
-          "CME",
-          "ICE",
-          "SPGI",
-          "MCO",
-          "AON"
+          "PATH",
+          "BILL",
+          "ESTC",
+          "GTLB",
+          "MNDY"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11520,11 +11509,11 @@
       },
       {
         "batch": [
-          "CI",
-          "CVS",
-          "MCK",
-          "COR",
-          "CAH"
+          "CME",
+          "ICE",
+          "SPGI",
+          "MCO",
+          "AON"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11542,11 +11531,11 @@
       },
       {
         "batch": [
-          "YUM",
-          "DPZ",
-          "DRI",
-          "WING",
-          "SHAK"
+          "CI",
+          "CVS",
+          "MCK",
+          "COR",
+          "CAH"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11564,11 +11553,11 @@
       },
       {
         "batch": [
-          "CVNA",
-          "CAR",
-          "AZO",
-          "ORLY",
-          "GPC"
+          "YUM",
+          "DPZ",
+          "DRI",
+          "WING",
+          "SHAK"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11586,11 +11575,11 @@
       },
       {
         "batch": [
-          "PCAR",
-          "FAST",
-          "GWW",
-          "WAB",
-          "OTIS"
+          "CVNA",
+          "CAR",
+          "AZO",
+          "ORLY",
+          "GPC"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11608,11 +11597,11 @@
       },
       {
         "batch": [
-          "FSLR",
-          "ENPH",
-          "MPC",
-          "PSX",
-          "VLO"
+          "PCAR",
+          "FAST",
+          "GWW",
+          "WAB",
+          "OTIS"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11630,11 +11619,11 @@
       },
       {
         "batch": [
-          "EQIX",
-          "CCI",
-          "PSA",
-          "O",
-          "WELL"
+          "FSLR",
+          "ENPH",
+          "MPC",
+          "PSX",
+          "VLO"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11646,6 +11635,17 @@
           "IWM",
           "DIA",
           "XLK"
+        ],
+        "count": 25,
+        "error": "HTTP_STATUS: HTTP 404"
+      },
+      {
+        "batch": [
+          "EQIX",
+          "CCI",
+          "PSA",
+          "O",
+          "WELL"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11765,16 +11765,16 @@
       "FCEL"
     ],
     "portfolioPatchAcceptedTickers": [
-      "AMPG:yahoo-chart:5.29",
-      "FCEL:yahoo-chart:22.85",
-      "INCY:yahoo-chart:120",
-      "FLNC:yahoo-chart:15.515",
-      "COHR:yahoo-chart:332.565",
-      "NOW:yahoo-chart:116.16",
-      "DDOG:yahoo-chart:287.26"
+      "AMPG:yahoo-chart:5.33",
+      "FCEL:yahoo-chart:22.82",
+      "INCY:yahoo-chart:119.891",
+      "FLNC:yahoo-chart:15.71",
+      "COHR:yahoo-chart:330.81",
+      "NOW:yahoo-chart:117.04",
+      "DDOG:yahoo-chart:288.61"
     ]
   },
-  "lastRefreshAttemptAt": "2026-08-04T17:11:12.020Z",
+  "lastRefreshAttemptAt": "2026-08-04T18:51:21.557Z",
   "lastRefreshAttemptStatus": "live refresh below minimum 0/300; existing snapshot accepted",
   "lastRefreshAttemptSuccess": true,
   "staleSnapshot": false
