@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-14T20:13:51.378Z",
-  "snapshotGeneratedAt": "2026-08-14T20:13:51.378Z",
-  "lastSuccessfulMarketFetchAt": "2026-08-14T20:13:51.378Z",
+  "updatedAt": "2026-08-14T20:46:45.360Z",
+  "snapshotGeneratedAt": "2026-08-14T20:46:45.360Z",
+  "lastSuccessfulMarketFetchAt": "2026-08-14T20:46:45.360Z",
   "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
   "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
   "source": "stooq",
@@ -1818,15 +1818,15 @@
       "symbol": "COHR",
       "name": "Coherent",
       "sector": "Semiconductors/optical",
-      "price": 325.93,
-      "close": 325.93,
-      "last": 325.93,
-      "move": -14.03,
+      "price": 325.83,
+      "close": 325.83,
+      "last": 325.83,
+      "move": -14.06,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "COHR",
       "quoteDate": "2026-08-14",
-      "quoteTime": "20:13:56",
+      "quoteTime": "20:46:51",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2365,7 +2365,7 @@
       "source": "yahoo-chart",
       "sourceSymbol": "DDOG",
       "quoteDate": "2026-08-14",
-      "quoteTime": "20:13:56",
+      "quoteTime": "20:46:51",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2462,15 +2462,15 @@
       "symbol": "NOW",
       "name": "ServiceNow",
       "sector": "Software",
-      "price": 124.03,
-      "close": 124.03,
-      "last": 124.03,
-      "move": -0.68,
+      "price": 124,
+      "close": 124,
+      "last": 124,
+      "move": -0.7,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "NOW",
       "quoteDate": "2026-08-14",
-      "quoteTime": "20:13:56",
+      "quoteTime": "20:46:51",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8609,7 +8609,7 @@
       "source": "yahoo-chart",
       "sourceSymbol": "AMPG",
       "quoteDate": "2026-08-14",
-      "quoteTime": "20:13:56",
+      "quoteTime": "20:46:50",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8630,7 +8630,7 @@
       "source": "yahoo-chart",
       "sourceSymbol": "FCEL",
       "quoteDate": "2026-08-14",
-      "quoteTime": "20:13:56",
+      "quoteTime": "20:46:50",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8651,7 +8651,7 @@
       "source": "yahoo-chart",
       "sourceSymbol": "INCY",
       "quoteDate": "2026-08-14",
-      "quoteTime": "20:13:56",
+      "quoteTime": "20:46:51",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8672,7 +8672,7 @@
       "source": "yahoo-chart",
       "sourceSymbol": "FLNC",
       "quoteDate": "2026-08-14",
-      "quoteTime": "20:13:56",
+      "quoteTime": "20:46:51",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -11404,7 +11404,7 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-08-14T20:13:51.374Z",
+    "fetchStarted": "2026-08-14T20:46:45.357Z",
     "source": "stooq",
     "sourceReached": true,
     "downloadedCount": 0,
@@ -11420,13 +11420,13 @@
     "reason": "",
     "marketJsonRewritten": true,
     "newTimestampDetected": true,
-    "previousTimestamp": "2026-08-14T19:36:00.164Z",
-    "newlyGeneratedTimestamp": "2026-08-14T20:13:51.378Z",
+    "previousTimestamp": "2026-08-14T20:13:51.378Z",
+    "newlyGeneratedTimestamp": "2026-08-14T20:46:45.360Z",
     "timestampComparisonResult": "new timestamp differs from previous timestamp",
     "timestampUpdateCodePath": "preserve-existing-quotes-but-accept-usable-snapshot: live refresh 0/300, existing snapshot 520; timestamps advanced",
     "timestampWillAdvance": true,
-    "snapshotGeneratedAt": "2026-08-14T20:13:51.378Z",
-    "lastSuccessfulMarketFetchAt": "2026-08-14T20:13:51.378Z",
+    "snapshotGeneratedAt": "2026-08-14T20:46:45.360Z",
+    "lastSuccessfulMarketFetchAt": "2026-08-14T20:46:45.360Z",
     "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
     "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
     "sourceErrors": [
@@ -11498,22 +11498,22 @@
       },
       {
         "batch": [
-          "OWL",
-          "RJF",
-          "LLY",
-          "NVO",
-          "JNJ"
+          "CME",
+          "ICE",
+          "SPGI",
+          "MCO",
+          "AON"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
       },
       {
         "batch": [
-          "CME",
-          "ICE",
-          "SPGI",
-          "MCO",
-          "AON"
+          "OWL",
+          "RJF",
+          "LLY",
+          "NVO",
+          "JNJ"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11542,17 +11542,6 @@
       },
       {
         "batch": [
-          "HPQ",
-          "NTAP",
-          "STX",
-          "WDC",
-          "GLW"
-        ],
-        "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
-      },
-      {
-        "batch": [
           "YUM",
           "DPZ",
           "DRI",
@@ -11564,11 +11553,11 @@
       },
       {
         "batch": [
-          "LVS",
-          "MGM",
-          "CZR",
-          "PENN",
-          "DKNG"
+          "HPQ",
+          "NTAP",
+          "STX",
+          "WDC",
+          "GLW"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11580,6 +11569,17 @@
           "AZO",
           "ORLY",
           "GPC"
+        ],
+        "count": 25,
+        "error": "HTTP_STATUS: HTTP 404"
+      },
+      {
+        "batch": [
+          "LVS",
+          "MGM",
+          "CZR",
+          "PENN",
+          "DKNG"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11769,12 +11769,12 @@
       "FCEL:yahoo-chart:22.37",
       "INCY:yahoo-chart:120.16",
       "FLNC:yahoo-chart:13.14",
-      "COHR:yahoo-chart:325.93",
-      "NOW:yahoo-chart:124.03",
+      "COHR:yahoo-chart:325.83",
+      "NOW:yahoo-chart:124",
       "DDOG:yahoo-chart:255.46"
     ]
   },
-  "lastRefreshAttemptAt": "2026-08-14T20:13:51.378Z",
+  "lastRefreshAttemptAt": "2026-08-14T20:46:45.360Z",
   "lastRefreshAttemptStatus": "live refresh below minimum 0/300; existing snapshot accepted",
   "lastRefreshAttemptSuccess": true,
   "staleSnapshot": false
