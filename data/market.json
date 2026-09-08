@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-07T22:10:29.116Z",
-  "snapshotGeneratedAt": "2026-09-07T22:10:29.116Z",
-  "lastSuccessfulMarketFetchAt": "2026-09-07T22:10:29.116Z",
+  "updatedAt": "2026-09-08T00:24:07.835Z",
+  "snapshotGeneratedAt": "2026-09-08T00:24:07.835Z",
+  "lastSuccessfulMarketFetchAt": "2026-09-08T00:24:07.835Z",
   "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
   "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
   "source": "stooq",
@@ -1825,8 +1825,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "COHR",
-      "quoteDate": "2026-09-07",
-      "quoteTime": "22:10:34",
+      "quoteDate": "2026-09-08",
+      "quoteTime": "00:24:13",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2364,8 +2364,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "DDOG",
-      "quoteDate": "2026-09-07",
-      "quoteTime": "22:10:34",
+      "quoteDate": "2026-09-08",
+      "quoteTime": "00:24:13",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2469,8 +2469,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "NOW",
-      "quoteDate": "2026-09-07",
-      "quoteTime": "22:10:34",
+      "quoteDate": "2026-09-08",
+      "quoteTime": "00:24:13",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8608,8 +8608,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "AMPG",
-      "quoteDate": "2026-09-07",
-      "quoteTime": "22:10:33",
+      "quoteDate": "2026-09-08",
+      "quoteTime": "00:24:13",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8629,8 +8629,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "FCEL",
-      "quoteDate": "2026-09-07",
-      "quoteTime": "22:10:33",
+      "quoteDate": "2026-09-08",
+      "quoteTime": "00:24:13",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8650,8 +8650,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "INCY",
-      "quoteDate": "2026-09-07",
-      "quoteTime": "22:10:34",
+      "quoteDate": "2026-09-08",
+      "quoteTime": "00:24:13",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8671,8 +8671,8 @@
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "FLNC",
-      "quoteDate": "2026-09-07",
-      "quoteTime": "22:10:34",
+      "quoteDate": "2026-09-08",
+      "quoteTime": "00:24:13",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -11404,7 +11404,7 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-09-07T22:10:29.112Z",
+    "fetchStarted": "2026-09-08T00:24:07.833Z",
     "source": "stooq",
     "sourceReached": true,
     "downloadedCount": 0,
@@ -11420,13 +11420,13 @@
     "reason": "",
     "marketJsonRewritten": true,
     "newTimestampDetected": true,
-    "previousTimestamp": "2026-09-07T19:19:08.280Z",
-    "newlyGeneratedTimestamp": "2026-09-07T22:10:29.116Z",
+    "previousTimestamp": "2026-09-07T22:10:29.116Z",
+    "newlyGeneratedTimestamp": "2026-09-08T00:24:07.835Z",
     "timestampComparisonResult": "new timestamp differs from previous timestamp",
     "timestampUpdateCodePath": "preserve-existing-quotes-but-accept-usable-snapshot: live refresh 0/300, existing snapshot 520; timestamps advanced",
     "timestampWillAdvance": true,
-    "snapshotGeneratedAt": "2026-09-07T22:10:29.116Z",
-    "lastSuccessfulMarketFetchAt": "2026-09-07T22:10:29.116Z",
+    "snapshotGeneratedAt": "2026-09-08T00:24:07.835Z",
+    "lastSuccessfulMarketFetchAt": "2026-09-08T00:24:07.835Z",
     "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
     "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
     "sourceErrors": [
@@ -11454,22 +11454,22 @@
       },
       {
         "batch": [
-          "META",
-          "SNOW",
-          "MDB",
-          "NOW",
-          "CRM"
+          "COHU",
+          "BRKR",
+          "VNT",
+          "KEYS",
+          "FLEX"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
       },
       {
         "batch": [
-          "COHU",
-          "BRKR",
-          "VNT",
-          "KEYS",
-          "FLEX"
+          "META",
+          "SNOW",
+          "MDB",
+          "NOW",
+          "CRM"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11542,17 +11542,6 @@
       },
       {
         "batch": [
-          "YUM",
-          "DPZ",
-          "DRI",
-          "WING",
-          "SHAK"
-        ],
-        "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
-      },
-      {
-        "batch": [
           "HPQ",
           "NTAP",
           "STX",
@@ -11564,11 +11553,11 @@
       },
       {
         "batch": [
-          "CVNA",
-          "CAR",
-          "AZO",
-          "ORLY",
-          "GPC"
+          "YUM",
+          "DPZ",
+          "DRI",
+          "WING",
+          "SHAK"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11586,11 +11575,11 @@
       },
       {
         "batch": [
-          "PCAR",
-          "FAST",
-          "GWW",
-          "WAB",
-          "OTIS"
+          "CVNA",
+          "CAR",
+          "AZO",
+          "ORLY",
+          "GPC"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11602,6 +11591,17 @@
           "UAL",
           "AAL",
           "LUV"
+        ],
+        "count": 25,
+        "error": "HTTP_STATUS: HTTP 404"
+      },
+      {
+        "batch": [
+          "PCAR",
+          "FAST",
+          "GWW",
+          "WAB",
+          "OTIS"
         ],
         "count": 25,
         "error": "HTTP_STATUS: HTTP 404"
@@ -11774,7 +11774,7 @@
       "DDOG:yahoo-chart:212.93"
     ]
   },
-  "lastRefreshAttemptAt": "2026-09-07T22:10:29.116Z",
+  "lastRefreshAttemptAt": "2026-09-08T00:24:07.835Z",
   "lastRefreshAttemptStatus": "live refresh below minimum 0/300; existing snapshot accepted",
   "lastRefreshAttemptSuccess": true,
   "staleSnapshot": false
