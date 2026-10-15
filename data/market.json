@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-15T18:50:35.238Z",
-  "snapshotGeneratedAt": "2026-10-15T18:50:35.238Z",
-  "lastSuccessfulMarketFetchAt": "2026-10-15T18:50:35.238Z",
+  "updatedAt": "2026-10-15T21:54:07.990Z",
+  "snapshotGeneratedAt": "2026-10-15T21:54:07.990Z",
+  "lastSuccessfulMarketFetchAt": "2026-10-15T21:54:07.990Z",
   "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
   "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
   "source": "stooq",
@@ -1818,15 +1818,15 @@
       "symbol": "COHR",
       "name": "Coherent",
       "sector": "Semiconductors/optical",
-      "price": 244.23,
-      "close": 244.23,
-      "last": 244.23,
-      "move": -19.22,
+      "price": 250.6,
+      "close": 250.6,
+      "last": 250.6,
+      "move": -17.12,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "COHR",
       "quoteDate": "2026-10-15",
-      "quoteTime": "18:50:41",
+      "quoteTime": "21:57:23",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2357,15 +2357,15 @@
       "symbol": "DDOG",
       "name": "Datadog",
       "sector": "Software/observability",
-      "price": 262.511,
-      "close": 262.511,
-      "last": 262.511,
-      "move": -4.12,
+      "price": 266.25,
+      "close": 266.25,
+      "last": 266.25,
+      "move": -2.76,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "DDOG",
       "quoteDate": "2026-10-15",
-      "quoteTime": "18:50:41",
+      "quoteTime": "21:57:23",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -2462,15 +2462,15 @@
       "symbol": "NOW",
       "name": "ServiceNow",
       "sector": "Software",
-      "price": 147.65,
-      "close": 147.65,
-      "last": 147.65,
-      "move": 5.65,
+      "price": 148.57,
+      "close": 148.57,
+      "last": 148.57,
+      "move": 6.31,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "NOW",
       "quoteDate": "2026-10-15",
-      "quoteTime": "18:50:41",
+      "quoteTime": "21:57:23",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8601,15 +8601,15 @@
       "symbol": "AMPG",
       "name": "Amplitech Group",
       "sector": "Semiconductors/AI",
-      "price": 2.56,
-      "close": 2.56,
-      "last": 2.56,
-      "move": -9.22,
+      "price": 2.565,
+      "close": 2.565,
+      "last": 2.565,
+      "move": -9.04,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "AMPG",
       "quoteDate": "2026-10-15",
-      "quoteTime": "18:50:41",
+      "quoteTime": "21:57:23",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8622,15 +8622,15 @@
       "symbol": "FCEL",
       "name": "FuelCell Energy",
       "sector": "Energy/clean tech",
-      "price": 13.73,
-      "close": 13.73,
-      "last": 13.73,
-      "move": -20.41,
+      "price": 14.09,
+      "close": 14.09,
+      "last": 14.09,
+      "move": -18.32,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "FCEL",
       "quoteDate": "2026-10-15",
-      "quoteTime": "18:50:41",
+      "quoteTime": "21:57:23",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8643,15 +8643,15 @@
       "symbol": "INCY",
       "name": "Incyte",
       "sector": "Healthcare/biotech",
-      "price": 113.58,
-      "close": 113.58,
-      "last": 113.58,
-      "move": 0.74,
+      "price": 113.27,
+      "close": 113.27,
+      "last": 113.27,
+      "move": 0.46,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "INCY",
       "quoteDate": "2026-10-15",
-      "quoteTime": "18:50:41",
+      "quoteTime": "21:57:23",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -8664,15 +8664,15 @@
       "symbol": "FLNC",
       "name": "Fluence Energy",
       "sector": "Energy/clean tech",
-      "price": 6.245,
-      "close": 6.245,
-      "last": 6.245,
-      "move": -16.17,
+      "price": 6.43,
+      "close": 6.43,
+      "last": 6.43,
+      "move": -13.69,
       "volume": 0,
       "source": "yahoo-chart",
       "sourceSymbol": "FLNC",
       "quoteDate": "2026-10-15",
-      "quoteTime": "18:50:41",
+      "quoteTime": "21:57:23",
       "status": "ok",
       "valid": true,
       "downloaded": true,
@@ -11404,9 +11404,9 @@
   ],
   "news": [],
   "refreshDiagnostics": {
-    "fetchStarted": "2026-10-15T18:50:35.234Z",
+    "fetchStarted": "2026-10-15T21:54:07.988Z",
     "source": "stooq",
-    "sourceReached": true,
+    "sourceReached": false,
     "downloadedCount": 0,
     "downloadedQuotes": 0,
     "quotesDownloaded": 0,
@@ -11420,27 +11420,16 @@
     "reason": "",
     "marketJsonRewritten": true,
     "newTimestampDetected": true,
-    "previousTimestamp": "2026-10-15T14:49:06.420Z",
-    "newlyGeneratedTimestamp": "2026-10-15T18:50:35.238Z",
+    "previousTimestamp": "2026-10-15T18:50:35.238Z",
+    "newlyGeneratedTimestamp": "2026-10-15T21:54:07.990Z",
     "timestampComparisonResult": "new timestamp differs from previous timestamp",
     "timestampUpdateCodePath": "preserve-existing-quotes-but-accept-usable-snapshot: live refresh 0/300, existing snapshot 520; timestamps advanced",
     "timestampWillAdvance": true,
-    "snapshotGeneratedAt": "2026-10-15T18:50:35.238Z",
-    "lastSuccessfulMarketFetchAt": "2026-10-15T18:50:35.238Z",
+    "snapshotGeneratedAt": "2026-10-15T21:54:07.990Z",
+    "lastSuccessfulMarketFetchAt": "2026-10-15T21:54:07.990Z",
     "lastPriceChangeAt": "2026-05-31T15:59:27.114Z",
     "lastMarketQuoteTime": "2026-05-31T00:00:00.000Z",
     "sourceErrors": [
-      {
-        "batch": [
-          "POWI",
-          "SLAB",
-          "FORM",
-          "PI",
-          "SYNA"
-        ],
-        "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
-      },
       {
         "batch": [
           "NVDA",
@@ -11450,7 +11439,18 @@
           "MU"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
+      },
+      {
+        "batch": [
+          "POWI",
+          "SLAB",
+          "FORM",
+          "PI",
+          "SYNA"
+        ],
+        "count": 25,
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11461,7 +11461,7 @@
           "FLEX"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11472,7 +11472,7 @@
           "CRM"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11483,7 +11483,7 @@
           "MNDY"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11494,7 +11494,7 @@
           "CACI"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11505,7 +11505,7 @@
           "AON"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11516,7 +11516,7 @@
           "JNJ"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11527,7 +11527,7 @@
           "CAH"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11538,7 +11538,7 @@
           "TJX"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11549,7 +11549,7 @@
           "SHAK"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11560,7 +11560,7 @@
           "GLW"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11571,7 +11571,7 @@
           "GPC"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11582,7 +11582,7 @@
           "DKNG"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11593,7 +11593,7 @@
           "OTIS"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11604,7 +11604,7 @@
           "LUV"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11615,7 +11615,7 @@
           "VLO"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11626,7 +11626,7 @@
           "SHW"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11637,7 +11637,7 @@
           "WELL"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11648,7 +11648,7 @@
           "XLK"
         ],
         "count": 25,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "batch": [
@@ -11659,7 +11659,7 @@
           "XRT"
         ],
         "count": 16,
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       }
     ],
     "validationRejectionCounts": {
@@ -11672,7 +11672,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "ticker": "AMD",
@@ -11680,7 +11680,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "ticker": "AVGO",
@@ -11688,7 +11688,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "ticker": "MRVL",
@@ -11696,7 +11696,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "ticker": "MU",
@@ -11704,7 +11704,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "ticker": "ARM",
@@ -11712,7 +11712,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "ticker": "TSM",
@@ -11720,7 +11720,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "ticker": "QCOM",
@@ -11728,7 +11728,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "ticker": "TXN",
@@ -11736,7 +11736,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       },
       {
         "ticker": "ADI",
@@ -11744,7 +11744,7 @@
         "status": "invalid",
         "downloaded": false,
         "validationRule": "source_unavailable",
-        "error": "HTTP_STATUS: HTTP 404"
+        "error": "ETIMEDOUT: network timeout"
       }
     ],
     "portfolioPatchTickers": [
@@ -11765,16 +11765,16 @@
       "FCEL"
     ],
     "portfolioPatchAcceptedTickers": [
-      "AMPG:yahoo-chart:2.56",
-      "FCEL:yahoo-chart:13.73",
-      "INCY:yahoo-chart:113.58",
-      "FLNC:yahoo-chart:6.245",
-      "COHR:yahoo-chart:244.23",
-      "NOW:yahoo-chart:147.65",
-      "DDOG:yahoo-chart:262.511"
+      "AMPG:yahoo-chart:2.565",
+      "FCEL:yahoo-chart:14.09",
+      "INCY:yahoo-chart:113.27",
+      "FLNC:yahoo-chart:6.43",
+      "COHR:yahoo-chart:250.6",
+      "NOW:yahoo-chart:148.57",
+      "DDOG:yahoo-chart:266.25"
     ]
   },
-  "lastRefreshAttemptAt": "2026-10-15T18:50:35.238Z",
+  "lastRefreshAttemptAt": "2026-10-15T21:54:07.990Z",
   "lastRefreshAttemptStatus": "live refresh below minimum 0/300; existing snapshot accepted",
   "lastRefreshAttemptSuccess": true,
   "staleSnapshot": false
